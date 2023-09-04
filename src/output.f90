@@ -3639,9 +3639,19 @@
               xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
               bctopo)
       else if(write_plt) then
+         call q_tec(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist,var1,var2)
+         call wr_tec(nl,var1,var2)
+         call wr_tec_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
+              xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
+              bctopo)
          write(*,*) 'Writing flowtec files as plt format'
          write(*,*) 'is not yet implemented'
       else if(write_szplt) then
+         call q_tec(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist,var1,var2)
+         call wr_tec(nl,var1,var2)
+         call wr_tec_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
+              xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
+              bctopo)
          write(*,*) 'Writing flowtec files as plt format'
          write(*,*) 'is not yet implemented'
       else if(write_cgns) then
