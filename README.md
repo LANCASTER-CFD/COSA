@@ -13,7 +13,7 @@ COSA is a 3D structured time-accurate Euler/RANS code featuring:
 Developed and maintained by: M. Sergio Campobasso
 
 With contributions from:
-* Adrian Jackson
+* [Adrian Jackson|https://github.com/adrianjhpc]
 * Jernej Drofelnik
 * Minghan Yan
 * Fabio Gigante
