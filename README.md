@@ -27,4 +27,3 @@ With contributions from:
 * Giuseppe Onorato
 * Stefania S. Latorre
 * Francois Fraysse
-
