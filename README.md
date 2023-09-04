@@ -10,7 +10,7 @@ COSA is a 3D structured time-accurate Euler/RANS code featuring:
 * Explicit Runge Kutta time-accurate integration
 
 # Developers
-Developed and maintained by: M. Sergio Campobasso
+Developed and maintained by: [M. Sergio Campobasso](https://github.com/SergioCampobasso)
 
 With contributions from:
 * [Adrian Jackson](https://github.com/adrianjhpc)
