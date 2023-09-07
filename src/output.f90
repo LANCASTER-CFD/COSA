@@ -3640,19 +3640,19 @@
               bctopo)
       else if(write_plt) then
          call q_tec(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist,var1,var2)
-         call wr_tec(nl,var1,var2)
-         call wr_tec_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
-              xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
-              bctopo)
+         call wr_plt(nl,var1,var2)
+!         call wr_plt_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
+!              xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
+!              bctopo)
          write(*,*) 'Writing flowtec files as plt format'
          write(*,*) 'is not yet implemented'
       else if(write_szplt) then
          call q_tec(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist,var1,var2)
-         call wr_tec(nl,var1,var2)
-         call wr_tec_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
-              xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
-              bctopo)
-         write(*,*) 'Writing flowtec files as plt format'
+!         call wr_szplt(nl,var1,var2)
+!         call wr_szplt_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
+!              xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
+!              bctopo)
+         write(*,*) 'Writing flowtec files as szplt format'
          write(*,*) 'is not yet implemented'
       else if(write_cgns) then
          call wr_cgns(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist)
@@ -5643,6 +5643,274 @@
 
       return
       end
+
+!-----------------------------------------------------------------------
+      subroutine wr_plt(nl,var1,var2)
+!-----------------------------------------------------------------------
+!     
+!-----------------------------------------------------------------------
+       
+      use cosa_variables
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+      integer(kind=cosa_int) imax,jmax,kmax
+      integer(kind=cosa_int) nl,iblock,iv,n,fid(0:2*mharms)
+      logical parallel,amcontrol
+      real (kind=cosa_real) var1(*), var2(*)
+      character*72 titlename,tag,flowtec1,varlist
+      character*500 pwd
+      double precision :: starttime, endtime, totaltime, maxtime, mintime
+      integer(kind=cosa_int) fileformat, filetype, isdebug, isdouble
+      integer(kind=cosa_int) tecini142, tecend142, tecfil142
+
+
+      call usingparallel(parallel)
+      call amcontroller(amcontrol)
+
+      call getmpitime(starttime)     
+
+! This specifies whether the file is .plt of .szplt.
+! 0 is .plt
+! 1 is .szplt
+      fileformat = 1
+
+! This specifies whether the file is full (grid + solution), grid only, or solution only
+! 0 is full
+! 1 is grid
+! 2 is solution
+      filetype = 0
+! 0 is no debug info, 1 or more turns on debugging info.
+      isdebug = 0
+
+      isdouble = 1
+
+      do n = 0,2*nharms
+
+        fid(n)    = 200 + n
+
+!------ open tecplot file(s)
+
+        if (.not.unsteady) then
+
+          flowtec='flow_tec_steady.plt'
+
+        else if (harbal) then
+
+          if (n.le.9) then
+            write(tag,'(''00'',i1)') n
+          else if (n.le.99) then
+            write(tag,'(''0'',i2)') n
+          else if (n.le.999) then
+            write(tag,'(i3)') n
+          end if
+          flowtec = 'flow_tec_hb_'//tag
+          flowtec = trim(flowtec)//'.plt'
+
+        else if (dualt) then
+
+          if (itime.le.9) then
+            write(flowtec1,'(''000'',i1)') itime
+          elseif (itime.le.99) then
+            write(flowtec1,'(''00'',i2)')  itime
+          elseif (itime.le.999) then
+            write(flowtec1,'(''0'',i3)')   itime
+          else
+            write(flowtec1,'(i4)')         itime
+          end if
+          flowtec1 = 'flow_tec_'//flowtec1
+          flowtec = trim(flowtec1)//'.plt'
+
+        else if (rgkuns) then
+
+          flowtec='flow_tec_urk.plt'
+
+        end if
+
+        if(parallel) then
+
+!          call writeparallelpltheader(fid(n),flowtec,n,nl, &
+!                harbal,dualt,rgkuns,kom,kom_bsl,kom_sst,unsteady, &
+!                simtime,zeit,mharms)
+
+        else
+
+          if (harbal) then
+            titlename='(''TITLE="HB meshflow"'')'//char(0)
+          else if (dualt) then
+             titlename='(''TITLE="DTS meshflow"'')'//char(0)
+          else if (rgkuns) then
+            titlename='(''TITLE="URK meshflow"'')'//char(0)
+          else
+            titlename='(''TITLE="STD meshflow"'')'//char(0)
+          end if
+
+          if (kom.or.kom_bsl.or.kom_sst) then
+            varlist='(''VARIABLES=xc,yc,zc,rho,u,v,w,p,t,mach,tke,omega,mut,dist'')'//char(0)
+          else
+            varlist='(''VARIABLES=xc,yc,zc,rho,u,v,w,p,t,mach'')'//char(0)
+          end if
+
+          call get_environment_variable('PWD',pwd)
+
+          if(tecini142(trim(titlename),trim(varlist),flowtec,trim(pwd)//char(0), &
+               fileformat,filetype,isdebug,isdouble) .ne. 0) then
+             write(*,*) 'error initialising tecin142'
+          end if
+          
+        end if
+
+      end do
+
+      do iblock = 1,mynblocks
+        imax   = i_imax     (iblock,nl)
+        jmax   = j_jmax     (iblock,nl)
+        kmax   = k_kmax     (iblock,nl)
+        iv     = 1 + off_p1 (iblock,nl) * npde * dim5
+        if (parallel) then
+!          call write_parallel_wr_plt_b(fid,var1(iv),var2(iv),imax,jmax, &
+!               kmax,npde,nharms,iblock,nl)
+        else
+          call wr_plt_b(fid,var1(iv),var2(iv),iblock,imax,jmax,kmax,npde, &
+                        nharms)
+        end if
+      end do
+
+      do n = 0,2*nharms
+!------close tecplot file(s)
+         if(parallel) then
+!            call closempiiofile(fid(n))
+         else
+            if(tecfil142(n+1) .ne. 0) then
+               write(*,*) 'error calling tecfil142'
+               stop
+            else
+               if(tecend142() .ne. 0) then
+                  write(*,*) 'error calling tecend142'
+                  stop
+               end if
+            end if
+         end if
+      end do
+
+      call getmpitime(endtime)
+
+      totaltime = endtime-starttime
+      maxtime = totaltime
+      mintime =  totaltime
+
+      call realmaxreduce(maxtime,1)
+      call realminreduce(mintime,1)
+      
+      if(amcontrol) then
+         write(*,'(A,F8.2,A,2F8.2,A)') 'Writing flow file time: ',totaltime,' (',maxtime,mintime,') seconds'
+      end if
+
+
+ 15   format(e21.14)
+
+      return
+      end
+
+!-----------------------------------------------------------------------
+      subroutine wr_plt_b(fid,var1,var2,blocknum,imax,jmax,kmax,npde,nharms)
+!-----------------------------------------------------------------------
+       
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
+      integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,blocknum
+      integer fid(0:2*mharms)
+      real (kind=cosa_real) &
+           var1  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
+           var2  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms)
+      character*300 line1
+      character(len=5) :: blocknumname
+      integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
+      integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
+      integer(kind=cosa_int) zonetype, strandid, parentzone
+      integer(kind=cosa_int) teczne142, tecdat142, tecfil142
+      integer(kind=cosa_int) imaxmax, jmaxmax, kmaxmax
+      integer(kind=cosa_int) Null(*)
+      POINTER   (NullPtr,Null)
+
+      imax1 = imax+1
+      jmax1 = jmax+1
+      kmax1 = kmax+1
+
+! Specify that we are using an Ordered zone type
+      zonetype = 0
+
+! Zones don't have parents
+      parentzone = 0
+
+! We are not part of a strand
+      strandid = 0
+      nfconns = 0
+      fnmode = 0
+      shrconn = 0
+      imaxmax = 0
+      jmaxmax = 0
+      kmaxmax = 0
+
+! This specifies if we are writing in block or point format
+! 1 is block format.  Binary tecplot files must be block format, 
+! so this must be 1.
+      isblock = 1
+      valuelocation = 0
+      isdouble = 1
+      tnfnodes = 0
+      ncbfaces = 0
+      tnbconns = 0
+
+      do n = 0,2*nharms
+        nh = n*hbmove
+
+!------ write tecplot block
+        if(tecfil142(n+1) .ne. 0) then
+           write(*,*) 'error calling tecfil142'
+           stop
+        end if
+
+        write (blocknumname, "(I5)") blocknum
+
+        if(teczne142('block'//trim(blocknumname)//char(0),zonetype, imax1, jmax1, kmax1, &
+             imaxmax, jmaxmax, kmaxmax, simtime, strandid, parentzone, isblock, nfconns, & 
+             fnmode, tnfnodes, ncbfaces, tnbconns, Null, Null, Null, shrconn) .ne. 0) then
+           write(*,*) 'error setting up zone'
+           stop
+        end if
+        
+        if (kom.or.kom_bsl.or.kom_sst) then
+
+           if(tecdat142(imax1*jmax1*kmax1*14,var1(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+           end if
+           if(tecdat142(imax1*jmax1*kmax1*14,var2(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+           end if
+
+        else
+
+           if(tecdat142(imax1*jmax1*kmax1*10,var1(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+           end if
+           if(tecdat142(imax1*jmax1*kmax1*10,var2(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+           end if
+           
+        end if
+
+      end do
+
+      return
+      end
+
 
 !-----------------------------------------------------------------------
       subroutine wr_cgns(nl,q,mut,x,y,z,xdot,ydot,zdot,dist)
