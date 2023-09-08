@@ -28,7 +28,7 @@
       integer(kind=cosa_int) nl,itime1,iblock,iblk_pos,imax,jmax,kmax,ijkmaxg,ixyzc, &
                 ixyzc1,idist,iimt,ivmt,iq,iblk,nsurf,msurf, &
                 surf_dim(msurf),nsurf1
-      real (kind=cosa_real) xc(*),yc(*),zc(*),xyzcdot(*),dist(*),si(*),sj(*), &
+      real(kind=cosa_real) xc(*),yc(*),zc(*),xyzcdot(*),dist(*),si(*),sj(*), &
            sk(*),xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
            etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*),q1(*),q2(*), &
            cf(ijkmaxg-1,msurf),yplus(ijkmaxg-1,msurf)
@@ -89,7 +89,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,ijkmaxg,npde,nharms,nbcs,lmet
       integer(kind=cosa_int) bctopo(10,nbcs)
       integer(kind=cosa_int) itime1,n,nh,msurf,surf_dim(msurf),nsurf1
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            xc(0:imax+1,0:jmax+1,0:kmax+1), &
            yc(0:imax+1,0:jmax+1,0:kmax+1), &
            zc(0:imax+1,0:jmax+1,0:kmax+1), &
@@ -109,7 +109,7 @@
            q1(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            q2(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            dist(0:imax,0:jmax,0:kmax)
-      real (kind=cosa_real) cf(ijkmaxg-1,msurf),yplus(ijkmaxg-1,msurf)
+      real(kind=cosa_real) cf(ijkmaxg-1,msurf),yplus(ijkmaxg-1,msurf)
 
       if ((.not.unsteady).or.dualt) then
         nh = 0
@@ -151,7 +151,7 @@
                 ibcpt,ibcn,ibcn2,ibcm,ibc,jbc,kbc,in,jn,kn,in2,jn2,kn2, &
                 im,jm,km,ic1,ic2,ic3,ibbc,ioff1,ioff2,joff1,joff2,koff1, &
                 koff2
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            xc(0:imax+1,0:jmax+1,0:kmax+1), &
            yc(0:imax+1,0:jmax+1,0:kmax+1), &
            zc(0:imax+1,0:jmax+1,0:kmax+1), &
@@ -171,7 +171,7 @@
            q1(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            q2(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            dist(0:imax,0:jmax,0:kmax)
-      real (kind=cosa_real) cf(ijkmaxg-1,msurf), yplus(ijkmaxg-1,msurf), sc, &
+      real(kind=cosa_real) cf(ijkmaxg-1,msurf), yplus(ijkmaxg-1,msurf), sc, &
            muw,rho1, rho2, rhow, p1, &
            p2, pw, t1, t2, tw, nx, ny, nz, ds, kx, ky, kz, uc, vc, wc, &
            dn1, tauw, tauwx, tauwy, tauwz, tauwpx, tauwpy, tauwpz, &
@@ -619,7 +619,7 @@
 
       integer(kind=cosa_int) nl,itime1,iblock,iblk_pos,imax,jmax,ijmaxg,ixyc,ixyc1, &
                 idist,iimt,iq,iblk
-      real (kind=cosa_real) xc(*),yc(*),xycdot(*),dist(*),si(*),sj(*),q1(*), &
+      real(kind=cosa_real) xc(*),yc(*),xycdot(*),dist(*),si(*),sj(*),q1(*), &
            q2(*)
       integer(kind=cosa_int) bctopo(*)
 
@@ -664,7 +664,7 @@
       integer(kind=cosa_int) imax,jmax,npde,nharms,nbcs,lmet
       integer(kind=cosa_int) bctopo(7,nbcs)
       integer(kind=cosa_int) itime1,n,nh
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            xc(0:imax+1,0:jmax+1), &
            yc(0:imax+1,0:jmax+1), &
            xycdot (-1:imax+1,-1:jmax+1,npde,0:2*nharms       ), &
@@ -697,14 +697,14 @@
       integer(kind=cosa_int) imax, jmax, npde, nbcs, lmet
       integer(kind=cosa_int) iblock, i, j, jw, jpstart, jpend, jpstep, jb, &
                 iprof, off1, off2, offbot, offtop, ibc
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            xc(0:imax+1,0:jmax+1), &
            yc(0:imax+1,0:jmax+1), &
            xycdot (-1:imax+1,-1:jmax+1,npde), &
            si(lmet,0:imax+1,0:jmax+1), sj(lmet,0:imax+1,0:jmax+1), &
            q1(-1:imax+1,-1:jmax+1,npde),q2(-1:imax+1,-1:jmax+1,npde), &
            dist(0:imax,0:jmax)
-      real (kind=cosa_real) mup, rhop, pp, tp, up, vp, uc, vc, uorth, upar, &
+      real(kind=cosa_real) mup, rhop, pp, tp, up, vp, uc, vc, uorth, upar, &
            udotn1, udotn2, upar1, upar2, dn1, dn2, dudn, dtdn, cf, &
            rhow, pw, tw, muw, uw, vw, uworth, uwpar, tauw, utau, yplus, &
            uplus, dupardn, fact
@@ -1804,7 +1804,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl
       integer(kind=cosa_int) i,im,i1,j,jm,j1,k,km,k1,n,nh
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            x     (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
            y     (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
            z     (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
@@ -2007,7 +2007,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl
       integer(kind=cosa_int) i,im,i1,j,jm,j1,k,km,k1,n,nh
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
           xdot   (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
           ydot   (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
           zdot   (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
@@ -2283,7 +2283,7 @@
 
       integer(kind=cosa_int) nl,iblock,iblk_pos,imax,jmax,kmax,ijkmaxg,iq,iblk,nsurf, &
                 msurf,surf_dim(msurf),nsurf1,iimt,ivmt,ixyz,ixyzc1
-      real (kind=cosa_real) x(*),y(*),z(*),xyzcdot(*),si(*),sj(*),sk(*), &
+      real(kind=cosa_real) x(*),y(*),z(*),xyzcdot(*),si(*),sj(*),sk(*), &
                     xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
                     etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*), &
                     q1(*),q2(*)
@@ -2348,7 +2348,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,ijkmaxg,npde,nharms,nbcs,lmet
       integer(kind=cosa_int) bctopo(10,nbcs)
       integer(kind=cosa_int) n,nh,msurf,surf_dim(msurf),nsurf1
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            x       (0:imax+1 ,0:jmax+1 ,0:kmax+1   ,0:2*nharms*hbmove), &
            y       (0:imax+1 ,0:jmax+1 ,0:kmax+1   ,0:2*nharms*hbmove), &
            z       (0:imax+1 ,0:jmax+1 ,0:kmax+1   ,0:2*nharms*hbmove), &
@@ -3249,7 +3249,7 @@
       implicit none
 
       integer(kind=cosa_int) nl,iblock,imax,jmax,kmax,ixyz,dim5l,dim5u
-      real (kind=cosa_real) x(*),y(*),z(*),workx(*),worky(*),workz(*)
+      real(kind=cosa_real) x(*),y(*),z(*),workx(*),worky(*),workz(*)
 
       dim5l = 0
       dim5u = 2 * nharms * hbmove
@@ -3284,7 +3284,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl
       integer(kind=cosa_int) i,im,i1,j,jm,j1,k,km,k1,n
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            x     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
            y     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
            z     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
@@ -3491,7 +3491,7 @@
       implicit none
 
       integer(kind=cosa_int) nl,iblock,imax,jmax,kmax,iq,imut,fid
-      real (kind=cosa_real) q(*),q1(*),mut(*)
+      real(kind=cosa_real) q(*),q1(*),mut(*)
       logical parallel
 
       call usingparallel(parallel)
@@ -3538,7 +3538,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
       integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,key1,n,fid
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            q1(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            mut(-1:imax+1,-1:jmax+1,-1:kmax+1 ,0:2*nharms)    
@@ -3573,9 +3573,9 @@
 
       implicit none
 
-      integer(kind=cosa_int) nl
-      integer(kind=cosa_int) bctopo,cutopo,percutopo
-      real (kind=cosa_real) q,qtec,mut,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
+      integer(kind=cosa_int) :: nl, pltorszplt
+      integer(kind=cosa_int) :: bctopo,cutopo,percutopo
+      real(kind=cosa_real) :: q,qtec,mut,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
         xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj, &
         zetaderk,var1,var2,work
       pointer &
@@ -3638,18 +3638,20 @@
          call wr_tec_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
               xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
               bctopo)
-      else if(write_plt) then
+      else if(write_plt .or. write_szplt) then
          call q_tec(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist,var1,var2)
-         call wr_plt(nl,var1,var2,0)
+         if(write_plt) then
+            pltorszplt = 0
+         else if(write_szplt) then
+            pltorszplt = 1
+         else
+            write(*,*) 'Error plt or szplt variable is incorrect, setting to plt'
+            pltorszplt = 0
+         end if
+         call wr_plt(nl,var1,var2,pltorszplt)
          call wr_plt_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
               xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
-              bctopo,0)
-      else if(write_szplt) then
-         call q_tec(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist,var1,var2)
-         call wr_plt(nl,var1,var2,1)
-         call wr_plt_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
-              xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
-              bctopo,1)
+              bctopo,pltorszplt)
       else if(write_cgns) then
          call wr_cgns(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist)
          call wr_cgns_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
@@ -3677,7 +3679,7 @@
       integer(kind=cosa_int) imax,jmax,kmax
       integer(kind=cosa_int) nl,iblock,iblk,iq,imut,ixyz
       integer(kind=cosa_int) bctopo(*)
-      real (kind=cosa_real) q(*), mut(*), xdot(*), ydot(*), zdot(*)
+      real(kind=cosa_real) q(*), mut(*), xdot(*), ydot(*), zdot(*)
 
       do iblock = 1,mynblocks
         imax   = i_imax     (iblock,nl)
@@ -3709,7 +3711,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,npde,nbcs,nharms
       integer(kind=cosa_int) ibc
       integer(kind=cosa_int) bctopo(10,nbcs)
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            mut (-1:imax+1,-1:jmax+1,-1:kmax+1     ,0:2*nharms), &
            xdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms), &
@@ -3751,7 +3753,7 @@
       integer(kind=cosa_int) ipde,n,i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
                 inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibc,jbc,kbc,ibc2,jbc2, &
                 kbc2,in,jn,kn,in2,jn2,kn2,ic1,ic2,ic3,isym(7),isymdr
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            mut (-1:imax+1,-1:jmax+1,-1:kmax+1     ,0:2*nharms), &
            xdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms), &
@@ -3906,7 +3908,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax
       integer(kind=cosa_int) nl,iblock,iq,imut,ixyz,idist,iv,npde1,npde2
-      real (kind=cosa_real) q(*),mut(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*), &
+      real(kind=cosa_real) q(*),mut(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*), &
            dist(*),var1(*),var2(*)
 
       do iblock = 1,mynblocks
@@ -3939,7 +3941,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
       integer(kind=cosa_int) i,j,k,n,nh
       integer fid(0:2*mharms)
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            var1( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
            var2( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
@@ -4075,9 +4077,9 @@
       integer fid(0:2*mharms)
       integer(kind=cosa_int) bctopo(*)
       integer iomode
-      real (kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),si(*), &
+      real(kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),si(*), &
            sj(*),sk(*),xideri(*),etaderj(*),zetaderk(*)
-      real (kind=cosa_real) alphae(0:2*mharms), &
+      real(kind=cosa_real) alphae(0:2*mharms), &
            cl_p   (0:2*mharms,msurface), cd_p   (0:2*mharms,msurface), &
            cz_p   (0:2*mharms,msurface), cmx_p  (0:2*mharms,msurface), &
            cmy_p  (0:2*mharms,msurface), cm_p   (0:2*mharms,msurface), &
@@ -4092,7 +4094,7 @@
            cmy_v_b(0:2*mharms,msurface), cm_v_b (0:2*mharms,msurface)
       character*72 forcefile,tag,line
       integer(kind=cosa_int) tempblockindex
-      logical amcontrol
+      logical :: amcontrol
 
       call amcontroller(amcontrol)
 
@@ -4400,7 +4402,7 @@
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibcw,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
         ioff2,joff1,joff2,koff1,koff2,iw,jw,kw
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
          q     (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
          x     ( 0:imax+1, 0:jmax+1, 0:kmax+1,     0:2*nharms*hbmove), &
          y     ( 0:imax+1, 0:jmax+1, 0:kmax+1,     0:2*nharms*hbmove), &
@@ -4414,7 +4416,7 @@
          xideri  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
          etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
          zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove)
-      real (kind=cosa_real) fp(6),fv(6), &
+      real(kind=cosa_real) fp(6),fv(6), &
            cl_p (0:2*nharms,nsurface), cd_p (0:2*nharms,nsurface), &
            cz_p (0:2*nharms,nsurface), cmx_p(0:2*nharms,nsurface), &
            cmy_p(0:2*nharms,nsurface), cm_p (0:2*nharms,nsurface), &
@@ -4895,11 +4897,11 @@
 
       integer(kind=cosa_int) imax,jmax,kmax
       integer(kind=cosa_int) it,nl,idir,ipde,iprintf
-      real (kind=cosa_real) q,q1,pr,qp,qm,dq,dqp,dqm,flux,x,y,z,si,sj,sk,xdot, &
+      real(kind=cosa_real) q,q1,pr,qp,qm,dq,dqp,dqm,flux,x,y,z,si,sj,sk,xdot, &
            ydot,zdot,xideri,etaderj,zetaderk,dist,mut
       integer(kind=cosa_int) bctopo
       logical done
-      logical amcontrol
+      logical :: amcontrol
       pointer &
        (pq  ,  q), (pq1 , q1), (pqp , qp), (pqm , qm), (pdq , dq), &
        (pdqp,dqp), (pdqm,dqm), (ppr , pr), (px  ,  x), (py  ,  y), &
@@ -5016,7 +5018,7 @@
       implicit none
 
       integer(kind=cosa_int) nl,iblock,imax,jmax,kmax,ixyz,dim5l,dim5u
-      real (kind=cosa_real) x(*),y(*),z(*),workx(*),worky(*),workz(*)
+      real(kind=cosa_real) x(*),y(*),z(*),workx(*),worky(*),workz(*)
 
       dim5l = 0
       dim5u = 2 * nharms * hbmove
@@ -5051,7 +5053,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl
       integer(kind=cosa_int) i,im,i1,j,jm,j1,k,km,k1,n
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            x     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
            y     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
            z     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
@@ -5434,7 +5436,7 @@
       integer(kind=cosa_int) imax,jmax,kmax
       integer(kind=cosa_int) nl,iblock,iv,n,fid(0:2*mharms)
       logical parallel,amcontrol
-      real (kind=cosa_real) var1(*), var2(*)
+      real(kind=cosa_real) var1(*), var2(*)
       character*72 line,tag,flowtec1
       double precision :: starttime, endtime, totaltime, maxtime, mintime
 
@@ -5581,7 +5583,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
       integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh
       integer fid(0:2*mharms)
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            var1  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
            var2  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms)
       character*300 line1
@@ -5655,7 +5657,7 @@
       integer(kind=cosa_int) imax,jmax,kmax
       integer(kind=cosa_int) nl,iblock,iv,n,fid(0:2*mharms),pltorszplt
       logical parallel,amcontrol
-      real (kind=cosa_real) var1(*), var2(*)
+      real(kind=cosa_real) var1(*), var2(*)
       character*72 titlename,tag,flowtec1,varlist
       character*500 pwd
       character*6 filesuffix
@@ -5834,7 +5836,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
       integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,blocknum
       integer fid(0:2*mharms)
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            var1  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
            var2  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms)
       character(len=5) :: blocknumname
@@ -5937,7 +5939,7 @@
       integer(kind=cosa_int) iq,imut,ixyz,idist,zonenum
       integer :: basenum, ierr, rank
       logical parallel,amcontrol
-      real (kind=cosa_real) q(*),mut(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*), &
+      real(kind=cosa_real) q(*),mut(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*), &
            dist(*)
       character*72 line,tag,flowtec1
       double precision :: starttime, endtime, totaltime, maxtime, mintime
@@ -6085,7 +6087,7 @@
       integer xnum,ynum,znum,disnum
       character*10 zonename
       integer(cgsize_t) ::  sizes(3,3)
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            mut (-1:imax+1,-1:jmax+1,-1:kmax+1     ,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -6432,7 +6434,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,bctopo(*)
       integer(kind=cosa_int) nl,iblock,ibc,iq,iblk,ixyz,iimt,ivmt,idist,n,fid(0:2*mharms)     
       logical parallel,amcontrol
-      real (kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
+      real(kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
         si(*),sj(*),sk(*),xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
         etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*)
       character*72 line,tag
@@ -6621,12 +6623,12 @@
         ioff2,joff1,joff2,koff1,koff2
 
       integer fid(0:2*mharms)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
            vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
            etax,etay,etaz,dudx,dudy,dudz,dvdx,dvdy, &
            dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
            tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -6641,7 +6643,7 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
+      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
       character*200 line1
 
       ijkmax(1) = imax
@@ -6994,14 +6996,14 @@
         ioff2,joff1,joff2,koff1,koff2
 
       integer fid(0:2*mharms)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
         vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r, &
         xix,xiy,xiz,etax,etay,etaz,zetax,zetay,zetaz, &
         dudxi,dudeta,dudzeta,dvdxi,dvdeta,dvdzeta,dwdxi,dwdeta,dwdzeta, &
         dudx,dudy,dudz,dvdx,dvdy, &
         dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
         tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -7022,7 +7024,7 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
+      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
       character*200 line1
       
       ijkmax(1) = imax
@@ -7552,7 +7554,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,bctopo(*),pltorszplt
       integer(kind=cosa_int) nl,iblock,ibc,iq,iblk,ixyz,iimt,ivmt,idist,n,fid(0:2*mharms)     
       logical parallel,amcontrol
-      real (kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
+      real(kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
         si(*),sj(*),sk(*),xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
         etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*)
       character*72 line,tag,varlist,titlename
@@ -7644,24 +7646,24 @@
         else if (dualt) then
            titlename="DTS surfdata"//char(0)
         else if (rgkuns) then
-           titlename="URK surfdata"
+           titlename="URK surfdata"//char(0)
         else
-           titlename="STD surfdata"
+           titlename="STD surfdata"//char(0)
         end if
         
         varlist="xc,yc,zc,cp,cf,yp"//char(0)
-        
+       
         call get_environment_variable('PWD',pwd)
         pwd = trim(pwd)//char(0)
         
         if(parallel) then
 
-          call writeparallelsurfpltheader(titlename,varlist,flowtec,pwd,n,nl, &
+          call writeparallelsurfpltheader(titlename,varlist,surftec,pwd,n,nl, &
                 fileformat,filetype,isdebug,isdouble)
 
         else
 
-          if(tecini142(trim(titlename),trim(varlist),trim(flowtec),trim(pwd), &
+          if(tecini142(trim(titlename),trim(varlist),trim(surftec),trim(pwd), &
                fileformat,filetype,isdebug,isdouble) .ne. 0) then
              write(*,*) 'error initialising tecini142'
           end if
@@ -7781,12 +7783,12 @@
         ioff2,joff1,joff2,koff1,koff2
 
       integer fid(0:2*mharms)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
            vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
            etax,etay,etaz,dudx,dudy,dudz,dvdx,dvdy, &
            dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
            tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -7801,7 +7803,7 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:),zeroarray(:)
+      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:),zeroarray(:)
       character(len=5) :: blocknumname
       integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
       integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
@@ -8207,14 +8209,14 @@
         ioff2,joff1,joff2,koff1,koff2
 
       integer fid(0:2*mharms)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
         vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r, &
         xix,xiy,xiz,etax,etay,etaz,zetax,zetay,zetaz, &
         dudxi,dudeta,dudzeta,dvdxi,dvdeta,dvdzeta,dwdxi,dwdeta,dwdzeta, &
         dudx,dudy,dudz,dvdx,dvdy, &
         dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
         tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -8235,7 +8237,7 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:),zeroarray(:)
+      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:),zeroarray(:)
       character(len=5) :: blocknumname
       integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
       integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
@@ -8818,7 +8820,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,ierr,bctopo(*),surfacenumber
       integer(kind=cosa_int) nl,iblock,iq,iblk,ixyz,iimt,ivmt,idist,n,fid(0:2*mharms)
       logical parallel,amcontrol
-      real (kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
+      real(kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
         si(*),sj(*),sk(*),xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
         etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*)
       character*72 line,tag
@@ -9016,12 +9018,12 @@
         ioff2,joff1,joff2,koff1,koff2,ierr
       integer(cgsize_t) ::  sizes(3,3)
       integer fid(0:2*mharms),blocknum
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
            vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
            etax,etay,etaz,dudx,dudy,dudz,dvdx,dvdy, &
            dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
            tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -9036,8 +9038,8 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
-      real (kind=cosa_real),allocatable :: localcoord(:,:,:)
+      real(kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
+      real(kind=cosa_real),allocatable :: localcoord(:,:,:)
       character*200 line1
       character*20 zonename
       integer :: xnum, ynum, znum, solnum, indexnum
@@ -9440,14 +9442,14 @@
         ioff2,joff1,joff2,koff1,koff2,ierr
       integer(cgsize_t) ::  sizes(3,3)
       integer fid(0:2*mharms)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
         vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r, &
         xix,xiy,xiz,etax,etay,etaz,zetax,zetay,zetaz, &
         dudxi,dudeta,dudzeta,dvdxi,dvdeta,dvdzeta,dwdxi,dwdeta,dwdzeta, &
         dudx,dudy,dudz,dvdx,dvdy, &
         dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
         tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -9468,8 +9470,8 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
-      real (kind=cosa_real),allocatable :: localcoord(:,:,:)
+      real(kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
+      real(kind=cosa_real),allocatable :: localcoord(:,:,:)
       character*200 line1
       character*20 zonename
       integer :: xnum, ynum, znum, solnum, indexnum
