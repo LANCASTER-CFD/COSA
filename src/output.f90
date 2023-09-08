@@ -28,7 +28,7 @@
       integer(kind=cosa_int) nl,itime1,iblock,iblk_pos,imax,jmax,kmax,ijkmaxg,ixyzc, &
                 ixyzc1,idist,iimt,ivmt,iq,iblk,nsurf,msurf, &
                 surf_dim(msurf),nsurf1
-      real (kind=cosa_real) xc(*),yc(*),zc(*),xyzcdot(*),dist(*),si(*),sj(*), &
+      real(kind=cosa_real) xc(*),yc(*),zc(*),xyzcdot(*),dist(*),si(*),sj(*), &
            sk(*),xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
            etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*),q1(*),q2(*), &
            cf(ijkmaxg-1,msurf),yplus(ijkmaxg-1,msurf)
@@ -89,7 +89,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,ijkmaxg,npde,nharms,nbcs,lmet
       integer(kind=cosa_int) bctopo(10,nbcs)
       integer(kind=cosa_int) itime1,n,nh,msurf,surf_dim(msurf),nsurf1
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            xc(0:imax+1,0:jmax+1,0:kmax+1), &
            yc(0:imax+1,0:jmax+1,0:kmax+1), &
            zc(0:imax+1,0:jmax+1,0:kmax+1), &
@@ -109,7 +109,7 @@
            q1(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            q2(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            dist(0:imax,0:jmax,0:kmax)
-      real (kind=cosa_real) cf(ijkmaxg-1,msurf),yplus(ijkmaxg-1,msurf)
+      real(kind=cosa_real) cf(ijkmaxg-1,msurf),yplus(ijkmaxg-1,msurf)
 
       if ((.not.unsteady).or.dualt) then
         nh = 0
@@ -151,7 +151,7 @@
                 ibcpt,ibcn,ibcn2,ibcm,ibc,jbc,kbc,in,jn,kn,in2,jn2,kn2, &
                 im,jm,km,ic1,ic2,ic3,ibbc,ioff1,ioff2,joff1,joff2,koff1, &
                 koff2
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            xc(0:imax+1,0:jmax+1,0:kmax+1), &
            yc(0:imax+1,0:jmax+1,0:kmax+1), &
            zc(0:imax+1,0:jmax+1,0:kmax+1), &
@@ -171,7 +171,7 @@
            q1(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            q2(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            dist(0:imax,0:jmax,0:kmax)
-      real (kind=cosa_real) cf(ijkmaxg-1,msurf), yplus(ijkmaxg-1,msurf), sc, &
+      real(kind=cosa_real) cf(ijkmaxg-1,msurf), yplus(ijkmaxg-1,msurf), sc, &
            muw,rho1, rho2, rhow, p1, &
            p2, pw, t1, t2, tw, nx, ny, nz, ds, kx, ky, kz, uc, vc, wc, &
            dn1, tauw, tauwx, tauwy, tauwz, tauwpx, tauwpy, tauwpz, &
@@ -619,7 +619,7 @@
 
       integer(kind=cosa_int) nl,itime1,iblock,iblk_pos,imax,jmax,ijmaxg,ixyc,ixyc1, &
                 idist,iimt,iq,iblk
-      real (kind=cosa_real) xc(*),yc(*),xycdot(*),dist(*),si(*),sj(*),q1(*), &
+      real(kind=cosa_real) xc(*),yc(*),xycdot(*),dist(*),si(*),sj(*),q1(*), &
            q2(*)
       integer(kind=cosa_int) bctopo(*)
 
@@ -664,7 +664,7 @@
       integer(kind=cosa_int) imax,jmax,npde,nharms,nbcs,lmet
       integer(kind=cosa_int) bctopo(7,nbcs)
       integer(kind=cosa_int) itime1,n,nh
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            xc(0:imax+1,0:jmax+1), &
            yc(0:imax+1,0:jmax+1), &
            xycdot (-1:imax+1,-1:jmax+1,npde,0:2*nharms       ), &
@@ -697,14 +697,14 @@
       integer(kind=cosa_int) imax, jmax, npde, nbcs, lmet
       integer(kind=cosa_int) iblock, i, j, jw, jpstart, jpend, jpstep, jb, &
                 iprof, off1, off2, offbot, offtop, ibc
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            xc(0:imax+1,0:jmax+1), &
            yc(0:imax+1,0:jmax+1), &
            xycdot (-1:imax+1,-1:jmax+1,npde), &
            si(lmet,0:imax+1,0:jmax+1), sj(lmet,0:imax+1,0:jmax+1), &
            q1(-1:imax+1,-1:jmax+1,npde),q2(-1:imax+1,-1:jmax+1,npde), &
            dist(0:imax,0:jmax)
-      real (kind=cosa_real) mup, rhop, pp, tp, up, vp, uc, vc, uorth, upar, &
+      real(kind=cosa_real) mup, rhop, pp, tp, up, vp, uc, vc, uorth, upar, &
            udotn1, udotn2, upar1, upar2, dn1, dn2, dudn, dtdn, cf, &
            rhow, pw, tw, muw, uw, vw, uworth, uwpar, tauw, utau, yplus, &
            uplus, dupardn, fact
@@ -1804,7 +1804,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl
       integer(kind=cosa_int) i,im,i1,j,jm,j1,k,km,k1,n,nh
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            x     (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
            y     (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
            z     (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
@@ -2007,7 +2007,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl
       integer(kind=cosa_int) i,im,i1,j,jm,j1,k,km,k1,n,nh
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
           xdot   (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
           ydot   (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
           zdot   (0:imax+1 ,0:jmax+1 ,0:kmax+1      ,0:2*nharms*hbmove), &
@@ -2283,7 +2283,7 @@
 
       integer(kind=cosa_int) nl,iblock,iblk_pos,imax,jmax,kmax,ijkmaxg,iq,iblk,nsurf, &
                 msurf,surf_dim(msurf),nsurf1,iimt,ivmt,ixyz,ixyzc1
-      real (kind=cosa_real) x(*),y(*),z(*),xyzcdot(*),si(*),sj(*),sk(*), &
+      real(kind=cosa_real) x(*),y(*),z(*),xyzcdot(*),si(*),sj(*),sk(*), &
                     xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
                     etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*), &
                     q1(*),q2(*)
@@ -2348,7 +2348,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,ijkmaxg,npde,nharms,nbcs,lmet
       integer(kind=cosa_int) bctopo(10,nbcs)
       integer(kind=cosa_int) n,nh,msurf,surf_dim(msurf),nsurf1
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            x       (0:imax+1 ,0:jmax+1 ,0:kmax+1   ,0:2*nharms*hbmove), &
            y       (0:imax+1 ,0:jmax+1 ,0:kmax+1   ,0:2*nharms*hbmove), &
            z       (0:imax+1 ,0:jmax+1 ,0:kmax+1   ,0:2*nharms*hbmove), &
@@ -3249,7 +3249,7 @@
       implicit none
 
       integer(kind=cosa_int) nl,iblock,imax,jmax,kmax,ixyz,dim5l,dim5u
-      real (kind=cosa_real) x(*),y(*),z(*),workx(*),worky(*),workz(*)
+      real(kind=cosa_real) x(*),y(*),z(*),workx(*),worky(*),workz(*)
 
       dim5l = 0
       dim5u = 2 * nharms * hbmove
@@ -3284,7 +3284,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl
       integer(kind=cosa_int) i,im,i1,j,jm,j1,k,km,k1,n
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            x     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
            y     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
            z     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
@@ -3491,7 +3491,7 @@
       implicit none
 
       integer(kind=cosa_int) nl,iblock,imax,jmax,kmax,iq,imut,fid
-      real (kind=cosa_real) q(*),q1(*),mut(*)
+      real(kind=cosa_real) q(*),q1(*),mut(*)
       logical parallel
 
       call usingparallel(parallel)
@@ -3538,7 +3538,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
       integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,key1,n,fid
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            q1(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            mut(-1:imax+1,-1:jmax+1,-1:kmax+1 ,0:2*nharms)    
@@ -3573,9 +3573,9 @@
 
       implicit none
 
-      integer(kind=cosa_int) nl
-      integer(kind=cosa_int) bctopo,cutopo,percutopo
-      real (kind=cosa_real) q,qtec,mut,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
+      integer(kind=cosa_int) :: nl, pltorszplt
+      integer(kind=cosa_int) :: bctopo,cutopo,percutopo
+      real(kind=cosa_real) :: q,qtec,mut,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
         xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj, &
         zetaderk,var1,var2,work
       pointer &
@@ -3638,12 +3638,20 @@
          call wr_tec_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
               xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
               bctopo)
-      else if(write_plt) then
-         write(*,*) 'Writing flowtec files as plt format'
-         write(*,*) 'is not yet implemented'
-      else if(write_szplt) then
-         write(*,*) 'Writing flowtec files as plt format'
-         write(*,*) 'is not yet implemented'
+      else if(write_plt .or. write_szplt) then
+         call q_tec(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist,var1,var2)
+         if(write_plt) then
+            pltorszplt = 0
+         else if(write_szplt) then
+            pltorszplt = 1
+         else
+            write(*,*) 'Error plt or szplt variable is incorrect, setting to plt'
+            pltorszplt = 0
+         end if
+         call wr_plt(nl,var1,var2,pltorszplt)
+         call wr_plt_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
+              xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
+              bctopo,pltorszplt)
       else if(write_cgns) then
          call wr_cgns(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist)
          call wr_cgns_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
@@ -3671,7 +3679,7 @@
       integer(kind=cosa_int) imax,jmax,kmax
       integer(kind=cosa_int) nl,iblock,iblk,iq,imut,ixyz
       integer(kind=cosa_int) bctopo(*)
-      real (kind=cosa_real) q(*), mut(*), xdot(*), ydot(*), zdot(*)
+      real(kind=cosa_real) q(*), mut(*), xdot(*), ydot(*), zdot(*)
 
       do iblock = 1,mynblocks
         imax   = i_imax     (iblock,nl)
@@ -3703,7 +3711,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,npde,nbcs,nharms
       integer(kind=cosa_int) ibc
       integer(kind=cosa_int) bctopo(10,nbcs)
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            mut (-1:imax+1,-1:jmax+1,-1:kmax+1     ,0:2*nharms), &
            xdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms), &
@@ -3745,7 +3753,7 @@
       integer(kind=cosa_int) ipde,n,i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
                 inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibc,jbc,kbc,ibc2,jbc2, &
                 kbc2,in,jn,kn,in2,jn2,kn2,ic1,ic2,ic3,isym(7),isymdr
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            mut (-1:imax+1,-1:jmax+1,-1:kmax+1     ,0:2*nharms), &
            xdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms), &
@@ -3900,7 +3908,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax
       integer(kind=cosa_int) nl,iblock,iq,imut,ixyz,idist,iv,npde1,npde2
-      real (kind=cosa_real) q(*),mut(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*), &
+      real(kind=cosa_real) q(*),mut(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*), &
            dist(*),var1(*),var2(*)
 
       do iblock = 1,mynblocks
@@ -3933,7 +3941,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
       integer(kind=cosa_int) i,j,k,n,nh
       integer fid(0:2*mharms)
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            var1( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
            var2( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
@@ -4069,9 +4077,9 @@
       integer fid(0:2*mharms)
       integer(kind=cosa_int) bctopo(*)
       integer iomode
-      real (kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),si(*), &
+      real(kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),si(*), &
            sj(*),sk(*),xideri(*),etaderj(*),zetaderk(*)
-      real (kind=cosa_real) alphae(0:2*mharms), &
+      real(kind=cosa_real) alphae(0:2*mharms), &
            cl_p   (0:2*mharms,msurface), cd_p   (0:2*mharms,msurface), &
            cz_p   (0:2*mharms,msurface), cmx_p  (0:2*mharms,msurface), &
            cmy_p  (0:2*mharms,msurface), cm_p   (0:2*mharms,msurface), &
@@ -4086,7 +4094,7 @@
            cmy_v_b(0:2*mharms,msurface), cm_v_b (0:2*mharms,msurface)
       character*72 forcefile,tag,line
       integer(kind=cosa_int) tempblockindex
-      logical amcontrol
+      logical :: amcontrol
 
       call amcontroller(amcontrol)
 
@@ -4394,7 +4402,7 @@
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibcw,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
         ioff2,joff1,joff2,koff1,koff2,iw,jw,kw
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
          q     (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
          x     ( 0:imax+1, 0:jmax+1, 0:kmax+1,     0:2*nharms*hbmove), &
          y     ( 0:imax+1, 0:jmax+1, 0:kmax+1,     0:2*nharms*hbmove), &
@@ -4408,7 +4416,7 @@
          xideri  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
          etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
          zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove)
-      real (kind=cosa_real) fp(6),fv(6), &
+      real(kind=cosa_real) fp(6),fv(6), &
            cl_p (0:2*nharms,nsurface), cd_p (0:2*nharms,nsurface), &
            cz_p (0:2*nharms,nsurface), cmx_p(0:2*nharms,nsurface), &
            cmy_p(0:2*nharms,nsurface), cm_p (0:2*nharms,nsurface), &
@@ -4889,11 +4897,11 @@
 
       integer(kind=cosa_int) imax,jmax,kmax
       integer(kind=cosa_int) it,nl,idir,ipde,iprintf
-      real (kind=cosa_real) q,q1,pr,qp,qm,dq,dqp,dqm,flux,x,y,z,si,sj,sk,xdot, &
+      real(kind=cosa_real) q,q1,pr,qp,qm,dq,dqp,dqm,flux,x,y,z,si,sj,sk,xdot, &
            ydot,zdot,xideri,etaderj,zetaderk,dist,mut
       integer(kind=cosa_int) bctopo
       logical done
-      logical amcontrol
+      logical :: amcontrol
       pointer &
        (pq  ,  q), (pq1 , q1), (pqp , qp), (pqm , qm), (pdq , dq), &
        (pdqp,dqp), (pdqm,dqm), (ppr , pr), (px  ,  x), (py  ,  y), &
@@ -5010,7 +5018,7 @@
       implicit none
 
       integer(kind=cosa_int) nl,iblock,imax,jmax,kmax,ixyz,dim5l,dim5u
-      real (kind=cosa_real) x(*),y(*),z(*),workx(*),worky(*),workz(*)
+      real(kind=cosa_real) x(*),y(*),z(*),workx(*),worky(*),workz(*)
 
       dim5l = 0
       dim5u = 2 * nharms * hbmove
@@ -5045,7 +5053,7 @@
 
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl
       integer(kind=cosa_int) i,im,i1,j,jm,j1,k,km,k1,n
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            x     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
            y     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
            z     (0:imax+1,0:jmax+1,0:kmax+1,0:2*nharms*hbmove), &
@@ -5428,7 +5436,7 @@
       integer(kind=cosa_int) imax,jmax,kmax
       integer(kind=cosa_int) nl,iblock,iv,n,fid(0:2*mharms)
       logical parallel,amcontrol
-      real (kind=cosa_real) var1(*), var2(*)
+      real(kind=cosa_real) var1(*), var2(*)
       character*72 line,tag,flowtec1
       double precision :: starttime, endtime, totaltime, maxtime, mintime
 
@@ -5575,7 +5583,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
       integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh
       integer fid(0:2*mharms)
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            var1  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
            var2  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms)
       character*300 line1
@@ -5635,6 +5643,285 @@
       end
 
 !-----------------------------------------------------------------------
+      subroutine wr_plt(nl,var1,var2, pltorszplt)
+!-----------------------------------------------------------------------
+!     
+!-----------------------------------------------------------------------
+       
+      use cosa_variables
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+      integer(kind=cosa_int) imax,jmax,kmax
+      integer(kind=cosa_int) nl,iblock,iv,n,fid(0:2*mharms),pltorszplt
+      logical parallel,amcontrol
+      real(kind=cosa_real) var1(*), var2(*)
+      character*72 titlename,tag,flowtec1,varlist
+      character*500 pwd
+      character*6 filesuffix
+      double precision :: starttime, endtime, totaltime, maxtime, mintime
+      integer(kind=cosa_int) fileformat, filetype, isdebug, isdouble
+      integer(kind=cosa_int) tecini142, tecend142, tecfil142
+
+
+      call usingparallel(parallel)
+      call amcontroller(amcontrol)
+
+      call getmpitime(starttime)     
+
+! This specifies whether the file is .plt of .szplt.
+! 0 is .plt
+! 1 is .szplt
+      fileformat = pltorszplt
+      if(fileformat .ne. 0 .and. fileformat .ne. 1) then
+         write(*,*) 'Error, file format incorrect for writing .plt or .szplt files'
+         if(parallel) then
+            call abortmpi()
+         else
+            stop
+         end if
+      end if  
+
+      if(fileformat .eq. 0) then
+        filesuffix = '.plt'
+      else
+! For szplt the file suffix is automatically generated
+        filesuffix = '.szplt'
+      end if
+
+! This specifies whether the file is full (grid + solution), grid only, or solution only
+! 0 is full
+! 1 is grid
+! 2 is solution
+      filetype = 0
+! 0 is no debug info, 1 or more turns on debugging info.
+      isdebug = 0
+
+      isdouble = 1
+
+      do n = 0,2*nharms
+
+        fid(n)    = 200 + n
+
+!------ open tecplot file(s)
+
+        if (.not.unsteady) then
+
+          flowtec='flow_tec_steady'//trim(filesuffix)//char(0)
+
+        else if (harbal) then
+
+          if (n.le.9) then
+            write(tag,'(''00'',i1)') n
+          else if (n.le.99) then
+            write(tag,'(''0'',i2)') n
+          else if (n.le.999) then
+            write(tag,'(i3)') n
+          end if
+          flowtec = 'flow_tec_hb_'//tag
+          flowtec = trim(flowtec)//trim(filesuffix)//char(0)
+
+        else if (dualt) then
+
+          if (itime.le.9) then
+            write(flowtec1,'(''000'',i1)') itime
+          elseif (itime.le.99) then
+            write(flowtec1,'(''00'',i2)')  itime
+          elseif (itime.le.999) then
+            write(flowtec1,'(''0'',i3)')   itime
+          else
+            write(flowtec1,'(i4)')         itime
+          end if
+          flowtec1 = 'flow_tec_'//flowtec1
+          flowtec = trim(flowtec1)//trim(filesuffix)//char(0)
+
+        else if (rgkuns) then
+
+          flowtec='flow_tec_urk'//trim(filesuffix)//char(0)
+
+        end if
+
+        if (harbal) then
+           titlename="HB meshflow"//char(0)
+        else if (dualt) then
+           titlename="DTS meshflow"//char(0)
+        else if (rgkuns) then
+           titlename="URK meshflow"//char(0)
+        else
+           titlename="STD meshflow"//char(0)
+        end if
+        
+        if (kom.or.kom_bsl.or.kom_sst) then
+           varlist='xc,yc,zc,rho,u,v,w,p,t,mach,tke,omega,mut,dist'//char(0)
+        else
+           varlist='xc,yc,zc,rho,u,v,w,p,t,mach'//char(0)
+        end if
+        
+        call get_environment_variable('PWD',pwd)
+        pwd = trim(pwd)//char(0)
+
+        if(parallel) then
+        
+          call writeparallelpltheader(titlename,varlist,flowtec,pwd,n,nl, &
+                fileformat,filetype,isdebug,isdouble)
+          
+        else
+
+          if(tecini142(trim(titlename),trim(varlist),trim(flowtec),trim(pwd), &
+               fileformat,filetype,isdebug,isdouble) .ne. 0) then
+             write(*,*) 'error initialising tecini142'
+          end if
+          
+        end if
+
+      end do
+
+      do iblock = 1,mynblocks
+        imax   = i_imax     (iblock,nl)
+        jmax   = j_jmax     (iblock,nl)
+        kmax   = k_kmax     (iblock,nl)
+        iv     = 1 + off_p1 (iblock,nl) * npde * dim5
+        if (parallel) then
+          call write_parallel_wr_plt_b(fid,var1(iv),var2(iv),imax,jmax, &
+               kmax,npde,nharms,iblock,nl)
+        else
+          call wr_plt_b(fid,var1(iv),var2(iv),iblock,imax,jmax,kmax,npde, &
+                        nharms)
+        end if
+      end do
+
+      do n = 0,2*nharms
+!------close tecplot file(s)
+         if(tecfil142(n+1) .ne. 0) then
+            write(*,*) 'error calling tecfil142'
+            stop
+         else
+            if(tecend142() .ne. 0) then
+               write(*,*) 'error calling tecend142'
+               stop
+            end if
+         end if
+      end do
+      
+      call getmpitime(endtime)
+
+      totaltime = endtime-starttime
+      maxtime = totaltime
+      mintime =  totaltime
+
+      call realmaxreduce(maxtime,1)
+      call realminreduce(mintime,1)
+      
+      if(amcontrol) then
+         write(*,'(A,F8.2,A,2F8.2,A)') 'Writing flow file time: ',totaltime,' (',maxtime,mintime,') seconds'
+      end if
+
+
+ 15   format(e21.14)
+
+      return
+      end
+
+!-----------------------------------------------------------------------
+      subroutine wr_plt_b(fid,var1,var2,blocknum,imax,jmax,kmax,npde,nharms)
+!-----------------------------------------------------------------------
+       
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
+      integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,blocknum
+      integer fid(0:2*mharms)
+      real(kind=cosa_real) &
+           var1  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
+           var2  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms)
+      character(len=5) :: blocknumname
+      integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
+      integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
+      integer(kind=cosa_int) zonetype, strandid, parentzone
+      integer(kind=cosa_int) teczne142, tecdat142, tecfil142
+      integer(kind=cosa_int) imaxmax, jmaxmax, kmaxmax
+      integer(kind=cosa_int) Null(*)
+      POINTER   (NullPtr,Null)
+
+      imax1 = imax+1
+      jmax1 = jmax+1
+      kmax1 = kmax+1
+
+! Specify that we are using an Ordered zone type
+      zonetype = 0
+
+! Zones don't have parents
+      parentzone = 0
+
+! We are not part of a strand
+      strandid = 0
+      nfconns = 0
+      fnmode = 0
+      shrconn = 0
+      imaxmax = 0
+      jmaxmax = 0
+      kmaxmax = 0
+
+! This specifies if we are writing in block or point format
+! 1 is block format.  Binary tecplot files must be block format, 
+! so this must be 1.
+      isblock = 1
+      valuelocation = 0
+      isdouble = 1
+      tnfnodes = 0
+      ncbfaces = 0
+      tnbconns = 0
+
+      do n = 0,2*nharms
+        nh = n*hbmove
+
+!------ write tecplot block
+        if(tecfil142(n+1) .ne. 0) then
+           write(*,*) 'error calling tecfil142'
+           stop
+        end if
+
+        write (blocknumname, "(I5)") blocknum
+
+        if(teczne142('block'//trim(blocknumname)//char(0),zonetype, imax1, jmax1, kmax1, &
+             imaxmax, jmaxmax, kmaxmax, simtime, strandid, parentzone, isblock, nfconns, & 
+             fnmode, tnfnodes, ncbfaces, tnbconns, Null, Null, Null, shrconn) .ne. 0) then
+           write(*,*) 'error setting up zone'
+           stop
+        end if
+        
+        if (kom.or.kom_bsl.or.kom_sst) then
+
+           if(tecdat142(imax1*jmax1*kmax1*7,var1(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+           end if
+           if(tecdat142(imax1*jmax1*kmax1*7,var2(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+           end if
+
+        else
+
+           if(tecdat142(imax1*jmax1*kmax1*5,var1(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+           end if
+           if(tecdat142(imax1*jmax1*kmax1*5,var2(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+           end if
+           
+        end if
+
+      end do
+
+      return
+      end
+
+
+!-----------------------------------------------------------------------
       subroutine wr_cgns(nl,q,mut,x,y,z,xdot,ydot,zdot,dist)
 !-----------------------------------------------------------------------
 !     
@@ -5652,7 +5939,7 @@
       integer(kind=cosa_int) iq,imut,ixyz,idist,zonenum
       integer :: basenum, ierr, rank
       logical parallel,amcontrol
-      real (kind=cosa_real) q(*),mut(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*), &
+      real(kind=cosa_real) q(*),mut(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*), &
            dist(*)
       character*72 line,tag,flowtec1
       double precision :: starttime, endtime, totaltime, maxtime, mintime
@@ -5800,7 +6087,7 @@
       integer xnum,ynum,znum,disnum
       character*10 zonename
       integer(cgsize_t) ::  sizes(3,3)
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            mut (-1:imax+1,-1:jmax+1,-1:kmax+1     ,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -6147,7 +6434,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,bctopo(*)
       integer(kind=cosa_int) nl,iblock,ibc,iq,iblk,ixyz,iimt,ivmt,idist,n,fid(0:2*mharms)     
       logical parallel,amcontrol
-      real (kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
+      real(kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
         si(*),sj(*),sk(*),xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
         etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*)
       character*72 line,tag
@@ -6336,12 +6623,12 @@
         ioff2,joff1,joff2,koff1,koff2
 
       integer fid(0:2*mharms)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
            vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
            etax,etay,etaz,dudx,dudy,dudz,dvdx,dvdy, &
            dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
            tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -6356,7 +6643,7 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
+      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
       character*200 line1
 
       ijkmax(1) = imax
@@ -6709,14 +6996,14 @@
         ioff2,joff1,joff2,koff1,koff2
 
       integer fid(0:2*mharms)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
         vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r, &
         xix,xiy,xiz,etax,etay,etaz,zetax,zetay,zetaz, &
         dudxi,dudeta,dudzeta,dvdxi,dvdeta,dvdzeta,dwdxi,dwdeta,dwdzeta, &
         dudx,dudy,dudz,dvdx,dvdy, &
         dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
         tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -6737,7 +7024,7 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
+      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
       character*200 line1
       
       ijkmax(1) = imax
@@ -7249,6 +7536,1271 @@
       end      
 
 !-----------------------------------------------------------------------
+      subroutine wr_plt_surf(nl,q,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
+        xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
+        bctopo,pltorszplt)
+!-----------------------------------------------------------------------
+!     
+!-----------------------------------------------------------------------
+
+      use parallelutils, only: surfblockstarts, surfblockends, &
+           surfbcindex, surfblockindex
+      use cosa_variables
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+      integer(kind=cosa_int) imax,jmax,kmax,bctopo(*),pltorszplt
+      integer(kind=cosa_int) nl,iblock,ibc,iq,iblk,ixyz,iimt,ivmt,idist,n,fid(0:2*mharms)     
+      logical parallel,amcontrol
+      real(kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
+        si(*),sj(*),sk(*),xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
+        etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*)
+      character*72 line,tag,varlist,titlename
+      character*500 pwd
+      character*6 filesuffix
+      double precision :: starttime, endtime, totaltime, maxtime, mintime
+      integer(kind=cosa_int) fileformat, filetype, isdebug, isdouble
+      integer(kind=cosa_int) tecini142, tecend142, tecfil142
+
+      call usingparallel(parallel)
+      call amcontroller(amcontrol)
+
+      call getmpitime(starttime)     
+
+! This specifies whether the file is .plt of .szplt.
+! 0 is .plt
+! 1 is .szplt
+      fileformat = pltorszplt
+      if(fileformat .ne. 0 .and. fileformat .ne. 1) then
+         write(*,*) 'Error, file format incorrect for writing .plt or .szplt files'
+         if(parallel) then
+            call abortmpi()
+         else
+            stop
+         end if
+      end if  
+
+      if(fileformat .eq. 0) then
+        filesuffix = '.plt'
+      else
+! For szplt the file suffix is automatically generated
+        filesuffix = '.szplt'
+      end if
+
+! This specifies whether the file is full (grid + solution), grid only, or solution only
+! 0 is full
+! 1 is grid
+! 2 is solution
+      filetype = 0
+! 0 is no debug info, 1 or more turns on debugging info.
+      isdebug = 0
+
+      isdouble = 1
+
+      do n = 0,2*nharms
+
+!------ build tecplot file(s) name
+
+        if (.not.unsteady) then
+
+          surftec='surf_tec_steady'//trim(filesuffix)//char(0)
+
+        else if (harbal) then
+
+          if (n.le.9) then
+            write(tag,'(''00'',i1)') n
+          else if (n.le.99) then
+            write(tag,'(''0'',i2)') n
+          else if (n.le.999) then
+            write(tag,'(i3)') n
+          end if
+          surftec = 'surf_tec_hb_'//tag
+          surftec = trim(surftec)//trim(filesuffix)//char(0)
+
+        else if (dualt) then
+
+          if (itime.le.9) then
+            write(tag,'(''000'',i1)') itime
+          elseif (itime.le.99) then
+            write(tag,'(''00'',i2)')  itime
+          elseif (itime.le.999) then
+            write(tag,'(''0'',i3)')   itime
+          else
+            write(tag,'(i4)')         itime
+          end if
+          tag = 'surf_tec_t_'//tag
+          surftec = trim(tag)//trim(filesuffix)//char(0)
+
+        else if (rgkuns) then
+
+          surftec='surf_tec_urk'//trim(filesuffix)//char(0)
+
+        end if
+
+!------ open tecplot file(s) and write 2-line file header
+
+        if (harbal) then
+           titlename="HB surfdata"//char(0)
+        else if (dualt) then
+           titlename="DTS surfdata"//char(0)
+        else if (rgkuns) then
+           titlename="URK surfdata"//char(0)
+        else
+           titlename="STD surfdata"//char(0)
+        end if
+        
+        varlist="xc,yc,zc,cp,cf,yp"//char(0)
+       
+        call get_environment_variable('PWD',pwd)
+        pwd = trim(pwd)//char(0)
+        
+        if(parallel) then
+
+          call writeparallelsurfpltheader(titlename,varlist,surftec,pwd,n,nl, &
+                fileformat,filetype,isdebug,isdouble)
+
+        else
+
+          if(tecini142(trim(titlename),trim(varlist),trim(surftec),trim(pwd), &
+               fileformat,filetype,isdebug,isdouble) .ne. 0) then
+             write(*,*) 'error initialising tecini142'
+          end if
+
+       end if
+
+      end do
+
+      do iblock = 1,mynblocks
+
+         imax   = i_imax     (iblock,nl)
+         jmax   = j_jmax     (iblock,nl)
+         kmax   = k_kmax     (iblock,nl)
+         iq     = 1 + off_p3 (iblock,nl) * npde * dim5
+         iblk   = 1 + off_bct(iblock,nl)
+         ixyz   = 1 + off_p2 (iblock,nl)        * dim5h
+         iimt   = 1 + off_p2 (iblock,nl) * lmet * dim5h
+         ivmt   = 1 + off_0  (iblock,nl) * 3    * dim5h
+         idist  = 1 + off_p1 (iblock,nl)
+         if (parallel) then
+
+            if(1.lt.0) then
+
+               call write_parallel_wr_plt_surf_b_M1(fid,imax,jmax,kmax,npde, &
+                    nharms,iblock,nl,lmet,q(iq),x(ixyz),y(ixyz),z(ixyz), &
+                    xdot(ixyz),ydot(ixyz),zdot(ixyz),si(iimt),sj(iimt),sk(iimt), &
+                    xideri(ivmt),etaderj(ivmt),zetaderk(ivmt),dist(idist), &
+                    bctopo(iblk),nbcs(iblock))
+
+            else
+
+               call write_parallel_wr_plt_surf_b_M2(fid,imax,jmax,kmax,npde, &
+                    nharms,iblock,nl,lmet,q(iq),x(ixyz),y(ixyz),z(ixyz), &
+                    xdot(ixyz),ydot(ixyz),zdot(ixyz),si(iimt),sj(iimt),sk(iimt), &
+                    xideri(ivmt),xiderj(ivmt),xiderk(ivmt),etaderi(ivmt), &
+                    etaderj(ivmt),etaderk(ivmt),zetaderi(ivmt), &
+                    zetaderj(ivmt),zetaderk(ivmt),dist(idist), &
+                    bctopo(iblk),nbcs(iblock))
+               
+            end if
+
+         else
+
+            if (1.lt.0) then
+               call wr_plt_surf_b_M1(fid,q(iq),x(ixyz),y(ixyz),z(ixyz), &
+                    xdot(ixyz),ydot(ixyz),zdot(ixyz),si(iimt),sj(iimt),sk(iimt), &
+                    xideri(ivmt),etaderj(ivmt),zetaderk(ivmt), &
+                    dist(idist),bctopo(iblk),imax,jmax,kmax, &
+                    lmet,nbcs(iblock),npde,nharms,iblock)
+            else
+               call wr_plt_surf_b_M2(fid,q(iq),x(ixyz),y(ixyz),z(ixyz), &
+                    xdot(ixyz),ydot(ixyz),zdot(ixyz),si(iimt),sj(iimt),sk(iimt), &
+                    xideri(ivmt),xiderj(ivmt),xiderk(ivmt),etaderi(ivmt), &
+                    etaderj(ivmt),etaderk(ivmt),zetaderi(ivmt),zetaderj(ivmt), &
+                    zetaderk(ivmt),dist(idist),bctopo(iblk), &
+                    imax,jmax,kmax,lmet,nbcs(iblock),npde,nharms,iblock)
+            end if 
+         end if
+      end do
+      
+
+      do n = 0,2*nharms
+         if(parallel) then
+            if(allocated(surfblockstarts)) deallocate(surfblockstarts)
+            if(allocated(surfblockends)) deallocate(surfblockends)
+            if(allocated(surfblockindex)) deallocate(surfblockindex)
+            if(allocated(surfbcindex)) deallocate(surfbcindex)
+         end if
+!------close tecplot file(s)
+         if(tecfil142(n+1) .ne. 0) then
+            write(*,*) 'error calling tecfil142'
+            stop
+         else
+            if(tecend142() .ne. 0) then
+               write(*,*) 'error calling tecend142'
+               stop
+            end if
+         end if
+      end do
+      
+      call getmpitime(endtime)
+
+      totaltime = endtime-starttime
+      maxtime = totaltime
+      mintime =  totaltime
+
+      call realmaxreduce(maxtime,1)
+      call realminreduce(mintime,1)
+
+      if(amcontrol) then        
+         write(*,'(A,F8.2,A,2F8.2,A)') 'Writing surface file time: ',totaltime,' (',maxtime,mintime,') seconds'
+      end if
+
+
+      return
+      end
+
+!-----------------------------------------------------------------------
+      subroutine wr_plt_surf_b_M1(fid,q,x,y,z,xdot,ydot,zdot,si,sj,sk,xideri, &
+        etaderj,zetaderk,dist,bctopo, &
+        imax,jmax,kmax,lmet,nbcs,npde,nharms,iblock)
+!-----------------------------------------------------------------------
+       
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,lmet,nbcs
+      integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc_s,jbc_s,kbc_s, &
+        ibc_e,jbc_e,kbc_e
+      integer(kind=cosa_int) ibc1,isurface,iblock
+      integer(kind=cosa_int) bctopo(10,nbcs)
+      integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
+        inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
+        kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
+        ioff2,joff1,joff2,koff1,koff2
+
+      integer fid(0:2*mharms)
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+           vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
+           etax,etay,etaz,dudx,dudy,dudz,dvdx,dvdy, &
+           dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
+           tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
+      real(kind=cosa_real) &
+           q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
+           x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           z   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           xdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           ydot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           zdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           si      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sj      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sk      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           xideri  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           dist( 0:imax  , 0:jmax  , 0:kmax)
+      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:),zeroarray(:)
+      character(len=5) :: blocknumname
+      integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
+      integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
+      integer(kind=cosa_int) zonetype, strandid, parentzone
+      integer(kind=cosa_int) teczne142, tecdat142, tecfil142
+      integer(kind=cosa_int) imaxmax, jmaxmax, kmaxmax
+      integer(kind=cosa_int) ibcmax, jbcmax,kbcmax
+      integer(kind=cosa_int) Null(*)
+      POINTER   (NullPtr,Null)
+
+
+      ijkmax(1) = imax
+      ijkmax(2) = jmax
+      ijkmax(3) = kmax
+
+      imax1 = imax+1
+      jmax1 = jmax+1
+      kmax1 = kmax+1
+
+! Specify that we are using an Ordered zone type
+      zonetype = 0
+
+! Zones don't have parents
+      parentzone = 0
+
+! We are not part of a strand
+      strandid = 0
+      nfconns = 0
+      fnmode = 0
+      shrconn = 0
+      imaxmax = 0
+      jmaxmax = 0
+      kmaxmax = 0
+
+! This specifies if we are writing in block or point format
+! 1 is block format.  Binary tecplot files must be block format, 
+! so this must be 1.
+      isblock = 1
+      valuelocation = 0
+      isdouble = 1
+      tnfnodes = 0
+      ncbfaces = 0
+      tnbconns = 0
+
+!---- loop over harmonics - STARTS
+      do n = 0,2*nharms
+         nh = n*hbmove
+         
+!------loop over surfaces - START
+!------MSC 12/03/23. In future nsurface loop can be removed HERE if we do
+!     not wish to distinguish separate surfaces/walls
+!     in surftec file. We will just check for BCs
+!     starting with 15 or 14.
+!     
+!     Keeping nsurface is instead essential to get
+!     forces and moments in routine force.
+!     Getting nsurface from input.f is trivial when
+!     all walls are either visc. (RANS) or inviscid
+!     (Euler). We just count them. 
+!     NOTE: we will need to use for BC 14 the same syntax as 
+!     for BC 1500s (14xx).
+!     
+!     Less trivial is case when
+!     a body has both visc. and inv. BCs (e.g. hub).
+!     For this, previous code structure with list of
+!     blocks with boundaries on given body was better.
+         
+         do isurface=1,nsurface
+            
+            do ibc1=1,nbcs
+               if ((bctopo(1,ibc1).eq.1500+(isurface-1)).or. &
+                    (bctopo(1,ibc1).eq.14)) then
+                  
+!     store boundary topology in mnemonic names
+                  bctyp    = bctopo(1,ibc1)
+                  idir     = bctopo(2,ibc1)
+                  inrout   = bctopo(3,ibc1)
+                  istrt(1) = bctopo(4,ibc1)
+                  iend(1)  = bctopo(5,ibc1)
+                  istrt(2) = bctopo(6,ibc1)
+                  iend(2)  = bctopo(7,ibc1)
+                  istrt(3) = bctopo(8,ibc1)
+                  iend(3)  = bctopo(9,ibc1)
+                  
+!     set needed variables depending on whether the boundary is
+!     the inner boundary (inrout = 1) or
+!     the outer boundary (inrout > 1)
+!     ibcpt : boundary condition location (first aux. cell)
+!     ibcpt2: boundary condition location outside the block from
+!     ibcpt (second aux. cell)
+!     ibcn  : point to the inside of the block from ibcpt
+!     ibcm  : location of the metrics
+                  
+                  if (inrout.eq.1) then
+                     ibcpt  =  0
+                     ibcpt2 = -1
+                     ibcn   =  1
+                     ibcn2  =  2
+                     ibcm   =  1
+                     sgnm   = - 1.d0
+                  else
+                     ibcpt  = ijkmax(idir)
+                     ibcpt2 = ijkmax(idir) + 1
+                     ibcn   = ijkmax(idir) - 1
+                     ibcn2  = ijkmax(idir) - 2
+                     ibcm   = ijkmax(idir)
+                     sgnm   = 1.d0
+                  end if
+                  
+                  if (idir.eq.1) then
+                     ioff1 = (-1)**(1+1/inrout)
+                     ioff2 = 2*ioff1
+                     joff1 = 0
+                     joff2 = 0
+                     koff1 = 0
+                     koff2 = 0
+                  else if (idir.eq.2) then
+                     ioff1 = 0
+                     ioff2 = 0
+                     joff1 = (-1)**(1+1/inrout)
+                     joff2 = 2*joff1
+                     koff1 = 0
+                     koff2 = 0
+                  else if (idir.eq.3) then
+                     ioff1 = 0
+                     ioff2 = 0
+                     joff1 = 0
+                     joff2 = 0
+                     koff1 = (-1)**(1+1/inrout)
+                     koff2 = 2*koff1
+                  end if
+                  
+                  ic1 = cyc (idir, 1)
+                  ic2 = cyc (idir, 2)
+                  ic3 = cyc (idir, 3)
+                  
+                  ibc_s  = ibcpt *krd(ic1,1) + istrt(ic2)*krd(ic2,1) + &
+                       istrt(ic3)*krd(ic3,1)
+                  jbc_s  = ibcpt *krd(ic1,2) + istrt(ic2)*krd(ic2,2) + &
+                       istrt(ic3)*krd(ic3,2)
+                  kbc_s  = ibcpt *krd(ic1,3) + istrt(ic2)*krd(ic2,3) + &
+                       istrt(ic3)*krd(ic3,3)
+                  
+                  ibc_e  = ibcpt *krd(ic1,1) + iend(ic2)*krd(ic2,1) + &
+                       iend(ic3)*krd(ic3,1)
+                  jbc_e  = ibcpt *krd(ic1,2) + iend(ic2)*krd(ic2,2) + &
+                       iend(ic3)*krd(ic3,2)
+                  kbc_e  = ibcpt *krd(ic1,3) + iend(ic2)*krd(ic2,3) + &
+                       iend(ic3)*krd(ic3,3)
+                  
+                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                  if (viscous) then
+                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms), &
+                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                  end if
+                  
+!------------extract/calculate surface coefficients - START
+                  do i3 = istrt(ic3),iend(ic3)
+                     do i2 = istrt(ic2),iend(ic2)
+                        
+                        ibc  = ibcpt *krd(ic1,1) + i2*krd(ic2,1) + i3*krd(ic3,1)
+                        jbc  = ibcpt *krd(ic1,2) + i2*krd(ic2,2) + i3*krd(ic3,2)
+                        kbc  = ibcpt *krd(ic1,3) + i2*krd(ic2,3) + i3*krd(ic3,3)
+                        
+                        im   = ibcm  *krd(ic1,1) + i2*krd(ic2,1) + i3*krd(ic3,1)
+                        jm   = ibcm  *krd(ic1,2) + i2*krd(ic2,2) + i3*krd(ic3,2)
+                        km   = ibcm  *krd(ic1,3) + i2*krd(ic2,3) + i3*krd(ic3,3)
+                        
+                        if (idir.eq.1) then
+                           nx    = si(1,im,jm,km,nh)
+                           ny    = si(2,im,jm,km,nh)
+                           nz    = si(3,im,jm,km,nh)
+                        else if (idir.eq.2) then
+                           nx    = sj(1,im,jm,km,nh)
+                           ny    = sj(2,im,jm,km,nh)
+                           nz    = sj(3,im,jm,km,nh)
+                        else if (idir.eq.3) then
+                           nx    = sk(1,im,jm,km,nh)
+                           ny    = sk(2,im,jm,km,nh)
+                           nz    = sk(3,im,jm,km,nh)
+                        end if
+                        
+                        kx   = (-1)**(1+1/inrout) * nx
+                        ky   = (-1)**(1+1/inrout) * ny
+                        kz   = (-1)**(1+1/inrout) * nz
+                        
+                        cp(ibc,jbc,kbc,n) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)/ &
+                             machfs**2
+                        
+                        if (viscous) then
+                           
+                           ibc2 = ibcpt2*krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+                           jbc2 = ibcpt2*krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+                           kbc2 = ibcpt2*krd(Ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                           
+                           in   = ibcn  *krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+                           jn   = ibcn  *krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+                           kn   = ibcn  *krd(ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                           
+                           in2  = ibcn2 *krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+                           jn2  = ibcn2 *krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+                           kn2  = ibcn2 *krd(ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                           
+                           if (idir.eq.1) then
+                              etax  = xideri(1,im,jm,km,nh)
+                              etay  = xideri(2,im,jm,km,nh)
+                              etaz  = xideri(3,im,jm,km,nh)
+                           else if (idir.eq.2) then
+                              etax  = etaderj(1,im,jm,km,nh)
+                              etay  = etaderj(2,im,jm,km,nh)
+                              etaz  = etaderj(3,im,jm,km,nh)
+                           else if (idir.eq.3) then
+                              etax  = zetaderk(1,im,jm,km,nh)
+                              etay  = zetaderk(2,im,jm,km,nh)
+                              etaz  = zetaderk(3,im,jm,km,nh)
+                           end if
+                           
+                           rhow = q(ibc,jbc,kbc,1,n)
+                           tw   = q(ibc,jbc,kbc,5,n) *gamma / q(ibc,jbc,kbc,1,n)
+                           muw  = (stemp+1)/(tw+stemp) * (tw**1.5d0)
+                           
+!------------------MSC, 11/03/2023: dist not computed for laminar now
+                           if (kom.or.kom_bsl.or.kom_sst) then
+                              dn1  = dist(in ,jn ,kn )
+                           else
+                              dn1  = 0
+                           end if
+                           
+                           uw   = q(ibc,jbc,kbc,2,n)
+                           u1   = q(ibc+ioff1,jbc+joff1,kbc+koff1,2,n)
+                           u2   = q(ibc+ioff2,jbc+joff2,kbc+koff2,2,n)
+                           if (moving) then
+                              uwr  = xdot(ibc      ,jbc      ,kbc      ,nh)
+                              u1r  = xdot(ibc+ioff1,jbc+joff1,kbc+koff1,nh)
+                              u2r  = xdot(ibc+ioff2,jbc+joff2,kbc+koff2,nh)
+                              uw   = uw - uwr
+                              u1   = u1 - u1r
+                              u2   = u2 - u2r
+                           end if
+                           
+                           vw   = q(ibc,jbc,kbc,3,n)
+                           v1   = q(ibc+ioff1,jbc+joff1,kbc+koff1,3,n)
+                           v2   = q(ibc+ioff2,jbc+joff2,kbc+koff2,3,n)
+                           if (moving) then
+                              vwr  = ydot(ibc      ,jbc      ,kbc      ,nh)
+                              v1r  = ydot(ibc+ioff1,jbc+joff1,kbc+koff1,nh)
+                              v2r  = ydot(ibc+ioff2,jbc+joff2,kbc+koff2,nh)
+                              vw   = vw - vwr
+                              v1   = v1 - v1r
+                              v2   = v2 - v2r
+                           end if
+                           
+                           ww   = q(ibc,jbc,kbc,4,n)
+                           w1   = q(ibc+ioff1,jbc+joff1,kbc+koff1,4,n)
+                           w2   = q(ibc+ioff2,jbc+joff2,kbc+koff2,4,n)
+                           if (moving) then
+                              wwr  = zdot(ibc      ,jbc      ,kbc      ,nh)
+                              w1r  = zdot(ibc+ioff1,jbc+joff1,kbc+koff1,nh)
+                              w2r  = zdot(ibc+ioff2,jbc+joff2,kbc+koff2,nh)
+                              ww   = ww - wwr
+                              w1   = w1 - w1r
+                              w2   = w2 - w2r
+                           end if
+                           
+                           ueta = (-1)**(1+1/inrout) * (-8*uw + 9*u1 - u2) / 3
+                           veta = (-1)**(1+1/inrout) * (-8*vw + 9*v1 - v2) / 3
+                           weta = (-1)**(1+1/inrout) * (-8*ww + 9*w1 - w2) / 3
+                           
+                           dudx = ueta*etax
+                           dudy = ueta*etay
+                           dudz = ueta*etaz
+                           dvdx = veta*etax
+                           dvdy = veta*etay
+                           dvdz = veta*etaz
+                           dwdx = weta*etax
+                           dwdy = weta*etay
+                           dwdz = weta*etaz
+                           divv = dudx + dvdy + dwdz
+                           
+                           txx = 2*muw * (dudx - divv/3)
+                           txy =   muw * (dudy + dvdx)
+                           txz =   muw * (dudz + dwdx)
+                           tyy = 2*muw * (dvdy - divv/3)
+                           tyz =   muw * (dvdz + dwdy)
+                           tzz = 2*muw * (dwdz - divv/3)
+                           
+                           tauwx = txx*kx + txy*ky + txz*kz
+                           tauwy = txy*kx + tyy*ky + tyz*kz
+                           tauwz = txz*kx + tyz*ky + tzz*kz
+                           
+                           tauwpx = tauwx - (tauwx*kx+tauwy*ky+tauwz*kz)*kx
+                           tauwpy = tauwy - (tauwx*kx+tauwy*ky+tauwz*kz)*ky
+                           tauwpz = tauwz - (tauwx*kx+tauwy*ky+tauwz*kz)*kz
+                           
+                           tauw   = dsqrt(tauwpx**2+tauwpy**2+tauwpz**2)
+                           utau   = dsqrt(tauw/rhow)
+                           
+                           cf(ibc,jbc,kbc,n) = 2*tauw / (reyno*machfs)
+                           yp(ibc,jbc,kbc,n) = dsqrt(reyno/machfs)* &
+                                rhow*dn1*utau/muw
+                           
+                        end if
+                        
+                     end do
+                  end do
+!------------extract/calculate surface coefficients - END
+                  
+!------------write tecplot surface patch
+                                    
+!------ write tecplot block
+                  if(tecfil142(n+1) .ne. 0) then
+                     write(*,*) 'error calling tecfil142'
+                     stop
+                  end if
+                  
+                  write (blocknumname, "(I5)") iblock
+
+                  ibcmax = ibc_e-ibc_s+1
+                  jbcmax = jbc_e-jbc_s+1
+                  kbcmax = kbc_e-kbc_s+1
+                  
+                  if(teczne142('block'//trim(blocknumname)//char(0),zonetype, ibcmax, jbcmax, kbcmax, &
+                       imaxmax, jmaxmax, kmaxmax, simtime, strandid, parentzone, isblock, nfconns, & 
+                       fnmode, tnfnodes, ncbfaces, tnbconns, Null, Null, Null, shrconn) .ne. 0) then
+                     write(*,*) 'error setting up zone'
+                     stop
+                  end if
+                  
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,x(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,y(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,z(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,cp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+
+                  if (viscous) then
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,cf(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,yp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                  else
+                     allocate(zeroarray(ibcmax*jbcmax*kbcmax))
+                     zeroarray = 0.d0
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     deallocate(zeroarray)
+                  end if
+                  
+                  deallocate(cp)
+                  if (viscous) then
+                     deallocate(cf,yp)
+                  end if
+                  
+               end if
+               
+!--------end loop (ibc1=1,nbcs)
+            end do
+            
+!------loop over surfaces - END
+         end do
+         
+!---- loop over harmonics - END
+      end do
+      
+
+ 14   format(3e22.14)
+ 10   format(3e22.14)
+
+      return
+      end
+
+!-----------------------------------------------------------------------
+      subroutine wr_plt_surf_b_M2(fid,q,x,y,z,xdot,ydot,zdot,si,sj,sk,xideri, &
+        xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk,dist, &
+        bctopo,imax,jmax,kmax,lmet,nbcs,npde,nharms,iblock)
+!-----------------------------------------------------------------------
+       
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,lmet,nbcs
+      integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc_s,jbc_s,kbc_s, &
+        ibc_e,jbc_e,kbc_e
+      integer(kind=cosa_int) ibc1,isurface,iblock
+      integer(kind=cosa_int) bctopo(10,nbcs)
+      integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
+        inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
+        kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
+        ioff2,joff1,joff2,koff1,koff2
+
+      integer fid(0:2*mharms)
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+        vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r, &
+        xix,xiy,xiz,etax,etay,etaz,zetax,zetay,zetaz, &
+        dudxi,dudeta,dudzeta,dvdxi,dvdeta,dvdzeta,dwdxi,dwdeta,dwdzeta, &
+        dudx,dudy,dudz,dvdx,dvdy, &
+        dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
+        tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
+      real(kind=cosa_real) &
+           q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
+           x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           z   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           xdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           ydot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           zdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           si      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sj      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sk      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           xideri  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           xiderj  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           xiderk  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderi (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderk (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderi(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           dist( 0:imax  , 0:jmax  , 0:kmax)
+      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:),zeroarray(:)
+      character(len=5) :: blocknumname
+      integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
+      integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
+      integer(kind=cosa_int) zonetype, strandid, parentzone
+      integer(kind=cosa_int) teczne142, tecdat142, tecfil142
+      integer(kind=cosa_int) imaxmax, jmaxmax, kmaxmax
+      integer(kind=cosa_int) ibcmax, jbcmax,kbcmax
+      integer(kind=cosa_int) Null(*)
+      POINTER   (NullPtr,Null)
+      
+      ijkmax(1) = imax
+      ijkmax(2) = jmax
+      ijkmax(3) = kmax
+      
+      imax1 = imax+1
+      jmax1 = jmax+1
+      kmax1 = kmax+1
+      
+! Specify that we are using an Ordered zone type
+      zonetype = 0
+
+! Zones don't have parents
+      parentzone = 0
+
+! We are not part of a strand
+      strandid = 0
+      nfconns = 0
+      fnmode = 0
+      shrconn = 0
+      imaxmax = 0
+      jmaxmax = 0
+      kmaxmax = 0
+
+! This specifies if we are writing in block or point format
+! 1 is block format.  Binary tecplot files must be block format, 
+! so this must be 1.
+      isblock = 1
+      valuelocation = 0
+      isdouble = 1
+      tnfnodes = 0
+      ncbfaces = 0
+      tnbconns = 0
+
+!---- loop over harmonics - STARTS
+      do n = 0,2*nharms
+         nh = n*hbmove
+         
+!------loop over surfaces - START
+!------MSC 12/03/23. In future nbofy loop can be removed HERE if we do
+!     not wish to distinguish separate surfaces/walls
+!     in surftec file. We will just check for BCs
+!     starting with 15 or 14.
+!     
+!     Keeping nbpdy is instead essential to get
+!     forces and moments in routine force.
+!     Getting nsurface from input.f is trivial when
+!     all walls are either visc. (RANS) or inviscid
+!     (Euler). We just count them. 
+!     NOTE: we will need to use for BC 14 the same syntax as 
+!     for BC 1500s (14xx).
+!     
+!     Less trivial is case when
+!     a body has both visc. and inv. BCs (e.g. hub).
+!     For this, previous code structure with list of
+!     blocks with boundaries on given body was better.
+         
+         do isurface=1,nsurface
+            
+            do ibc1=1,nbcs
+               if ((bctopo(1,ibc1).eq.1500+(isurface-1)).or. &
+                    (bctopo(1,ibc1).eq.14)) then
+                  
+!     store boundary topology in mnemonic names
+                  bctyp    = bctopo(1,ibc1)
+                  idir     = bctopo(2,ibc1)
+                  inrout   = bctopo(3,ibc1)
+                  istrt(1) = bctopo(4,ibc1)
+                  iend(1)  = bctopo(5,ibc1)
+                  istrt(2) = bctopo(6,ibc1)
+                  iend(2)  = bctopo(7,ibc1)
+                  istrt(3) = bctopo(8,ibc1)
+                  iend(3)  = bctopo(9,ibc1)
+                  
+!     set needed variables depending on whether the boundary is
+!     the inner boundary (inrout = 1) or
+!     the outer boundary (inrout > 1)
+!     ibcpt : boundary condition location (first aux. cell)
+!     ibcpt2: boundary condition location outside the block from
+!     ibcpt (second aux. cell)
+!     ibcn  : point to the inside of the block from ibcpt
+!     ibcm  : location of the metrics
+                  
+                  if (inrout.eq.1) then
+                     ibcpt  =  0
+!     del            ibcpt2 = -1
+                     ibcn   =  1
+                     ibcn2  =  2
+                     ibcm   =  1
+!     del            sgnm   = - 1.d0
+                  else
+                     ibcpt  = ijkmax(idir)
+!     del            ibcpt2 = ijkmax(idir) + 1
+                     ibcn   = ijkmax(idir) - 1
+                     ibcn2  = ijkmax(idir) - 2
+                     ibcm   = ijkmax(idir)
+!     del            sgnm   = 1.d0
+                  end if
+                  
+                  if (idir.eq.1) then
+                     ioff1 = (-1)**(1+1/inrout)
+                     ioff2 = 2*ioff1
+                     joff1 = 0
+                     joff2 = 0
+                     koff1 = 0
+                     koff2 = 0
+                  else if (idir.eq.2) then
+                     ioff1 = 0
+                     ioff2 = 0
+                     joff1 = (-1)**(1+1/inrout)
+                     joff2 = 2*joff1
+                     koff1 = 0
+                     koff2 = 0
+                  else if (idir.eq.3) then
+                     ioff1 = 0
+                     ioff2 = 0
+                     joff1 = 0
+                     joff2 = 0
+                     koff1 = (-1)**(1+1/inrout)
+                     koff2 = 2*koff1
+                  end if
+                  
+                  ic1 = cyc (idir, 1)
+                  ic2 = cyc (idir, 2)
+                  ic3 = cyc (idir, 3)
+
+                  ibc_s  = ibcpt *krd(ic1,1) + istrt(ic2)*krd(ic2,1) + &
+                       istrt(ic3)*krd(ic3,1)
+                  jbc_s  = ibcpt *krd(ic1,2) + istrt(ic2)*krd(ic2,2) + &
+                       istrt(ic3)*krd(ic3,2)
+                  kbc_s  = ibcpt *krd(ic1,3) + istrt(ic2)*krd(ic2,3) + &
+                       istrt(ic3)*krd(ic3,3)
+                  
+                  ibc_e  = ibcpt *krd(ic1,1) + iend(ic2)*krd(ic2,1) + &
+                       iend(ic3)*krd(ic3,1)
+                  jbc_e  = ibcpt *krd(ic1,2) + iend(ic2)*krd(ic2,2) + &
+                       iend(ic3)*krd(ic3,2)
+                  kbc_e  = ibcpt *krd(ic1,3) + iend(ic2)*krd(ic2,3) + &
+                       iend(ic3)*krd(ic3,3)
+                  
+                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                  if (viscous) then
+                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms), &
+                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                  end if
+                  
+!------------extract/calculate surface coefficients - START
+                  do i3 = istrt(ic3),iend(ic3)
+                     do i2 = istrt(ic2),iend(ic2)
+                        
+                        ibc  = ibcpt *krd(ic1,1) + i2*krd(ic2,1) + i3*krd(ic3,1)
+                        jbc  = ibcpt *krd(ic1,2) + i2*krd(ic2,2) + i3*krd(ic3,2)
+                        kbc  = ibcpt *krd(ic1,3) + i2*krd(ic2,3) + i3*krd(ic3,3)
+                        
+                        im   = ibcm  *krd(ic1,1) + i2*krd(ic2,1) + i3*krd(ic3,1)
+                        jm   = ibcm  *krd(ic1,2) + i2*krd(ic2,2) + i3*krd(ic3,2)
+                        km   = ibcm  *krd(ic1,3) + i2*krd(ic2,3) + i3*krd(ic3,3)
+                        
+                        if (idir.eq.1) then
+                           nx    = si(1,im,jm,km,nh)
+                           ny    = si(2,im,jm,km,nh)
+                           nz    = si(3,im,jm,km,nh)
+                        else if (idir.eq.2) then
+                           nx    = sj(1,im,jm,km,nh)
+                           ny    = sj(2,im,jm,km,nh)
+                           nz    = sj(3,im,jm,km,nh)
+                        else if (idir.eq.3) then
+                           nx    = sk(1,im,jm,km,nh)
+                           ny    = sk(2,im,jm,km,nh)
+                           nz    = sk(3,im,jm,km,nh)
+                        end if
+                        
+                        kx   = (-1)**(1+1/inrout) * nx
+                        ky   = (-1)**(1+1/inrout) * ny
+                        kz   = (-1)**(1+1/inrout) * nz
+                        
+                        cp(ibc,jbc,kbc,n) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)/ &
+                             machfs**2
+                        
+                        if (viscous) then
+                           
+!     del                ibc2 = ibcpt2*krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+!     del                jbc2 = ibcpt2*krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+!     del                kbc2 = ibcpt2*krd(Ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                           
+                           in   = ibcn  *krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+                           jn   = ibcn  *krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+                           kn   = ibcn  *krd(ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                           
+                           in2  = ibcn2 *krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+                           jn2  = ibcn2 *krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+                           kn2  = ibcn2 *krd(ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                           
+                           rhow = q(ibc,jbc,kbc,1,n)
+                           tw   = q(ibc,jbc,kbc,5,n) *gamma / q(ibc,jbc,kbc,1,n)
+                           muw  = (stemp+1)/(tw+stemp) * (tw**1.5d0)
+                           
+!------------------MSC, 11/03/2023: dist not computed for laminar now
+                           if (kom.or.kom_bsl.or.kom_sst) then
+                              dn1  = dist(in ,jn ,kn )
+                           else
+                              dn1  = 0
+                           end if
+                           
+                           
+                           if (idir.eq.1) then
+                              
+                              dudxi = (-1)**(1+1/inrout) * &
+                                   (-8*q(ibc,jbc,kbc,2,n) + &
+                                   9*q(ibc+ioff1,jbc,kbc,2,n) - &
+                                   q(ibc+ioff2,jbc,kbc,2,n) ) / 3
+                              dvdxi = (-1)**(1+1/inrout) * &
+                                   (-8*q(ibc,jbc,kbc,3,n) + &
+                                   9*q(ibc+ioff1,jbc,kbc,3,n) - &
+                                   q(ibc+ioff2,jbc,kbc,3,n) ) / 3
+                              dwdxi = (-1)**(1+1/inrout) * &
+                                   (-8*q(ibc,jbc,kbc,4,n) + &
+                                   9*q(ibc+ioff1,jbc,kbc,4,n) - &
+                                   q(ibc+ioff2,jbc,kbc,4,n) ) / 3
+                              
+                              if (i2.eq.istrt(ic2)) then
+                                 u2 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc+1,kbc,2,n)) / 2
+                                 u1 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc+1,kbc,2,n)) / 2
+                                 v2 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc+1,kbc,3,n)) / 2
+                                 v1 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc+1,kbc,3,n)) / 2
+                                 w2 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc+1,kbc,4,n)) / 2
+                                 w1 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc+1,kbc,4,n)) / 2
+                              else if (i2.eq.iend(ic2)) then
+                                 u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc-1,kbc,2,n)) / 2
+                                 u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc-1,kbc,2,n)) / 2
+                                 v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc-1,kbc,3,n)) / 2
+                                 v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc-1,kbc,3,n)) / 2
+                                 w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc-1,kbc,4,n)) / 2
+                                 w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc-1,kbc,4,n)) / 2
+                              else
+                                 u2 = (q(ibc,jbc  ,kbc,2,n) + q(ibc,jbc+1,kbc,2,n)) / 2
+                                 u1 = (q(ibc,jbc-1,kbc,2,n) + q(ibc,jbc  ,kbc,2,n)) / 2
+                                 v2 = (q(ibc,jbc  ,kbc,3,n) + q(ibc,jbc+1,kbc,3,n)) / 2
+                                 v1 = (q(ibc,jbc-1,kbc,3,n) + q(ibc,jbc  ,kbc,3,n)) / 2
+                                 w2 = (q(ibc,jbc  ,kbc,4,n) + q(ibc,jbc+1,kbc,4,n)) / 2
+                                 w1 = (q(ibc,jbc-1,kbc,4,n) + q(ibc,jbc  ,kbc,4,n)) / 2
+                              end if
+                              dudeta = u2 - u1
+                              dvdeta = v2 - v1
+                              dwdeta = w2 - w1
+                              
+                              if (i3.eq.istrt(ic3)) then
+                                 u2 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc,kbc+1,2,n)) / 2
+                                 u1 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc,kbc+1,2,n)) / 2
+                                 v2 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc,kbc+1,3,n)) / 2
+                                 v1 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc,kbc+1,3,n)) / 2
+                                 w2 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc,kbc+1,4,n)) / 2
+                                 w1 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc,kbc+1,4,n)) / 2
+                              else if (i3.eq.iend(ic3)) then
+                                 u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc,kbc-1,2,n)) / 2
+                                 u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc,kbc-1,2,n)) / 2
+                                 v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc,kbc-1,3,n)) / 2
+                                 v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc,kbc-1,3,n)) / 2
+                                 w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc,kbc-1,4,n)) / 2
+                                 w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc,kbc-1,4,n)) / 2
+                              else
+                                 u2 = (q(ibc,jbc,kbc  ,2,n) + q(ibc,jbc,kbc+1,2,n)) / 2
+                                 u1 = (q(ibc,jbc,kbc-1,2,n) + q(ibc,jbc,kbc  ,2,n)) / 2
+                                 v2 = (q(ibc,jbc,kbc  ,3,n) + q(ibc,jbc,kbc+1,3,n)) / 2
+                                 v1 = (q(ibc,jbc,kbc-1,3,n) + q(ibc,jbc,kbc  ,3,n)) / 2
+                                 w2 = (q(ibc,jbc,kbc  ,4,n) + q(ibc,jbc,kbc+1,4,n)) / 2
+                                 w1 = (q(ibc,jbc,kbc-1,4,n) + q(ibc,jbc,kbc  ,4,n)) / 2
+                              end if
+                              dudzeta = u2 - u1
+                              dvdzeta = v2 - v1
+                              dwdzeta = w2 - w1
+                
+                              xix   = xideri  (1,im,jm,km,n)
+                              xiy   = xideri  (2,im,jm,km,n)
+                              xiz   = xideri  (3,im,jm,km,n)
+                              etax  = etaderi (1,im,jm,km,n)
+                              etay  = etaderi (2,im,jm,km,n)
+                              etaz  = etaderi (3,im,jm,km,n)
+                              zetax = zetaderi(1,im,jm,km,n)
+                              zetay = zetaderi(2,im,jm,km,n)
+                              zetaz = zetaderi(3,im,jm,km,n)
+                              
+                           else if (idir.eq.2) then
+                              
+                              if (i3.eq.istrt(ic3)) then
+                                 u2 = (  q(ibc+1,jbc,kbc,2,n) + q(ibc  ,jbc,kbc,2,n))/2
+                                 u1 = (3*q(ibc  ,jbc,kbc,2,n) - q(ibc+1,jbc,kbc,2,n))/2
+                                 v2 = (  q(ibc+1,jbc,kbc,3,n) + q(ibc  ,jbc,kbc,3,n))/2
+                                 v1 = (3*q(ibc  ,jbc,kbc,3,n) - q(ibc+1,jbc,kbc,3,n))/2
+                                 w2 = (  q(ibc+1,jbc,kbc,4,n) + q(ibc  ,jbc,kbc,4,n))/2
+                                 w1 = (3*q(ibc  ,jbc,kbc,4,n) - q(ibc+1,jbc,kbc,4,n))/2
+                              else if (i3.eq.iend(ic3)) then
+                                 u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc-1,jbc,kbc,2,n)) / 2
+                                 u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc-1,jbc,kbc,2,n)) / 2
+                                 v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc-1,jbc,kbc,3,n)) / 2
+                                 v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc-1,jbc,kbc,3,n)) / 2
+                                 w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc-1,jbc,kbc,4,n)) / 2
+                                 w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc-1,jbc,kbc,4,n)) / 2
+                              else
+                                 u2 = (q(ibc+1,jbc,kbc,2,n) + q(ibc  ,jbc,kbc,2,n)) / 2
+                                 u1 = (q(ibc  ,jbc,kbc,2,n) + q(ibc-1,jbc,kbc,2,n)) / 2
+                                 v2 = (q(ibc+1,jbc,kbc,3,n) + q(ibc  ,jbc,kbc,3,n)) / 2
+                                 v1 = (q(ibc  ,jbc,kbc,3,n) + q(ibc-1,jbc,kbc,3,n)) / 2
+                                 w2 = (q(ibc+1,jbc,kbc,4,n) + q(ibc  ,jbc,kbc,4,n)) / 2
+                                 w1 = (q(ibc  ,jbc,kbc,4,n) + q(ibc-1,jbc,kbc,4,n)) / 2
+                              end if
+                              dudxi = u2 - u1
+                              dvdxi = v2 - v1
+                              dwdxi = w2 - w1
+                              
+                              dudeta = (-1)**(1+1/inrout) * &
+                                   (-8*q(ibc,jbc,kbc,2,n) + &
+                                   9*q(ibc,jbc+joff1,kbc,2,n) - &
+                                   q(ibc,jbc+joff2,kbc,2,n) ) / 3
+                              dvdeta = (-1)**(1+1/inrout) * &
+                                   (-8*q(ibc,jbc,kbc,3,n) + &
+                                   9*q(ibc,jbc+joff1,kbc,3,n) - &
+                                   q(ibc,jbc+joff2,kbc,3,n) ) / 3
+                              dwdeta = (-1)**(1+1/inrout) * &
+                                   (-8*q(ibc,jbc,kbc,4,n) + &
+                                   9*q(ibc,jbc+joff1,kbc,4,n) - &
+                                   q(ibc,jbc+joff2,kbc,4,n) ) / 3
+                              
+                              if (i2.eq.istrt(ic2)) then
+                                 u2 = (  q(ibc,jbc,kbc+1,2,n) + q(ibc,jbc,kbc  ,2,n))/2
+                                 u1 = (3*q(ibc,jbc,kbc  ,2,n) - q(ibc,jbc,kbc+1,2,n))/2
+                                 v2 = (  q(ibc,jbc,kbc+1,3,n) + q(ibc,jbc,kbc  ,3,n))/2
+                                 v1 = (3*q(ibc,jbc,kbc  ,3,n) - q(ibc,jbc,kbc+1,3,n))/2
+                                 w2 = (  q(ibc,jbc,kbc+1,4,n) + q(ibc,jbc,kbc  ,4,n))/2
+                                 w1 = (3*q(ibc,jbc,kbc  ,4,n) - q(ibc,jbc,kbc+1,4,n))/2
+                              else if (i2.eq.iend(ic2)) then
+                                 u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc,kbc-1,2,n)) / 2
+                                 u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc,kbc-1,2,n)) / 2
+                                 v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc,kbc-1,3,n)) / 2
+                                 v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc,kbc-1,3,n)) / 2
+                                 w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc,kbc-1,4,n)) / 2
+                                 w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc,kbc-1,4,n)) / 2
+                              else
+                                 u2 = (q(ibc,jbc,kbc+1,2,n) + q(ibc,jbc,kbc  ,2,n)) / 2
+                                 u1 = (q(ibc,jbc,kbc  ,2,n) + q(ibc,jbc,kbc-1,2,n)) / 2
+                                 v2 = (q(ibc,jbc,kbc+1,3,n) + q(ibc,jbc,kbc  ,3,n)) / 2
+                                 v1 = (q(ibc,jbc,kbc  ,3,n) + q(ibc,jbc,kbc-1,3,n)) / 2
+                                 w2 = (q(ibc,jbc,kbc+1,4,n) + q(ibc,jbc,kbc  ,4,n)) / 2
+                                 w1 = (q(ibc,jbc,kbc  ,4,n) + q(ibc,jbc,kbc-1,4,n)) / 2
+                              end if
+                              dudzeta = u2 - u1
+                              dvdzeta = v2 - v1
+                              dwdzeta = w2 - w1
+                              
+                              xix   = xiderj  (1,im,jm,km,n)
+                              xiy   = xiderj  (2,im,jm,km,n)
+                              xiz   = xiderj  (3,im,jm,km,n)
+                              etax  = etaderj (1,im,jm,km,n)
+                              etay  = etaderj (2,im,jm,km,n)
+                              etaz  = etaderj (3,im,jm,km,n)
+                              zetax = zetaderj(1,im,jm,km,n)
+                              zetay = zetaderj(2,im,jm,km,n)
+                              zetaz = zetaderj(3,im,jm,km,n)
+                              
+                           else if (idir.eq.3) then
+                              if (i2.eq.istrt(ic2)) then
+                                 u2 = (  q(ibc,jbc,kbc,2,n) + q(ibc+1,jbc,kbc,2,n)) / 2
+                                 u1 = (3*q(ibc,jbc,kbc,2,n) - q(ibc+1,jbc,kbc,2,n)) / 2
+                                 v2 = (  q(ibc,jbc,kbc,3,n) + q(ibc+1,jbc,kbc,3,n)) / 2
+                                 v1 = (3*q(ibc,jbc,kbc,3,n) - q(ibc+1,jbc,kbc,3,n)) / 2
+                                 w2 = (  q(ibc,jbc,kbc,4,n) + q(ibc+1,jbc,kbc,4,n)) / 2
+                                 w1 = (3*q(ibc,jbc,kbc,4,n) - q(ibc+1,jbc,kbc,4,n)) / 2
+                              else if (i2.eq.iend(ic2)) then
+                                 u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc-1,jbc,kbc,2,n)) / 2
+                                 u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc-1,jbc,kbc,2,n)) / 2
+                                 v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc-1,jbc,kbc,3,n)) / 2
+                                 v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc-1,jbc,kbc,3,n)) / 2
+                                 w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc-1,jbc,kbc,4,n)) / 2
+                                 w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc-1,jbc,kbc,4,n)) / 2
+                              else
+                                 u2 = (q(ibc  ,jbc,kbc,2,n) + q(ibc+1,jbc,kbc,2,n)) / 2
+                                 u1 = (q(ibc-1,jbc,kbc,2,n) + q(ibc  ,jbc,kbc,2,n)) / 2
+                                 v2 = (q(ibc  ,jbc,kbc,3,n) + q(ibc+1,jbc,kbc,3,n)) / 2
+                                 v1 = (q(ibc-1,jbc,kbc,3,n) + q(ibc  ,jbc,kbc,3,n)) / 2
+                                 w2 = (q(ibc  ,jbc,kbc,4,n) + q(ibc+1,jbc,kbc,4,n)) / 2
+                                 w1 = (q(ibc-1,jbc,kbc,4,n) + q(ibc  ,jbc,kbc,4,n)) / 2
+                              end if
+                              dudxi = u2 - u1
+                              dvdxi = v2 - v1
+                              dwdxi = w2 - w1
+                              
+                              if (i3.eq.istrt(ic3)) then
+                                 u2 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc+1,kbc,2,n)) / 2
+                                 u1 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc+1,kbc,2,n)) / 2
+                                 v2 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc+1,kbc,3,n)) / 2
+                                 v1 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc+1,kbc,3,n)) / 2
+                                 w2 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc+1,kbc,4,n)) / 2
+                                 w1 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc+1,kbc,4,n)) / 2
+                              else if (i3.eq.iend(ic3)) then
+                                 u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc-1,kbc,2,n)) / 2
+                                 u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc-1,kbc,2,n)) / 2
+                                 v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc-1,kbc,3,n)) / 2
+                                 v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc-1,kbc,3,n)) / 2
+                                 w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc-1,kbc,4,n)) / 2
+                                 w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc-1,kbc,4,n)) / 2
+                              else
+                                 u2 = (q(ibc,jbc  ,kbc,2,n) + q(ibc,jbc+1,kbc,2,n)) / 2
+                                 u1 = (q(ibc,jbc-1,kbc,2,n) + q(ibc,jbc  ,kbc,2,n)) / 2
+                                 v2 = (q(ibc,jbc  ,kbc,3,n) + q(ibc,jbc+1,kbc,3,n)) / 2
+                                 v1 = (q(ibc,jbc-1,kbc,3,n) + q(ibc,jbc  ,kbc,3,n)) / 2
+                                 w2 = (q(ibc,jbc  ,kbc,4,n) + q(ibc,jbc+1,kbc,4,n)) / 2
+                                 w1 = (q(ibc,jbc-1,kbc,4,n) + q(ibc,jbc  ,kbc,4,n)) / 2
+                              end if
+                              dudeta = u2 - u1
+                              dvdeta = v2 - v1
+                              dwdeta = w2 - w1
+                              
+                              dudzeta = (-1)**(1+1/inrout) * &
+                                   (-8*q(ibc,jbc,kbc,2,n) + &
+                                   9*q(ibc,jbc,kbc+koff1,2,n) - &
+                                   q(ibc,jbc,kbc+koff2,2,n) ) / 3
+                              dvdzeta = (-1)**(1+1/inrout) * &
+                                   (-8*q(ibc,jbc,kbc,3,n) + &
+                                   9*q(ibc,jbc,kbc+koff1,3,n) - &
+                                   q(ibc,jbc,kbc+koff2,3,n) ) / 3
+                              dwdzeta = (-1)**(1+1/inrout) * &
+                                   (-8*q(ibc,jbc,kbc,4,n) + &
+                                   9*q(ibc,jbc,kbc+koff1,4,n) - &
+                                   q(ibc,jbc,kbc+koff2,4,n) ) / 3
+                              
+                              xix   = xiderk  (1,im,jm,km,n)
+                              xiy   = xiderk  (2,im,jm,km,n)
+                              xiz   = xiderk  (3,im,jm,km,n)
+                              etax  = etaderk (1,im,jm,km,n)
+                              etay  = etaderk (2,im,jm,km,n)
+                              etaz  = etaderk (3,im,jm,km,n)
+                              zetax = zetaderk(1,im,jm,km,n)
+                              zetay = zetaderk(2,im,jm,km,n)
+                              zetaz = zetaderk(3,im,jm,km,n)
+                              
+                           end if
+                           
+                           dudx = dudxi*xix + dudeta*etax + dudzeta*zetax
+                           dudy = dudxi*xiy + dudeta*etay + dudzeta*zetay
+                           dudz = dudxi*xiz + dudeta*etaz + dudzeta*zetaz
+                           dvdx = dvdxi*xix + dvdeta*etax + dvdzeta*zetax
+                           dvdy = dvdxi*xiy + dvdeta*etay + dvdzeta*zetay
+                           dvdz = dvdxi*xiz + dvdeta*etaz + dvdzeta*zetaz
+                           dwdx = dwdxi*xix + dwdeta*etax + dwdzeta*zetax
+                           dwdy = dwdxi*xiy + dwdeta*etay + dwdzeta*zetay
+                           dwdz = dwdxi*xiz + dwdeta*etaz + dwdzeta*zetaz
+                           
+                           divv = dudx + dvdy + dwdz
+                           
+                           txx = 2*muw * (dudx - divv/3)
+                           txy =   muw * (dudy + dvdx)
+                           txz =   muw * (dudz + dwdx)
+                           tyy = 2*muw * (dvdy - divv/3)
+                           tyz =   muw * (dvdz + dwdy)
+                           tzz = 2*muw * (dwdz - divv/3)
+                           
+                           tauwx = txx*kx + txy*ky + txz*kz
+                           tauwy = txy*kx + tyy*ky + tyz*kz
+                           tauwz = txz*kx + tyz*ky + tzz*kz
+                           
+                           tauwpx = tauwx - (tauwx*kx+tauwy*ky+tauwz*kz)*kx
+                           tauwpy = tauwy - (tauwx*kx+tauwy*ky+tauwz*kz)*ky
+                           tauwpz = tauwz - (tauwx*kx+tauwy*ky+tauwz*kz)*kz
+                           
+                           tauw   = dsqrt(tauwpx**2+tauwpy**2+tauwpz**2)
+                           utau   = dsqrt(tauw/rhow)
+                           
+                           cf(ibc,jbc,kbc,n) = 2*tauw / (reyno*machfs)
+                           yp(ibc,jbc,kbc,n) = dsqrt(reyno/machfs)* &
+                                rhow*dn1*utau/muw
+                           
+                        end if
+                        
+                     end do
+                  end do
+!------------extract/calculate surface coefficients - END
+                  
+!------------write tecplot surface patch
+                                    
+                  if(tecfil142(n+1) .ne. 0) then
+                     write(*,*) 'error calling tecfil142'
+                     stop
+                  end if
+                  
+                  write (blocknumname, "(I5)") iblock
+
+                  ibcmax = ibc_e-ibc_s+1
+                  jbcmax = jbc_e-jbc_s+1
+                  kbcmax = kbc_e-kbc_s+1
+                  
+                  if(teczne142('block'//trim(blocknumname)//char(0),zonetype, ibcmax, jbcmax, kbcmax, &
+                       imaxmax, jmaxmax, kmaxmax, simtime, strandid, parentzone, isblock, nfconns, & 
+                       fnmode, tnfnodes, ncbfaces, tnbconns, Null, Null, Null, shrconn) .ne. 0) then
+                     write(*,*) 'error setting up zone'
+                     stop
+                  end if
+                  
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,x(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,y(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,z(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,cp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+
+                  if (viscous) then
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,cf(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,yp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                  else
+                     allocate(zeroarray(ibcmax*jbcmax*kbcmax))
+                     zeroarray = 0.d0
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     deallocate(zeroarray)
+                  end if
+
+                  deallocate(cp)
+                  if (viscous) then
+                     deallocate(cf,yp)
+                  end if
+
+               end if
+               
+!--------end loop (ibc1=1,nbcs)
+            end do
+            
+!------loop over surfaces - END
+         end do
+         
+!---- loop over harmonics - END
+      end do
+      
+      
+ 14   format(3e22.14)
+ 10   format(3e22.14)
+      
+      return
+      end      
+
+
+!-----------------------------------------------------------------------
       subroutine wr_cgns_surf(nl,q,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
         xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
         bctopo)
@@ -7268,7 +8820,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,ierr,bctopo(*),surfacenumber
       integer(kind=cosa_int) nl,iblock,iq,iblk,ixyz,iimt,ivmt,idist,n,fid(0:2*mharms)
       logical parallel,amcontrol
-      real (kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
+      real(kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
         si(*),sj(*),sk(*),xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
         etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*)
       character*72 line,tag
@@ -7466,12 +9018,12 @@
         ioff2,joff1,joff2,koff1,koff2,ierr
       integer(cgsize_t) ::  sizes(3,3)
       integer fid(0:2*mharms),blocknum
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
            vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
            etax,etay,etaz,dudx,dudy,dudz,dvdx,dvdy, &
            dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
            tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -7486,8 +9038,8 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
-      real (kind=cosa_real),allocatable :: localcoord(:,:,:)
+      real(kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
+      real(kind=cosa_real),allocatable :: localcoord(:,:,:)
       character*200 line1
       character*20 zonename
       integer :: xnum, ynum, znum, solnum, indexnum
@@ -7890,14 +9442,14 @@
         ioff2,joff1,joff2,koff1,koff2,ierr
       integer(cgsize_t) ::  sizes(3,3)
       integer fid(0:2*mharms)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
         vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r, &
         xix,xiy,xiz,etax,etay,etaz,zetax,zetay,zetaz, &
         dudxi,dudeta,dudzeta,dvdxi,dvdeta,dvdzeta,dwdxi,dwdeta,dwdzeta, &
         dudx,dudy,dudz,dvdx,dvdy, &
         dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
         tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -7918,8 +9470,8 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
-      real (kind=cosa_real),allocatable :: localcoord(:,:,:)
+      real(kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
+      real(kind=cosa_real),allocatable :: localcoord(:,:,:)
       character*200 line1
       character*20 zonename
       integer :: xnum, ynum, znum, solnum, indexnum
