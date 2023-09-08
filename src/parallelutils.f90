@@ -37,37 +37,37 @@
       public :: surfblockstarts, surfblockends, nsurfblocks
       public :: surfblockindex, surfbcindex
         
-      integer, allocatable :: mysendid(:), myrecvid(:), myrecvid_num(:)
-      integer, allocatable :: mysendid_num(:)
-      integer, allocatable :: check_mysendid(:), check_myrecvid(:)
-      integer, allocatable :: check_myrecvid_num(:), &
+      integer(kind=cosa_int), allocatable :: mysendid(:), myrecvid(:), myrecvid_num(:)
+      integer(kind=cosa_int), allocatable :: mysendid_num(:)
+      integer(kind=cosa_int), allocatable :: check_mysendid(:), check_myrecvid(:)
+      integer(kind=cosa_int), allocatable :: check_myrecvid_num(:), &
                               check_mysendid_num(:)
-      integer, allocatable :: myprecvid(:), mypsendid(:)
-      integer, allocatable :: mypsendid_num(:), myprecvid_num(:)
-      integer, allocatable :: numsend(:), numrecv(:)
-      integer, allocatable :: pnumsend(:), pnumrecv(:)
-      integer, allocatable :: check_numsend(:), check_numrecv(:)
-      integer :: maxproc_cutman, maxproc, mrequest_perproc
-      integer :: maxproc_pcutman, mrequest_pperproc
-      integer :: maxproc_check_cutman, mrequest_check_perproc
+      integer(kind=cosa_int), allocatable :: myprecvid(:), mypsendid(:)
+      integer(kind=cosa_int), allocatable :: mypsendid_num(:), myprecvid_num(:)
+      integer(kind=cosa_int), allocatable :: numsend(:), numrecv(:)
+      integer(kind=cosa_int), allocatable :: pnumsend(:), pnumrecv(:)
+      integer(kind=cosa_int), allocatable :: check_numsend(:), check_numrecv(:)
+      integer(kind=cosa_int) :: maxproc_cutman, maxproc, mrequest_perproc
+      integer(kind=cosa_int) :: maxproc_pcutman, mrequest_pperproc
+      integer(kind=cosa_int) :: maxproc_check_cutman, mrequest_check_perproc
       
-      integer, allocatable :: sendrequests(:),receiverequests(:)
-      integer, allocatable :: receiveindices(:,:,:)
+      integer(kind=cosa_int), allocatable :: sendrequests(:),receiverequests(:)
+      integer(kind=cosa_int), allocatable :: receiveindices(:,:,:)
       
-      integer, allocatable :: check_sendrequests(:), &
+      integer(kind=cosa_int), allocatable :: check_sendrequests(:), &
                               check_receiverequests(:)
-      integer, allocatable :: check_receiveindices(:,:,:)
+      integer(kind=cosa_int), allocatable :: check_receiveindices(:,:,:)
 
       real(kind=cosa_real), allocatable :: sendarray(:,:,:),receivearray(:,:,:)
       
-      integer, allocatable :: psendrequests(:),preceiverequests(:)
-      integer, allocatable :: preceiveindices(:,:,:)
+      integer(kind=cosa_int), allocatable :: psendrequests(:),preceiverequests(:)
+      integer(kind=cosa_int), allocatable :: preceiveindices(:,:,:)
       
-      integer, allocatable :: surfblockstarts(:,:)
-      integer, allocatable :: surfblockends(:,:)
-      integer, allocatable :: surfblockindex(:)
-      integer, allocatable :: surfbcindex(:)
-      integer :: nsurfblocks
+      integer(kind=cosa_int), allocatable :: surfblockstarts(:,:)
+      integer(kind=cosa_int), allocatable :: surfblockends(:,:)
+      integer(kind=cosa_int), allocatable :: surfblockindex(:)
+      integer(kind=cosa_int), allocatable :: surfbcindex(:)
+      integer(kind=cosa_int) :: nsurfblocks
 
       logical :: initialised = .false.
       
@@ -81,7 +81,7 @@
 
       implicit none
       
-      integer :: lmaxproc
+      integer(kind=cosa_int) :: lmaxproc
       
       if(.not. initialised) then
          maxproc = lmaxproc
@@ -96,7 +96,7 @@
 
       implicit none
 
-      integer :: data_size
+      integer(kind=cosa_int) :: data_size
 
       if(initialised) then
          
@@ -139,7 +139,7 @@
 
       implicit none
 
-      integer :: data_size
+      integer(kind=cosa_int) :: data_size
 
       if(initialised) then
 
@@ -183,7 +183,7 @@
 
       implicit none
 
-      integer :: data_size
+      integer(kind=cosa_int) :: data_size
 
       if(initialised) then
 
@@ -306,7 +306,7 @@
 
       implicit none
 
-      integer(kind=cosa_int) count, countrate, countmax
+      integer(kind=cosa_int) :: count, countrate, countmax
 
       call gettimemax(count, countrate, countmax)
 
@@ -327,7 +327,7 @@
       implicit none
 
 
-      integer(kind=cosa_int) count, countrate, countmax
+      integer(kind=cosa_int) :: count, countrate, countmax
 
       call system_clock(count, countrate, countmax)
 
@@ -381,7 +381,7 @@
 #ifdef MPI
       include 'mpif.h'
 
-      integer ierror, parallelsize, parallelid
+      integer(kind=cosa_int) :: ierror, parallelsize, parallelid
 
       call MPI_INIT(ierror)
 
@@ -425,7 +425,7 @@
 #ifdef MPI
       include 'mpif.h'
 
-      integer ierror
+      integer(kind=cosa_int) :: ierror
 
       call MPI_FINALIZE(ierror)
 #endif      
@@ -447,7 +447,7 @@
 #ifdef MPI
       include 'mpif.h'
 
-      integer ierror
+      integer(kind=cosa_int) :: ierror
 
       call MPI_ABORT(MPI_COMM_WORLD,ierror)
 
@@ -475,7 +475,7 @@
 #ifdef MPI
       include 'mpif.h'
 
-      integer ierror
+      integer(kind=cosa_int) :: ierror
 
       call MPI_BARRIER(MPI_COMM_WORLD,ierror)
 #endif      
@@ -500,7 +500,7 @@
       include 'mpif.h'
 #endif
 
-      integer msize, ierror
+      integer(kind=cosa_int) :: msize, ierror
 
 #ifdef MPI
       call MPI_COMM_SIZE(MPI_COMM_WORLD,msize,ierror)
@@ -527,7 +527,7 @@
       include 'mpif.h'
 #endif
 
-      integer rank, ierror
+      integer(kind=cosa_int) :: rank, ierror
 
 #ifdef MPI
       call MPI_COMM_RANK(MPI_COMM_WORLD,rank,ierror)
@@ -551,7 +551,7 @@
 
       implicit none
 
-      integer rank
+      integer(kind=cosa_int) :: rank
       logical trueorfalse
 
       call getmpiid(rank)
@@ -578,9 +578,9 @@
 
       implicit none
 
-      integer(kind=cosa_int) parallelsize, parallelid, i, blockoffset
-      integer(kind=cosa_int) wholeblocks, remainderblocks, remblock
-      integer(kind=cosa_int) iblk1, iblk2, icut
+      integer(kind=cosa_int) :: parallelsize, parallelid, i, blockoffset
+      integer(kind=cosa_int) :: wholeblocks, remainderblocks, remblock
+      integer(kind=cosa_int) :: iblk1, iblk2, icut
 
       call getmpisize(parallelsize)
       call getmpiid(parallelid)
@@ -782,8 +782,8 @@
 
       implicit none
 
-      integer(kind=cosa_int) myblock, parallelsize, nl, ibc, iblock
-      integer(kind=cosa_int) icut, currentcut, rank
+      integer(kind=cosa_int) :: myblock, parallelsize, nl, ibc, iblock
+      integer(kind=cosa_int) :: icut, currentcut, rank
       call getmpisize(parallelsize)
       call getmpiid(rank)
 
@@ -923,7 +923,7 @@
 
       implicit none
 
-      integer(kind=cosa_int) blockid
+      integer(kind=cosa_int) :: blockid
       logical ismyblock
       logical updateid
 
@@ -952,7 +952,7 @@
 
       implicit none
 
-      integer(kind=cosa_int) blockid, updatedid
+      integer(kind=cosa_int) :: blockid, updatedid
 
       updatedid = blockid + (lowernblock - 1)
 
@@ -978,17 +978,17 @@
       
 #ifdef MPI
       include 'mpif.h'
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=MPI_OFFSET_KIND)
 #else
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=8)
 #endif
 
-      integer(kind=offset_kind) offset
-      integer(kind=cosa_int) nl
-      integer(kind=cosa_int) i, j, k, n, imax, jmax, kmax
-      integer integersize, doublesize, ierr
+      integer(kind=offset_kind) :: offset
+      integer(kind=cosa_int) :: nl
+      integer(kind=cosa_int) :: i, j, k, n, imax, jmax, kmax
+      integer(kind=cosa_int) :: integersize, doublesize, ierr
 #ifdef MPI
       call mpi_type_size(MPI_DOUBLE_PRECISION, doublesize, ierr)
       call mpi_type_size(MPI_INTEGER, integersize, ierr)
@@ -1049,10 +1049,10 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) nl, k, imax, jmax, kmax
+      integer(kind=cosa_int) :: nl, k, imax, jmax, kmax
       integer*8 totalblockamount, blockamount
-      integer doublesize, integersize
-      integer ierr
+      integer(kind=cosa_int) :: doublesize, integersize
+      integer(kind=cosa_int) :: ierr
 
       totalblockamount = 0
 #ifdef MPI
@@ -1110,10 +1110,10 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) nl, k, imax, jmax, kmax
+      integer(kind=cosa_int) :: nl, k, imax, jmax, kmax
       integer*8 totalblockamount, blockamount
-      integer doublesize, integersize
-      integer ierr
+      integer(kind=cosa_int) :: doublesize, integersize
+      integer(kind=cosa_int) :: ierr
 
       totalblockamount = 0
 #ifdef MPI
@@ -1159,10 +1159,10 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax, jmax, kmax
+      integer(kind=cosa_int) :: imax, jmax, kmax
       integer*8 blockamount 
-      integer doublesize, integersize
-      integer expr4, numberofints
+      integer(kind=cosa_int) :: doublesize, integersize
+      integer(kind=cosa_int) :: expr4, numberofints
 
 
       expr4 = npde
@@ -1190,9 +1190,9 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax, jmax, kmax
+      integer(kind=cosa_int) :: imax, jmax, kmax
       integer*8 blockamount
-      integer  expr4, doublesize, integersize, numberofints
+      integer(kind=cosa_int) :: expr4, doublesize, integersize, numberofints
       
       blockamount = 0
 
@@ -1236,9 +1236,9 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax, jmax, kmax
+      integer(kind=cosa_int) :: imax, jmax, kmax
       integer*8 blockamount
-      integer  expr4, doublesize, integersize, numberofints
+      integer(kind=cosa_int) :: expr4, doublesize, integersize, numberofints
       
       blockamount = 0
 
@@ -1292,10 +1292,10 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) nl, k, imax, jmax, kmax, iblock, upperbound
+      integer(kind=cosa_int) :: nl, k, imax, jmax, kmax, iblock, upperbound
       integer*8 totalblockamount
-      integer blockamount, doublesize, integersize
-      integer charactersize, ierr
+      integer(kind=cosa_int) :: blockamount, doublesize, integersize
+      integer(kind=cosa_int) :: charactersize, ierr
 
       totalblockamount = 0
 #ifdef MPI
@@ -1350,8 +1350,8 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax, jmax, kmax
-      integer blockamount, doublesize, integersize, charactersize
+      integer(kind=cosa_int) :: imax, jmax, kmax
+      integer(kind=cosa_int) :: blockamount, doublesize, integersize, charactersize
 
       blockamount = 0
       
@@ -1401,15 +1401,15 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) nl, k, l, imax, jmax, kmax, iblock, upperbound
+      integer(kind=cosa_int) :: nl, k, l, imax, jmax, kmax, iblock, upperbound
       integer*8 totalblockamount
-      integer :: nsurfblocks, surfacenumber
-      integer :: surfblockstarts(nsurfblocks,3)
-      integer :: surfblockends(nsurfblocks,3)
-      integer :: surfblockindex(nsurfblocks)
-      integer :: surfbcindex(nsurfblocks)
-      integer blockamount, doublesize, integersize
-      integer charactersize, ierr
+      integer(kind=cosa_int) :: nsurfblocks, surfacenumber
+      integer(kind=cosa_int) :: surfblockstarts(nsurfblocks,3)
+      integer(kind=cosa_int) :: surfblockends(nsurfblocks,3)
+      integer(kind=cosa_int) :: surfblockindex(nsurfblocks)
+      integer(kind=cosa_int) :: surfbcindex(nsurfblocks)
+      integer(kind=cosa_int) :: blockamount, doublesize, integersize
+      integer(kind=cosa_int) :: charactersize, ierr
 
       totalblockamount = 0
 #ifdef MPI
@@ -1468,12 +1468,12 @@
 
       implicit none
       
-      integer :: blockamount, doublesize, integersize, charactersize, ibc
-      integer :: iblock, nsurfblocks, surfacenumber, isurface
-      integer :: surfblockstarts(3, nsurfblocks)
-      integer :: surfblockends(3, nsurfblocks)
-      integer :: surfblockindex(nsurfblocks)
-      integer :: surfbcindex(nsurfblocks)
+      integer(kind=cosa_int) :: blockamount, doublesize, integersize, charactersize, ibc
+      integer(kind=cosa_int) :: iblock, nsurfblocks, surfacenumber, isurface
+      integer(kind=cosa_int) :: surfblockstarts(3, nsurfblocks)
+      integer(kind=cosa_int) :: surfblockends(3, nsurfblocks)
+      integer(kind=cosa_int) :: surfblockindex(nsurfblocks)
+      integer(kind=cosa_int) :: surfbcindex(nsurfblocks)
 
       blockamount = 0
       do isurface = 1,nsurfblocks
@@ -1513,9 +1513,8 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax, jmax, kmax, npde, nharms
-      integer amount1, expr1, expr2, expr3, expr4, expr5
-!jd   integer counter, i, j, k, n
+      integer(kind=cosa_int) :: imax, jmax, kmax, npde, nharms
+      integer(kind=cosa_int) :: amount1, expr1, expr2, expr3, expr4, expr5
 
       expr5 = (2*nharms) + 1
 
@@ -1582,8 +1581,8 @@
 
       implicit none
 
-      integer(kind=cosa_int) imax, jmax, kmax, npde
-      integer amount1, expr1, expr2, expr3, expr4
+      integer(kind=cosa_int) :: imax, jmax, kmax, npde
+      integer(kind=cosa_int) :: amount1, expr1, expr2, expr3, expr4
 
       if(((imax+3) .eq. 3) .AND. ((jmax+3) .eq. 3) .AND. &
          ((kmax+3) .eq. 3) .AND. (npde .eq. 0)) then
@@ -1640,8 +1639,8 @@
 
       implicit none
 
-      integer(kind=cosa_int) imax, jmax, kmax, nharms
-      integer amount1, expr1, expr2, expr3, expr4
+      integer(kind=cosa_int) :: imax, jmax, kmax, nharms
+      integer(kind=cosa_int) :: amount1, expr1, expr2, expr3, expr4
 
       expr4 = (2*nharms) + 1
 
@@ -1700,7 +1699,7 @@
       implicit none
       
       integer*8 offset
-      integer(kind=cosa_int) fileid, i
+      integer(kind=cosa_int) :: fileid, i
 
 
       do i=1,offset
@@ -1722,7 +1721,7 @@
 
       implicit none
 
-      integer(kind=cosa_int) blockid,ownerid
+      integer(kind=cosa_int) :: blockid,ownerid
 
       ownerid = blockassignment(blockid)
 
@@ -1744,9 +1743,9 @@
 
       implicit none
 
-      integer(kind=cosa_int) receivefrom,length,request
-      integer(kind=cosa_int) receivefromid
-      real(kind=cosa_real) recvdata(length)
+      integer(kind=cosa_int) :: receivefrom,length,request
+      integer(kind=cosa_int) :: receivefromid
+      real(kind=cosa_real) :: recvdata(length)
 
       call getownerid(receivefrom,receivefromid)
 
@@ -1771,9 +1770,9 @@
 
       implicit none
 
-      integer(kind=cosa_int) length,request
-      integer(kind=cosa_int) receivefromid
-      real(kind=cosa_real) recvdata(length)
+      integer(kind=cosa_int) :: length,request
+      integer(kind=cosa_int) :: receivefromid
+      real(kind=cosa_real) :: recvdata(length)
 
       call mpireceive(receivefromid,recvdata,length,request)
 
@@ -1794,9 +1793,9 @@
 
       implicit none
 
-      integer(kind=cosa_int) sendto,length
-      integer(kind=cosa_int) sendtoid,request
-      real(kind=cosa_real) senddata(length)
+      integer(kind=cosa_int) :: sendto,length
+      integer(kind=cosa_int) :: sendtoid,request
+      real(kind=cosa_real) :: senddata(length)
       
       call getownerid(sendto,sendtoid)
 
@@ -1819,9 +1818,9 @@
 
       implicit none
 
-      integer(kind=cosa_int) length
-      integer(kind=cosa_int) sendtoid,request
-      real(kind=cosa_real) senddata(length)
+      integer(kind=cosa_int) :: length
+      integer(kind=cosa_int) :: sendtoid,request
+      real(kind=cosa_real) :: senddata(length)
       
       call mpisend(sendtoid,senddata,length,request)
       
@@ -1843,9 +1842,9 @@
       include 'mpif.h'
 #endif
       
-      integer(kind=cosa_int) destrank,length, ierror, tag
-      integer(kind=cosa_int) request
-      real(kind=cosa_real) senddata(length)
+      integer(kind=cosa_int) :: destrank,length, ierror, tag
+      integer(kind=cosa_int) :: request
+      real(kind=cosa_real) :: senddata(length)
 
 #ifdef MPI
       call MPI_ISEND(senddata, length, MPI_DOUBLE_PRECISION, destrank, &
@@ -1874,9 +1873,9 @@
       include 'mpif.h'
 #endif
       
-      integer(kind=cosa_int) destrank,length, ierror, tag
-      integer(kind=cosa_int) request
-      real(kind=cosa_real) senddata(length)
+      integer(kind=cosa_int) :: destrank,length, ierror, tag
+      integer(kind=cosa_int) :: request
+      real(kind=cosa_real) :: senddata(length)
 
 
 #ifdef MPI
@@ -1905,9 +1904,9 @@
       include 'mpif.h'
 #endif
       
-      integer(kind=cosa_int) sourcerank,length, ierror, tag
-      integer(kind=cosa_int) request
-      real(kind=cosa_real) recvdata(length)
+      integer(kind=cosa_int) :: sourcerank,length, ierror, tag
+      integer(kind=cosa_int) :: request
+      real(kind=cosa_real) :: recvdata(length)
 
 #ifdef MPI
       tag = 10
@@ -1934,9 +1933,9 @@
       include 'mpif.h'
 #endif
       
-      integer(kind=cosa_int) sourcerank,length, ierror, tag
-      integer(kind=cosa_int) request
-      real(kind=cosa_real) recvdata(length)
+      integer(kind=cosa_int) :: sourcerank,length, ierror, tag
+      integer(kind=cosa_int) :: request
+      real(kind=cosa_real) :: recvdata(length)
 
 #ifdef MPI
 
@@ -1968,8 +1967,8 @@
       include 'mpif.h'
 #endif
       
-      integer(kind=cosa_int) length
-      integer(kind=cosa_int) requests(length)
+      integer(kind=cosa_int) :: length
+      integer(kind=cosa_int) :: requests(length)
 #ifdef MPI
       requests = MPI_REQUEST_NULL
 #endif
@@ -1991,10 +1990,10 @@
       include 'mpif.h'
 #endif
       
-      integer(kind=cosa_int) request
+      integer(kind=cosa_int) :: request
 #ifdef MPI
-      integer(kind=cosa_int) ierror
-      integer(kind=cosa_int) status(MPI_STATUS_SIZE)
+      integer(kind=cosa_int) :: ierror
+      integer(kind=cosa_int) :: status(MPI_STATUS_SIZE)
 
       call mpiwait(request)
 #endif
@@ -2016,8 +2015,8 @@
       include 'mpif.h'
 #endif
       
-      integer(kind=cosa_int) requestnumbers
-      integer(kind=cosa_int) requests(requestnumbers)
+      integer(kind=cosa_int) :: requestnumbers
+      integer(kind=cosa_int) :: requests(requestnumbers)
 
 #ifdef MPI
       call mpiwaitall(requests,requestnumbers)
@@ -2041,9 +2040,9 @@
       include 'mpif.h'
 #endif
       
-      integer(kind=cosa_int) requestnumbers
-      integer(kind=cosa_int) requests(requestnumbers)
-      integer(kind=cosa_int) mindex
+      integer(kind=cosa_int) :: requestnumbers
+      integer(kind=cosa_int) :: requests(requestnumbers)
+      integer(kind=cosa_int) :: mindex
 
 #ifdef MPI
       call mpiwaitany(requests,requestnumbers,mindex)
@@ -2066,10 +2065,10 @@
       include 'mpif.h'
 #endif
       
-      integer(kind=cosa_int) request
+      integer(kind=cosa_int) :: request
 #ifdef MPI
-      integer(kind=cosa_int) ierror
-      integer(kind=cosa_int) status(MPI_STATUS_SIZE)
+      integer(kind=cosa_int) :: ierror
+      integer(kind=cosa_int) :: status(MPI_STATUS_SIZE)
 
       call MPI_WAIT(request, status, ierror)
 #endif
@@ -2090,11 +2089,11 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) requestnumber
-      integer(kind=cosa_int) requests(requestnumber)
+      integer(kind=cosa_int) :: requestnumber
+      integer(kind=cosa_int) :: requests(requestnumber)
 #ifdef MPI
-      integer(kind=cosa_int) ierror
-      integer(kind=cosa_int) statuses(MPI_STATUS_SIZE,requestnumber)
+      integer(kind=cosa_int) :: ierror
+      integer(kind=cosa_int) :: statuses(MPI_STATUS_SIZE,requestnumber)
       call MPI_WAITALL(requestnumber,requests,statuses,ierror)
 #endif
 
@@ -2115,21 +2114,16 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) requestnumber
-      integer(kind=cosa_int) requests(requestnumber)
-      integer(kind=cosa_int) mindex
+      integer(kind=cosa_int) :: requestnumber
+      integer(kind=cosa_int) :: requests(requestnumber)
+      integer(kind=cosa_int) :: mindex
 #ifdef MPI
-      integer(kind=cosa_int) ierror
-      integer(kind=cosa_int) statuses(MPI_STATUS_SIZE)
+      integer(kind=cosa_int) :: ierror
+      integer(kind=cosa_int) ::statuses(MPI_STATUS_SIZE)
 !      ierror = 0
 !      statuses = 0
 !      mindex = 0
       call MPI_WAITANY(requestnumber,requests,mindex,statuses,ierror)
-! NON RIMETTERE      if(ierror /= MPI_SUCCESS) then
-! NON RIMETTERE        write(0,*) 'Errore in waitany: ',ierror
-! NON RIMETTERE        if(ierror == MPI_ERR_REQUEST) write(0,*) 'requests :',requests(1:requestnumber)
-! NON RIMETTERE        if(ierror == MPI_ERR_ARG) write(0,*) 'args :',requestnumber,mindex,statuses
-! NON RIMETTERE      endif 
 #endif
 
       return 
@@ -2152,11 +2146,11 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax1,jmax1,kmax1,ii1,jj1,kk1,receiverequestnum
-      integer(kind=cosa_int) n,ipde,tempindex,i_req,i_proc
-      real(kind=cosa_real) &
+      integer(kind=cosa_int) :: imax1,jmax1,kmax1,ii1,jj1,kk1,receiverequestnum
+      integer(kind=cosa_int) ::n,ipde,tempindex,i_req,i_proc
+      real(kind=cosa_real) :: &
         dat(-1:imax1+1,-1:jmax1+1,-1:kmax1+1,1,0:2*nharms)
-      real(kind=cosa_real) &
+      real(kind=cosa_real) :: &
         lreceivearray(1*((2*nharms)+1),mrequest_perproc,maxproc_cutman)
 
       tempindex = 1
@@ -2187,11 +2181,11 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax1,jmax1,kmax1,ii1,jj1,kk1,receiverequestnum
-      integer(kind=cosa_int) n,ipde,tempindex,i_req,i_proc
-      real(kind=cosa_real) &
+      integer(kind=cosa_int) :: imax1,jmax1,kmax1,ii1,jj1,kk1,receiverequestnum
+      integer(kind=cosa_int) :: n,ipde,tempindex,i_req,i_proc
+      real(kind=cosa_real) :: &
         dat(-1:imax1+1,-1:jmax1+1,-1:kmax1+1,1,0:2*nharms)
-      real(kind=cosa_real) &
+      real(kind=cosa_real) :: &
         lreceivearray(1*((2*nharms)+1),mrequest_pperproc,maxproc_pcutman)
 
       tempindex = 1
@@ -2222,10 +2216,10 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax1,jmax1,kmax1,ii1,jj1,kk1
-      integer(kind=cosa_int) n,ipde,tempindex,i_req,i_proc
-      real(kind=cosa_real) dat(-1:imax1+1,-1:jmax1+1,-1:kmax1+1,npde,0:2*nharms)
-      real(kind=cosa_real) lreceivearray(npde*((2*nharms)+1),mrequest_perproc, &
+      integer(kind=cosa_int) :: imax1,jmax1,kmax1,ii1,jj1,kk1
+      integer(kind=cosa_int) :: n,ipde,tempindex,i_req,i_proc
+      real(kind=cosa_real) :: dat(-1:imax1+1,-1:jmax1+1,-1:kmax1+1,npde,0:2*nharms)
+      real(kind=cosa_real) :: lreceivearray(npde*((2*nharms)+1),mrequest_perproc, &
                    maxproc_cutman)
 
       tempindex = 1
@@ -2256,10 +2250,10 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax1,jmax1,kmax1,ii1,jj1,kk1
-      integer(kind=cosa_int) n,ipde,tempindex,i_req,i_proc
-      real(kind=cosa_real) dat(-1:imax1+1,-1:jmax1+1,-1:kmax1+1,npde,0:2*nharms)
-      real(kind=cosa_real) lreceivearray(npde*((2*nharms)+1),mrequest_pperproc, &
+      integer(kind=cosa_int) :: imax1,jmax1,kmax1,ii1,jj1,kk1
+      integer(kind=cosa_int) :: n,ipde,tempindex,i_req,i_proc
+      real(kind=cosa_real) :: dat(-1:imax1+1,-1:jmax1+1,-1:kmax1+1,npde,0:2*nharms)
+      real(kind=cosa_real) :: lreceivearray(npde*((2*nharms)+1),mrequest_pperproc, &
                    maxproc_pcutman)
 
       tempindex = 1
@@ -2290,10 +2284,10 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax1,jmax1,kmax1,ii1,jj1,kk1
-      integer(kind=cosa_int) n,n1,ipde,tempindex,i_req,i_proc
-      real(kind=cosa_real) dat(-1:imax1+1,-1:jmax1+1,-1:kmax1+1,npde,0:2*nharms)
-      real(kind=cosa_real) lreceivearray(npde*((2*nharms)+1),mrequest_pperproc, &
+      integer(kind=cosa_int) :: imax1,jmax1,kmax1,ii1,jj1,kk1
+      integer(kind=cosa_int) :: n,n1,ipde,tempindex,i_req,i_proc
+      real(kind=cosa_real) :: dat(-1:imax1+1,-1:jmax1+1,-1:kmax1+1,npde,0:2*nharms)
+      real(kind=cosa_real) :: lreceivearray(npde*((2*nharms)+1),mrequest_pperproc, &
                    maxproc_pcutman), tmp(7,0:2*mharms)
 
       tempindex = 1
@@ -2334,11 +2328,10 @@
 
       implicit none
 
-      integer(kind=cosa_int) imax1,jmax1,kmax1,ii1,jj1,kk1,i_req,i_proc
-      integer(kind=cosa_int) n
-!jdb  real(kind=cosa_real) dat(0:imax1+1,0:jmax1+1,0:2*nharms*hbmove)
-      real(kind=cosa_real) dat(0:imax1+1,0:jmax1+1,0:kmax1+1,0:2*nharms*hbmove)
-      real(kind=cosa_real) lreceivearray(2*nharms*hbmove+1,mrequest_perproc, &
+      integer(kind=cosa_int) :: imax1,jmax1,kmax1,ii1,jj1,kk1,i_req,i_proc
+      integer(kind=cosa_int) :: n
+      real(kind=cosa_real) :: dat(0:imax1+1,0:jmax1+1,0:kmax1+1,0:2*nharms*hbmove)
+      real(kind=cosa_real) :: lreceivearray(2*nharms*hbmove+1,mrequest_perproc, &
                    maxproc_cutman)
 
       do n = 0, 2*nharms*hbmove
@@ -2365,10 +2358,10 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax1,jmax1,kmax1,ii1,jj1,kk1,i_req,i_proc
-      integer(kind=cosa_int) n
-      real(kind=cosa_real) dat(0:imax1+1,0:jmax1+1,0:kmax1+1,0:2*nharms*hbmove)
-      real(kind=cosa_real) lreceivearray(2*nharms*hbmove+1,mrequest_pperproc, &
+      integer(kind=cosa_int) :: imax1,jmax1,kmax1,ii1,jj1,kk1,i_req,i_proc
+      integer(kind=cosa_int) :: n
+      real(kind=cosa_real) :: dat(0:imax1+1,0:jmax1+1,0:kmax1+1,0:2*nharms*hbmove)
+      real(kind=cosa_real) :: lreceivearray(2*nharms*hbmove+1,mrequest_pperproc, &
                    maxproc_pcutman)
 
       do n = 0, 2*nharms*hbmove
@@ -2395,9 +2388,9 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax1,jmax1,kmax1,ii1,jj1,kk1,i_req,i_proc
-      real(kind=cosa_real) dat(0:imax1,0:jmax1,0:kmax1)
-      real(kind=cosa_real) lreceivearray(mrequest_perproc,maxproc_cutman)
+      integer(kind=cosa_int) :: imax1,jmax1,kmax1,ii1,jj1,kk1,i_req,i_proc
+      real(kind=cosa_real) :: dat(0:imax1,0:jmax1,0:kmax1)
+      real(kind=cosa_real) :: lreceivearray(mrequest_perproc,maxproc_cutman)
 
       dat(ii1,jj1,kk1) = lreceivearray(i_req,i_proc)
 
@@ -2421,9 +2414,9 @@
 
       implicit none
       
-      integer(kind=cosa_int) imax1,jmax1,kmax1,ii1,jj1,kk1,i_req,i_proc
-      real(kind=cosa_real) dat(0:imax1,0:jmax1,0:kmax1)
-      real(kind=cosa_real) lreceivearray(mrequest_pperproc,maxproc_pcutman)
+      integer(kind=cosa_int) :: imax1,jmax1,kmax1,ii1,jj1,kk1,i_req,i_proc
+      real(kind=cosa_real) :: dat(0:imax1,0:jmax1,0:kmax1)
+      real(kind=cosa_real) :: lreceivearray(mrequest_pperproc,maxproc_pcutman)
 
       dat(ii1,jj1,kk1) = lreceivearray(i_req,i_proc)
 
@@ -2444,8 +2437,8 @@
 
       implicit none
       
-      integer(kind=cosa_int) n,i,j,datalength
-      real(kind=cosa_real) cl(0:2*mharms,msurface),cd(0:2*mharms,msurface), &
+      integer(kind=cosa_int) :: n,i,j,datalength
+      real(kind=cosa_real) :: cl(0:2*mharms,msurface),cd(0:2*mharms,msurface), &
                    cm(0:2*mharms,msurface),temparray(3)
       
 !mpi  This uses more allreduce than is strictly necessary so is a place 
@@ -2485,10 +2478,10 @@
 
       implicit none
       
-      integer(kind=cosa_int) n,i,j,k,datalength
-      real(kind=cosa_real) cl(0:2*mharms,msurface),cd(0:2*mharms,msurface), &
+      integer(kind=cosa_int)::  n,i,j,k,datalength
+      real(kind=cosa_real) :: cl(0:2*mharms,msurface),cd(0:2*mharms,msurface), &
                    cm(0:2*mharms,msurface)
-      real(kind=cosa_real) temparray(((2*nharms)+1)*nsurface*3)
+      real(kind=cosa_real) :: temparray(((2*nharms)+1)*nsurface*3)
       
       j = 1
       do k = 0,2*nharms
@@ -2532,9 +2525,9 @@
 
       implicit none
       
-      integer(kind=cosa_int) datalength,n
-      real(kind=cosa_real) m_in(0:80),m_out(0:80)
-      real(kind=cosa_real) tempm_in(81),tempm_out(81)
+      integer(kind=cosa_int) :: datalength,n
+      real(kind=cosa_real) :: m_in(0:80),m_out(0:80)
+      real(kind=cosa_real) :: tempm_in(81),tempm_out(81)
 
       do n=1,datalength
          tempm_in(n) = m_in(n-1)
@@ -2565,8 +2558,8 @@
 
       implicit none
       
-      integer(kind=cosa_int) ncell, ncelldata(1), lengthresrms
-      real(kind=cosa_real) resrmslocal(lengthresrms)
+      integer(kind=cosa_int) :: ncell, ncelldata(1), lengthresrms
+      real(kind=cosa_real) :: resrmslocal(lengthresrms)
 
       ncelldata(1) = ncell
       call realsumallreduce(resrmslocal,lengthresrms)
@@ -2594,9 +2587,9 @@
 
       implicit none
       
-      integer(kind=cosa_int) nl,iblock,ownerid,mpiid,wallsize,myblockid,ixyzw
-      integer(kind=cosa_int) ixyzwg,j
-      real(kind=cosa_real) xwall(*),ywall(*),zwall(*),xgwall(*),ygwall(*), &
+      integer(kind=cosa_int) :: nl,iblock,ownerid,mpiid,wallsize,myblockid,ixyzw
+      integer(kind=cosa_int) :: ixyzwg,j
+      real(kind=cosa_real) :: xwall(*),ywall(*),zwall(*),xgwall(*),ygwall(*), &
                    zgwall(*)
       real(kind=cosa_real), allocatable:: tempwall(:)
 
@@ -2685,8 +2678,8 @@
       include 'mpif.h'
 #endif
 
-      integer length, ierror, i      
-      integer reducedata(length), tempdata(length)
+      integer(kind=cosa_int) :: length, ierror, i      
+      integer(kind=cosa_int) :: reducedata(length), tempdata(length)
 
 #ifdef MPI
 !      call MPI_ALLREDUCE(MPI_IN_PLACE, reducedata, length, MPI_INTEGER, 
@@ -2717,8 +2710,8 @@
       include 'mpif.h'
 #endif
       
-      integer length, ierror, i
-      real(kind=cosa_real) reducedata(length), tempdata(length)
+      integer(kind=cosa_int) :: length, ierror, i
+      real(kind=cosa_real) :: reducedata(length), tempdata(length)
 
 #ifdef MPI
 !      call MPI_ALLREDUCE(MPI_IN_PLACE, reducedata, length, 
@@ -2748,8 +2741,8 @@
       include 'mpif.h'
 #endif
       
-      integer length, ierror, i
-      real(kind=cosa_real) reducedata(length), tempdata(length)
+      integer(kind=cosa_int) :: length, ierror, i
+      real(kind=cosa_real) :: reducedata(length), tempdata(length)
 
 #ifdef MPI
 !      call MPI_REDUCE(MPI_IN_PLACE, reducedata, length, 
@@ -2780,8 +2773,8 @@
       include 'mpif.h'
 #endif
       
-      integer length, ierror, i
-      real(kind=cosa_real) reducedata(length), tempdata(length)
+      integer(kind=cosa_int) :: length, ierror, i
+      real(kind=cosa_real) :: reducedata(length), tempdata(length)
 
 #ifdef MPI
       call MPI_REDUCE(reducedata, tempdata, length, &
@@ -2810,8 +2803,8 @@
       include 'mpif.h'
 #endif
       
-      integer length, ierror, i
-      real(kind=cosa_real) reducedata(length), tempdata(length)
+      integer(kind=cosa_int) :: length, ierror, i
+      real(kind=cosa_real) :: reducedata(length), tempdata(length)
 
 #ifdef MPI
       call MPI_REDUCE(reducedata, tempdata, length, &
@@ -2841,9 +2834,9 @@
       include 'mpif.h'
 #endif
       
-      integer length, ierror, i, rank
-      integer loc(length)
-      real(kind=cosa_real) reducedata(length), tempdata(2,length), tempdata_out(2,length)
+      integer(kind=cosa_int) :: length, ierror, i, rank
+      integer(kind=cosa_int) :: loc(length)
+      real(kind=cosa_real) :: reducedata(length), tempdata(2,length), tempdata_out(2,length)
 #ifdef MPI
       do i=1,length
          tempdata(1,i)=reducedata(i)
@@ -2878,8 +2871,8 @@
       include 'mpif.h'
 #endif
       
-      integer length, ierror, rootid
-      real(kind=cosa_real) broadcastdata(length)
+      integer(kind=cosa_int) :: length, ierror, rootid
+      real(kind=cosa_real) :: broadcastdata(length)
 
 #ifdef MPI
       call MPI_BCAST(broadcastdata, length, &
@@ -2905,8 +2898,8 @@
       include 'mpif.h'
 #endif
       
-      integer length, ierror, rootid
-      integer broadcastdata(length)
+      integer(kind=cosa_int) :: length, ierror, rootid
+      integer(kind=cosa_int) :: broadcastdata(length)
 
 #ifdef MPI
       call MPI_BCAST(broadcastdata, length, &
@@ -2930,7 +2923,7 @@
       include 'mpif.h'
 #endif
 
-      integer iomode
+      integer(kind=cosa_int) :: iomode
       
 #ifdef MPI
       iomode = MPI_MODE_RDONLY
@@ -2954,7 +2947,7 @@
       include 'mpif.h'
 #endif
 
-      integer iomode
+      integer(kind=cosa_int) :: iomode
       
 #ifdef MPI
       iomode = ior(MPI_MODE_WRONLY,MPI_MODE_CREATE)
@@ -2979,7 +2972,7 @@
       include 'mpif.h'
 #endif
 
-      integer iomode
+      integer(kind=cosa_int) :: iomode
       
 #ifdef MPI
       iomode = MPI_MODE_WRONLY
@@ -3001,7 +2994,7 @@
       include 'mpif.h'
 #endif
 
-      integer filehandle, filemode, ierror
+      integer(kind=cosa_int) :: filehandle, filemode, ierror
       character*(*) filename
 
 #ifdef MPI
@@ -3029,9 +3022,9 @@
       include 'mpif.h'
 #endif
 
-      integer ierror
+      integer(kind=cosa_int) :: ierror
       character*(*) filename
-      logical amcontrol
+      logical :: amcontrol
       
 #ifdef MPI
 
@@ -3065,7 +3058,7 @@
       include 'mpif.h'
 #endif
 
-      integer filehandle, ierror
+      integer(kind=cosa_int) :: filehandle, ierror
 
 #ifdef MPI
       call MPI_FILE_CLOSE(filehandle,ierror)
@@ -3088,16 +3081,16 @@
 
 #ifdef MPI
       include 'mpif.h'
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=MPI_OFFSET_KIND)
 #else
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=8)
 #endif
 
-      integer filehandle, ierror
+      integer(kind=cosa_int) :: filehandle, ierror
       integer*8 displacement
-      integer type
+      integer(kind=cosa_int) :: type
 #ifdef MPI
       integer(kind=offset_kind) :: disp
 
@@ -3129,17 +3122,17 @@
 
 #ifdef MPI
       include 'mpif.h'
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=MPI_OFFSET_KIND)
 #else
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=8)
 #endif
 
-      integer(kind=cosa_int) nl,imax,jmax,kmax,iblock,ixyz,jxyz,jdxyz
-      integer(kind=offset_kind) disp
-      integer fid,integersize,doublesize,ierr,iomode
-      real(kind=cosa_real) x(*),y(*),z(*),xyz(*),dx(*),dy(*),dz(*),dxyz(*)
+      integer(kind=cosa_int) :: nl,imax,jmax,kmax,iblock,ixyz,jxyz,jdxyz
+      integer(kind=offset_kind) :: disp
+      integer(kind=cosa_int) :: fid,integersize,doublesize,ierr,iomode
+      real(kind=cosa_real) :: x(*),y(*),z(*),xyz(*),dx(*),dy(*),dz(*),dxyz(*)
       logical :: amcontrol
       double precision :: starttime, endtime, totaltime, maxtime, mintime
 
@@ -3198,17 +3191,17 @@
 
 #ifdef MPI
       include 'mpif.h'
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=MPI_OFFSET_KIND)
 #else
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=8)
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax
-      integer i,j,k,fid,doublesize,integersize,blocksize,ierror
-      integer(kind=offset_kind) disp
-      real(kind=cosa_real) &
+      integer(kind=cosa_int) :: imax,jmax,kmax
+      integer(kind=cosa_int) :: i,j,k,fid,doublesize,integersize,blocksize,ierror
+      integer(kind=offset_kind) :: disp
+      real(kind=cosa_real) :: &
           xyz (imax,jmax,kmax,3), &
           dxyz(imax,jmax,kmax,3), &
           x   (0:imax+1,0:jmax+1,0:kmax+1), &
@@ -3302,17 +3295,17 @@
       
 #ifdef MPI
       include 'mpif.h'
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=MPI_OFFSET_KIND)
 #else
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=8)
 #endif
       
-      integer comm_info
-      integer nl,imax,jmax,kmax,iblock,ixyz,jxyz,jdxyz,fid
-      integer ierr,celldim,phydim,basenum,blocknum
-      real(kind=cosa_real) x(*),y(*),z(*),xyz(*),dx(*),dy(*),dz(*),dxyz(*)
+      integer(kind=cosa_int) :: comm_info
+      integer(kind=cosa_int) :: nl,imax,jmax,kmax,iblock,ixyz,jxyz,jdxyz,fid
+      integer(kind=cosa_int) :: ierr,celldim,phydim,basenum,blocknum
+      real(kind=cosa_real) :: x(*),y(*),z(*),xyz(*),dx(*),dy(*),dz(*),dxyz(*)
       double precision :: starttime, endtime, totaltime, maxtime, mintime
       logical :: amcontrol
 
@@ -3400,7 +3393,7 @@
 
       implicit none
 
-      integer :: filehandle, ierror
+      integer(kind=cosa_int) :: filehandle, ierror
 
       call cgp_close_f(filehandle,ierror)
       if(ierror .ne. CG_OK) then
@@ -3423,17 +3416,17 @@
 
       implicit none
 
-      integer imax,jmax,kmax
-      integer i,j,k,fid,basenum,blocknum,zonenum,ierr
-      integer xnum,ynum,znum,dxnum,dynum,dznum
-      integer :: dimvec(3)
-      integer(cgsize_t) minrange(3),maxrange(3),sizes(3,3)
-      real(kind=cosa_real) &
+      integer(kind=cosa_int) :: imax,jmax,kmax
+      integer(kind=cosa_int) :: i,j,k,fid,basenum,blocknum,zonenum,ierr
+      integer(kind=cosa_int) :: xnum,ynum,znum,dxnum,dynum,dznum
+      integer(kind=cosa_int) :: dimvec(3)
+      integer(cgsize_t) :: minrange(3),maxrange(3),sizes(3,3)
+      real(kind=cosa_real) :: &
           xyz (imax,jmax,kmax,3), &
           dxyz(imax,jmax,kmax,3)
-      real(kind=cosa_real) temp(imax,jmax,kmax)
+      real(kind=cosa_real) :: temp(imax,jmax,kmax)
       character*32 zonename
-      integer rank
+      integer(kind=cosa_int) :: rank
 
       minrange(1) = 1
       minrange(2) = 1
@@ -3546,17 +3539,17 @@
 
 #ifdef MPI
       include 'mpif.h'
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=MPI_OFFSET_KIND)
 #else
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=8)
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax,nl,iblock,iq,imut
-      real (kind=cosa_real) q(*),q2(*),mut(*)
-      integer(kind=offset_kind) disp
-      integer fid,integersize,doublesize,ierr,iomode
+      integer(kind=cosa_int) :: imax,jmax,kmax,nl,iblock,iq,imut
+      real(kind=cosa_real) :: q(*),q2(*),mut(*)
+      integer(kind=offset_kind) :: disp
+      integer(kind=cosa_int) :: fid,integersize,doublesize,ierr,iomode
 
 #ifdef MPI
 
@@ -3600,18 +3593,18 @@
 
 #ifdef MPI
       include 'mpif.h'
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=MPI_OFFSET_KIND)
 #else
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=8)
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
-      integer i,j,k,fid,doublesize,integersize,ierror
-      integer blocksize,blocksize2,blocksize3
-      integer(kind=offset_kind) disp
-      real(kind=cosa_real) &
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms
+      integer(kind=cosa_int) :: i,j,k,fid,doublesize,integersize,ierror
+      integer(kind=cosa_int) :: blocksize,blocksize2,blocksize3
+      integer(kind=offset_kind) :: disp
+      real(kind=cosa_real) :: &
            q (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            q2(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            mut(-1:imax+1,-1:jmax+1,-1:kmax+1 ,0:2*nharms)
@@ -3674,10 +3667,10 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) iq,imut,imax,jmax,kmax,nl
+      integer(kind=cosa_int) :: iq,imut,imax,jmax,kmax,nl
       integer*8 disp
-      integer fid,integersize,doublesize,ierr,iblock,iomode
-      real (kind=cosa_real) q(*),q1(*),mut(*)
+      integer(kind=cosa_int) :: fid,integersize,doublesize,ierr,iblock,iomode
+      real(kind=cosa_real) :: q(*),q1(*),mut(*)
 
 #ifdef MPI
 !     mpi  Delete any existing restart file
@@ -3736,12 +3729,12 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,ipde,iblock
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms,ipde,iblock
       integer*8 disp
-      integer i,j,k,n,np,fid,key1,doublesize,ierr,integersize
-      integer linelength, im, jm, km, imax1, jmax1, kmax1
-      integer blockamount, amount1
-      real (kind=cosa_real) &
+      integer(kind=cosa_int) :: i,j,k,n,np,fid,key1,doublesize,ierr,integersize
+      integer(kind=cosa_int) :: linelength, im, jm, km, imax1, jmax1, kmax1
+      integer(kind=cosa_int) :: blockamount, amount1
+      real(kind=cosa_real) :: &
            q (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            q1(-1:imax+1,-1:jmax+1,-1:kmax+1,npde), &
            mut(-1:imax+1,-1:jmax+1,-1:kmax+1 ,0:2*nharms)
@@ -3844,15 +3837,15 @@
 #endif
       integer*8 disp
       character*72 flowtec
-      integer fid,charactersize,integersize,doublesize,iomode
-      integer harbalset,komset,unsteadyset,dualtset,rgkunsset
-      integer(kind=cosa_int) ierr,n,nl,i,mharms
+      integer(kind=cosa_int) :: fid,charactersize,integersize,doublesize,iomode
+      integer(kind=cosa_int) :: harbalset,komset,unsteadyset,dualtset,rgkunsset
+      integer(kind=cosa_int) :: ierr,n,nl,i,mharms
       integer(kind=cosa_int), allocatable :: blockindexes(:,:)
       character*100 line
-      logical harbal,dualt,rgkuns,kom,kom_bsl,kom_sst,unsteady
-      real(kind=cosa_real) simtime,zeit(0:2*mharms)
+      logical :: harbal,dualt,rgkuns,kom,kom_bsl,kom_sst,unsteady
+      real(kind=cosa_real) :: simtime,zeit(0:2*mharms)
 
-      logical amcontrol
+      logical :: amcontrol
 
 #if MPI
       call mpi_type_size(MPI_CHARACTER, charactersize, ierr)
@@ -3984,8 +3977,7 @@
 
 !-----------------------------------------------------------------------
       subroutine writeparallelpltheader(titlename,varlist,flowtec,pwd,n, &
-                 nl,fileformat,filetype,isdebug,isdouble,harbal,dualt, &
-                 rgkuns,kom,kom_bsl,kom_sst,unsteady)
+                 nl,fileformat,filetype,isdebug,isdouble)
 
 !     This opens a plt or szplt file in parallel
 !
@@ -4005,9 +3997,6 @@
       integer(kind=cosa_int) ierr,n,nl
       integer(kind=cosa_int) tecini142, tecmpiinit142
       integer(kind=cosa_int) fileformat, filetype, isdebug, isdouble
-      logical harbal,dualt,rgkuns,kom,kom_bsl,kom_sst,unsteady
-
-      logical amcontrol
 
 
 #if MPI
@@ -4047,14 +4036,14 @@
 #endif
 
       integer*8 disp
-      integer fid,charactersize,integersize,doublesize,iomode
-      integer harbalset,dualtset,rgkunsset
-      integer(kind=cosa_int) ierr,n,nl,iblk
-      integer :: surfacenumber
-      integer :: iblock, imax, jmax, kmax
+      integer(kind=cosa_int) :: fid,charactersize,integersize,doublesize,iomode
+      integer(kind=cosa_int) :: harbalset,dualtset,rgkunsset
+      integer(kind=cosa_int) :: ierr,n,nl,iblk
+      integer(kind=cosa_int) :: surfacenumber
+      integer(kind=cosa_int) :: iblock, imax, jmax, kmax
 
 
-      logical amcontrol
+      logical :: amcontrol
 
 #if MPI
       call mpi_type_size(MPI_CHARACTER, charactersize, ierr)
@@ -4178,6 +4167,87 @@
       end
 
 !-----------------------------------------------------------------------
+      subroutine writeparallelsurfpltheader(titlename,varlist,flowtec,pwd, &
+                 n,nl,fileformat,filetype,isdebug,isdouble)
+
+!     This opens the surftec file and writes the header information  
+!     for the parallel surftec write.
+!-----------------------------------------------------------------------
+      
+      use parallelutils, only: surfblockstarts, surfblockends, &
+           surfblockindex, surfbcindex, nsurfblocks
+      use cosa_variables
+   !   use common_variables
+      use cosa_precision
+
+      implicit none
+
+#if MPI 
+      include 'mpif.h'
+#endif
+
+      character*72 titlename,flowtec,varlist
+      character*500 pwd
+      integer*8 disp
+      integer(kind=cosa_int) :: fid,charactersize,integersize,doublesize,iomode
+      integer(kind=cosa_int) :: harbalset,dualtset,rgkunsset
+      integer(kind=cosa_int) :: ierr,n,nl,iblk
+      integer(kind=cosa_int) :: tecini142, tecmpiinit142
+      integer(kind=cosa_int) :: surfacenumber
+      integer(kind=cosa_int) :: iblock, imax, jmax, kmax
+      integer(kind=cosa_int) fileformat, filetype, isdebug, isdouble
+
+
+      logical :: amcontrol
+
+#if MPI            
+!     Only do this once for all harmonics. We check whether it's been done before by
+!     checking if one of the arrays has already been allocated.
+      if(.not.allocated(surfblockstarts)) then
+       
+         nsurfblocks = 0
+
+         do iblock = 1,nblocks
+            call calculatenumsurfblocks(g_bcdata(:,:,iblock),g_nbcs(iblock), &
+                 nsurfblocks)
+         end do
+         
+         allocate(surfblockstarts(3,nsurfblocks))
+         allocate(surfblockends(3,nsurfblocks))
+         allocate(surfblockindex(nsurfblocks))
+         allocate(surfbcindex(nsurfblocks))
+         
+         surfacenumber = 1
+         do iblock = 1,nblocks
+            imax   = g_i_imax     (iblock,nl)
+            jmax   = g_j_jmax     (iblock,nl)
+            kmax   = g_k_kmax     (iblock,nl)            
+            call calculatesurfblock(iblock,g_bcdata(:,:,iblock),g_nbcs(iblock), &
+                 imax,jmax,kmax,nsurfblocks, &
+                 surfblockstarts,surfblockends,surfblockindex,surfbcindex, &
+                 surfacenumber)
+         end do
+      end if
+
+      if(tecini142(trim(titlename),trim(varlist),trim(flowtec),trim(pwd), &
+           fileformat,filetype,isdebug,isdouble) .ne. 0) then
+         write(*,*) 'error initialising tecini142'
+         call abortmpi()
+      end if
+
+      if(tecmpiinit142(MPI_COMM_WORLD, 0) .ne. 0) then
+         write(*,*) 'error initialising tecmpiinit142'
+         call abortmpi()
+      end if
+
+      
+#endif
+      
+      return
+      end
+
+
+!-----------------------------------------------------------------------
       subroutine calculatenumsurfblocks(bctopo,nbcs,nsurfblocks)
 !-----------------------------------------------------------------------
 
@@ -4186,9 +4256,9 @@
       implicit none
 
 
-      integer :: isurface, ibc1
-      integer :: nsurfblocks
-      integer(kind=cosa_int) bctopo(10,nbcs),nbcs,nsurface
+      integer(kind=cosa_int) :: isurface, ibc1
+      integer(kind=cosa_int) :: nsurfblocks
+      integer(kind=cosa_int) :: bctopo(10,nbcs),nbcs,nsurface
 
       logical :: amcontrol
 
@@ -4215,16 +4285,16 @@
 
       implicit none
 
-      integer(kind=cosa_int) bctopo(10,nbcs)
-      integer(kind=cosa_int) ierr,nbcs,imax,jmax,kmax,iblock
-      integer :: nsurfblocks
-      integer :: surfacenumber
-      integer :: ibc1, block
-      integer :: surfacestartindexes(3,nsurfblocks)
-      integer :: surfaceendindexes(3,nsurfblocks)
-      integer :: surfaceblockindex(nsurfblocks)
-      integer :: surfacebcindex(nsurfblocks)
-      integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      integer(kind=cosa_int) :: ierr,nbcs,imax,jmax,kmax,iblock
+      integer(kind=cosa_int) :: nsurfblocks
+      integer(kind=cosa_int) :: surfacenumber
+      integer(kind=cosa_int) :: ibc1, block
+      integer(kind=cosa_int) :: surfacestartindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: surfaceendindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: surfaceblockindex(nsurfblocks)
+      integer(kind=cosa_int) :: surfacebcindex(nsurfblocks)
+      integer(kind=cosa_int) :: i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,ic1,ic2,ic3,ioff1,ioff2,joff1,joff2,koff1,koff2,sgnm, &
         imax1,jmax1,kmax1
@@ -4377,15 +4447,15 @@
 
       implicit none
 
-      integer :: fid(0:2*nharms), n, nl
-      integer :: basenum, blocknum
-      integer :: surfacenumber
-      integer :: iblock, ierr, imax, jmax, kmax
-      integer :: xnum, ynum, znum, flownum, solnum
+      integer(kind=cosa_int) :: fid(0:2*nharms), n, nl
+      integer(kind=cosa_int) :: basenum, blocknum
+      integer(kind=cosa_int) :: surfacenumber
+      integer(kind=cosa_int) :: iblock, ierr, imax, jmax, kmax
+      integer(kind=cosa_int) :: xnum, ynum, znum, flownum, solnum
       integer(cgsize_t) :: sizes(3,3)
       character*20 zonename
 
-      logical amcontrol
+      logical :: amcontrol
 
       call amcontroller(amcontrol)
 
@@ -4541,12 +4611,12 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,iblock,nl
-      integer fid(0:2*nharms)
-      real (kind=cosa_real) &
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms,iblock,nl
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      real(kind=cosa_real) :: &
            var1( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
            var2( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms)
-      integer integersize,doublesize,charactersize
+      integer(kind=cosa_int) :: integersize,doublesize,charactersize
       integer*8 disp
 
       call newflowtecinitialoffset(disp,nl,iblock,integersize, &
@@ -4578,15 +4648,15 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
-      integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh
-      integer fid(0:2*nharms)
-      real (kind=cosa_real) &
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms
+      integer(kind=cosa_int) :: i,imax1,j,jmax1,k,kmax1,ipde,n,nh
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      real(kind=cosa_real) :: &
            var1( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
            var2( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
            tempdata( 2 * (imax+1) * (jmax+1) * (kmax+1) * npde)
       integer*8 disp,initialdisp
-      integer ierr,integersize,doublesize,charactersize,datasize
+      integer(kind=cosa_int) :: ierr,integersize,doublesize,charactersize,datasize
       integer*8 tempindex
       character*150 line1
       
@@ -4659,20 +4729,20 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,iblock,nl,n,nh
-      integer(kind=cosa_int) imax1,jmax1,kmax1
-      integer fid(0:2*nharms)
-      real (kind=cosa_real) &
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms,iblock,nl,n,nh
+      integer(kind=cosa_int) :: imax1,jmax1,kmax1
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      real(kind=cosa_real) :: &
            var1( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
            var2( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms)      
       character(len=5) :: blocknumname
-      integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
-      integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
-      integer(kind=cosa_int) zonetype, strandid, parentzone
-      integer(kind=cosa_int) teczne142, tecznemap142, tecdat142, tecfil142
-      integer(kind=cosa_int) imaxmax, jmaxmax, kmaxmax
-      integer(kind=cosa_int) mpiid
-      integer(kind=cosa_int) Null(*)
+      integer(kind=cosa_int) :: nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
+      integer(kind=cosa_int) :: tnfnodes, ncbfaces, tnbconns
+      integer(kind=cosa_int) :: zonetype, strandid, parentzone
+      integer(kind=cosa_int) :: teczne142, tecznemap142, tecdat142, tecfil142
+      integer(kind=cosa_int) :: imaxmax, jmaxmax, kmaxmax
+      integer(kind=cosa_int) :: mpiid
+      integer(kind=cosa_int) :: Null(*)
       POINTER   (NullPtr,Null)
 
 #ifdef MPI
@@ -4786,10 +4856,10 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) i,imax,jmax,kmax,npde,nharms,iblock,nl,lmet,nbcs
-      integer fid(0:2*nharms)
-      integer(kind=cosa_int) bctopo(10,nbcs)
-      real (kind=cosa_real) &
+      integer(kind=cosa_int) :: i,imax,jmax,kmax,npde,nharms,iblock,nl,lmet,nbcs
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -4804,9 +4874,9 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      integer integersize,doublesize,charactersize
+      integer(kind=cosa_int) :: integersize,doublesize,charactersize
       integer*8 disp
-      integer :: surfacenumber
+      integer(kind=cosa_int) :: surfacenumber
 
       disp = 0
 
@@ -4846,21 +4916,21 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl,lmet,nbcs
-      integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc1
-      integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms,nl,lmet,nbcs
+      integer(kind=cosa_int) :: i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc1
+      integer(kind=cosa_int) :: i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
         ioff2,joff1,joff2,koff1,koff2,ibc_s,jbc_s,kbc_s,ibc_e,jbc_e, &
         kbc_e
-      integer fid(0:2*nharms)
-      integer(kind=cosa_int) bctopo(10,nbcs)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
-           vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+          vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
            etax,etay,etaz,dudx,dudy,dudz,dvdx,dvdy, &
            dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
            tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) :: &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -4875,16 +4945,16 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
-      real (kind=cosa_real),allocatable :: tempdata(:)
+      real(kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
+      real(kind=cosa_real),allocatable :: tempdata(:)
       integer*8 disp,initialdisp
-      integer :: ierr,integersize,doublesize,charactersize
-      integer :: tempindex,datasize
-      integer :: surfacestartindexes(3,nsurfblocks)
-      integer :: surfaceendindexes(3,nsurfblocks)
-      integer :: nsurfblocks, surfacenumber
+      integer(kind=cosa_int) :: ierr,integersize,doublesize,charactersize
+      integer(kind=cosa_int) :: tempindex,datasize
+      integer(kind=cosa_int) :: surfacestartindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: surfaceendindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: nsurfblocks, surfacenumber
       character*200 line1
-      integer :: initialsurfacenumber
+      integer(kind=cosa_int) :: initialsurfacenumber
       
 #ifdef MPI
 
@@ -5254,6 +5324,485 @@
       return
       end
 
+!-----------------------------------------------------------------------
+      subroutine write_parallel_wr_plt_surf_b_M1(fid,imax, &
+                 jmax,kmax,npde,nharms,iblock,nl,lmet,q,x,y,z,xdot,ydot, &
+                  zdot,si,sj,sk,xideri,etaderj,zetaderk,dist,bctopo,nbcs)
+!     This routine writes parts of the surftec files using tecplot.
+!-----------------------------------------------------------------------
+
+      use parallelutils, only: nsurfblocks, surfblockstarts, &
+           surfblockends, surfblockindex, surfbcindex
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+#if MPI 
+      include 'mpif.h'
+#endif
+
+      integer(kind=cosa_int) :: i,imax,jmax,kmax,npde,nharms,iblock,nl,lmet,nbcs
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: &
+           q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
+           x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           z   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           xdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           ydot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           zdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           si      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sj      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sk      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           xideri  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           dist( 0:imax  , 0:jmax  , 0:kmax)
+      integer(kind=cosa_int) :: integersize,doublesize,charactersize
+      integer*8 disp
+      integer(kind=cosa_int) :: surfacenumber
+
+      disp = 0
+
+      call surftecinitialoffset(disp,nl,iblock,nsurfblocks, &
+           surfblockstarts,surfblockends,surfblockindex,surfbcindex, &
+           surfacenumber,integersize,doublesize,charactersize)
+
+      call parallel_wr_plt_surf_b_M1(fid,q,x,y,z,xdot,ydot,zdot,si,sj, &
+           sk,xideri,etaderj,zetaderk,dist,bctopo,imax,jmax,kmax,npde, &
+           nharms,nl,nbcs,lmet,surfblockstarts,surfblockends, &
+           nsurfblocks,surfacenumber,iblock)
+
+      return 
+      end
+
+
+!-----------------------------------------------------------------------
+      subroutine parallel_wr_plt_surf_b_M1(fid,q,x,y,z,xdot,ydot,zdot, &
+                 si,sj,sk,xideri,etaderj,zetaderk,dist,bctopo,imax,jmax, &
+                 kmax,npde,nharms,nl,nbcs,lmet,surfacestartindexes, &
+                 surfaceendindexes,nsurfblocks,surfacenumber,iblock)
+!     This routine writes parts of the flowtec files using tecplot.  
+!-----------------------------------------------------------------------
+
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+#if MPI 
+      include 'mpif.h'
+#endif
+
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms,nl,lmet,nbcs
+      integer(kind=cosa_int) :: i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc1,iblock
+      integer(kind=cosa_int) :: i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
+        inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
+        kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
+        ioff2,joff1,joff2,koff1,koff2,ibc_s,jbc_s,kbc_s,ibc_e,jbc_e, &
+        kbc_e
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+           vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
+           etax,etay,etaz,dudx,dudy,dudz,dvdx,dvdy, &
+           dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
+           tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
+      real(kind=cosa_real) :: &
+           q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
+           x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           z   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           xdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           ydot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           zdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           si      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sj      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sk      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           xideri  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           dist( 0:imax  , 0:jmax  , 0:kmax)
+      real(kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:),zeroarray(:)
+      integer(kind=cosa_int) :: ierr
+      integer(kind=cosa_int) :: tempindex,datasize
+      integer(kind=cosa_int) :: surfacestartindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: surfaceendindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: initialsurfacenumber, nsurfblocks, surfacenumber
+      character(len=5) :: blocknumname
+      integer(kind=cosa_int) :: nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
+      integer(kind=cosa_int) :: tnfnodes, ncbfaces, tnbconns
+      integer(kind=cosa_int) ::zonetype, strandid, parentzone
+      integer(kind=cosa_int) :: teczne142, tecznemap142, tecdat142, tecfil142
+      integer(kind=cosa_int) :: ibcmax, jbcmax, kbcmax
+      integer(kind=cosa_int) :: imaxmax, jmaxmax, kmaxmax
+      integer(kind=cosa_int) :: mpiid
+      integer(kind=cosa_int) :: Null(*)
+      POINTER   (NullPtr,Null)
+
+      
+#ifdef MPI
+
+      call getmpiid(mpiid)    
+
+! Specify that we are using an Ordered zone type
+      zonetype = 0
+
+! Zones don't have parents
+      parentzone = 0
+
+! We are not part of a strand
+      strandid = 0
+      nfconns = 0
+      fnmode = 0
+      shrconn = 0
+      imaxmax = 0
+      jmaxmax = 0
+      kmaxmax = 0
+
+! This specifies if we are writing in block or point format
+! 1 is block format.  Binary tecplot files must be block format, 
+! so this must be 1.
+      isblock = 1
+      valuelocation = 0
+      isdouble = 1
+      tnfnodes = 0
+      ncbfaces = 0
+      tnbconns = 0
+
+      ijkmax(1) = imax
+      ijkmax(2) = jmax
+      ijkmax(3) = kmax
+
+      imax1 = imax+1
+      jmax1 = jmax+1
+      kmax1 = kmax+1
+
+      initialsurfacenumber = surfacenumber
+
+      do n = 0,2*nharms
+        nh = n*hbmove
+
+!     This line is included because the n loop iterates through files 
+!     so we need to ensure that each time round the loop we start and 
+!     the correct place in the associated file.
+        surfacenumber = initialsurfacenumber
+           
+        do ibc1=1,nbcs
+
+           if (any(bctopo(1,ibc1).eq. &
+                [1500,1501,1502,1503,1400,1401,1402,1403])) then
+              
+              ibc_s = surfacestartindexes(1,surfacenumber)
+              jbc_s = surfacestartindexes(2,surfacenumber)
+              kbc_s = surfacestartindexes(3,surfacenumber)
+              
+              ibc_e = surfaceendindexes(1,surfacenumber)
+              jbc_e = surfaceendindexes(2,surfacenumber)
+              kbc_e = surfaceendindexes(3,surfacenumber)
+              
+              datasize = 6
+              if((ibc_e-ibc_s)+1 .ne. 0) datasize = datasize*((ibc_e-ibc_s)+1)
+              if((jbc_e-jbc_s)+1 .ne. 0) datasize = datasize*((jbc_e-jbc_s)+1)
+              if((kbc_e-kbc_s)+1 .ne. 0) datasize = datasize*((kbc_e-kbc_s)+1)
+
+              allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
+              if (viscous) then
+                 allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e), &
+                      yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
+              end if
+                            
+!     store boundary topology in mnemonic names
+              bctyp    = bctopo(1,ibc1)
+              idir     = bctopo(2,ibc1)
+              inrout   = bctopo(3,ibc1)
+              istrt(1) = bctopo(4,ibc1)
+              iend(1)  = bctopo(5,ibc1)
+              istrt(2) = bctopo(6,ibc1)
+              iend(2)  = bctopo(7,ibc1)
+              istrt(3) = bctopo(8,ibc1)
+              iend(3)  = bctopo(9,ibc1)
+              
+!             set needed variables depending on whether the boundary is
+!             the inner boundary (inrout = 1) or
+!             the outer boundary (inrout > 1)
+!             ibcpt : boundary condition location (first aux. cell)
+!             ibcpt2: boundary condition location outside the block from
+!                     ibcpt (second aux. cell)
+!             ibcn  : point to the inside of the block from ibcpt
+!             ibcm  : location of the metrics
+              
+              if (inrout.eq.1) then
+                 ibcpt  =  0
+                 ibcpt2 = -1
+                 ibcn   =  1
+                 ibcn2  =  2
+                 ibcm   =  1
+                 sgnm   = - 1.d0
+              else
+                 ibcpt  = ijkmax(idir)
+                 ibcpt2 = ijkmax(idir) + 1
+                 ibcn   = ijkmax(idir) - 1
+                 ibcn2  = ijkmax(idir) - 2
+                 ibcm   = ijkmax(idir)
+                 sgnm   = 1.d0
+              end if
+              
+              if (idir.eq.1) then
+                 ioff1 = (-1)**(1+1/inrout)
+                 ioff2 = 2*ioff1
+                 joff1 = 0
+                 joff2 = 0
+                 koff1 = 0
+                 koff2 = 0
+              else if (idir.eq.2) then
+                 ioff1 = 0
+                 ioff2 = 0
+                 joff1 = (-1)**(1+1/inrout)
+                 joff2 = 2*joff1
+                 koff1 = 0
+                 koff2 = 0
+              else if (idir.eq.3) then
+                 ioff1 = 0
+                 ioff2 = 0
+                 joff1 = 0
+                 joff2 = 0
+                 koff1 = (-1)**(1+1/inrout)
+                 koff2 = 2*koff1
+              end if
+              
+              ic1 = cyc (idir, 1)
+              ic2 = cyc (idir, 2)
+              ic3 = cyc (idir, 3)             
+ 
+              do i3 = istrt(ic3),iend(ic3)
+                 do i2 = istrt(ic2),iend(ic2)
+                    
+                    ibc  = ibcpt *krd(ic1,1) + i2*krd(ic2,1) + i3*krd(ic3,1)
+                    jbc  = ibcpt *krd(ic1,2) + i2*krd(ic2,2) + i3*krd(ic3,2)
+                    kbc  = ibcpt *krd(ic1,3) + i2*krd(ic2,3) + i3*krd(ic3,3)
+                    
+                    im   = ibcm  *krd(ic1,1) + i2*krd(ic2,1) + i3*krd(ic3,1)
+                    jm   = ibcm  *krd(ic1,2) + i2*krd(ic2,2) + i3*krd(ic3,2)
+                    km   = ibcm  *krd(ic1,3) + i2*krd(ic2,3) + i3*krd(ic3,3)                   
+
+
+                    if (idir.eq.1) then
+                       nx    = si(1,im,jm,km,nh)
+                       ny    = si(2,im,jm,km,nh)
+                       nz    = si(3,im,jm,km,nh)
+                    else if (idir.eq.2) then
+                       nx    = sj(1,im,jm,km,nh)
+                       ny    = sj(2,im,jm,km,nh)
+                       nz    = sj(3,im,jm,km,nh)
+                    else if (idir.eq.3) then
+                       nx    = sk(1,im,jm,km,nh)
+                       ny    = sk(2,im,jm,km,nh)
+                       nz    = sk(3,im,jm,km,nh)
+                    end if
+                    
+                    kx   = (-1)**(1+1/inrout) * nx
+                    ky   = (-1)**(1+1/inrout) * ny
+                    kz   = (-1)**(1+1/inrout) * nz
+                    
+!     AJ Removed the machfs division here because if we are not viscous 
+!     AJ machfs is zero.
+                    cp(ibc,jbc,kbc) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)                                        
+                    
+                    if (viscous) then
+
+                       cp(ibc,jbc,kbc) = cp(ibc,jbc,kbc)/ &
+                            machfs**2
+
+                       
+                       ibc2 = ibcpt2*krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+                       jbc2 = ibcpt2*krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+                       kbc2 = ibcpt2*krd(Ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                       
+                       in   = ibcn  *krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+                       jn   = ibcn  *krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+                       kn   = ibcn  *krd(ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                       
+                       in2  = ibcn2 *krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+                       jn2  = ibcn2 *krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+                       kn2  = ibcn2 *krd(ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                       
+                       if (idir.eq.1) then
+                          etax  = xideri(1,im,jm,km,nh)
+                          etay  = xideri(2,im,jm,km,nh)
+                          etaz  = xideri(3,im,jm,km,nh)
+                       else if (idir.eq.2) then
+                          etax  = etaderj(1,im,jm,km,nh)
+                          etay  = etaderj(2,im,jm,km,nh)
+                          etaz  = etaderj(3,im,jm,km,nh)
+                       else if (idir.eq.3) then
+                          etax  = zetaderk(1,im,jm,km,nh)
+                          etay  = zetaderk(2,im,jm,km,nh)
+                          etaz  = zetaderk(3,im,jm,km,nh)
+                       end if
+                       
+                       rhow = q(ibc,jbc,kbc,1,n)
+                       tw   = q(ibc,jbc,kbc,5,n) *gamma / q(ibc,jbc,kbc,1,n)
+                       muw  = (stemp+1)/(tw+stemp) * (tw**1.5d0)
+                       
+!------------------MSC, 11/03/2023: dist not computed for laminar now
+                       if (kom.or.kom_bsl.or.kom_sst) then
+                          dn1  = dist(in ,jn ,kn )
+                       else
+                          dn1  = 0
+                       end if
+                       
+                       uw   = q(ibc,jbc,kbc,2,n)
+                       u1   = q(ibc+ioff1,jbc+joff1,kbc+koff1,2,n)
+                       u2   = q(ibc+ioff2,jbc+joff2,kbc+koff2,2,n)
+                       if (moving) then
+                          uwr  = xdot(ibc      ,jbc      ,kbc      ,nh)
+                          u1r  = xdot(ibc+ioff1,jbc+joff1,kbc+koff1,nh)
+                          u2r  = xdot(ibc+ioff2,jbc+joff2,kbc+koff2,nh)
+                          uw   = uw - uwr
+                          u1   = u1 - u1r
+                          u2   = u2 - u2r
+                       end if
+                       
+                       vw   = q(ibc,jbc,kbc,3,n)
+                       v1   = q(ibc+ioff1,jbc+joff1,kbc+koff1,3,n)
+                       v2   = q(ibc+ioff2,jbc+joff2,kbc+koff2,3,n)
+                       if (moving) then
+                          vwr  = ydot(ibc      ,jbc      ,kbc      ,nh)
+                          v1r  = ydot(ibc+ioff1,jbc+joff1,kbc+koff1,nh)
+                          v2r  = ydot(ibc+ioff2,jbc+joff2,kbc+koff2,nh)
+                          vw   = vw - vwr
+                          v1   = v1 - v1r
+                          v2   = v2 - v2r
+                       end if
+                       
+                       ww   = q(ibc,jbc,kbc,4,n)
+                       w1   = q(ibc+ioff1,jbc+joff1,kbc+koff1,4,n)
+                       w2   = q(ibc+ioff2,jbc+joff2,kbc+koff2,4,n)
+                       if (moving) then
+                          wwr  = zdot(ibc      ,jbc      ,kbc      ,nh)
+                          w1r  = zdot(ibc+ioff1,jbc+joff1,kbc+koff1,nh)
+                          w2r  = zdot(ibc+ioff2,jbc+joff2,kbc+koff2,nh)
+                          ww   = ww - wwr
+                          w1   = w1 - w1r
+                          w2   = w2 - w2r
+                       end if
+                       
+                       ueta = (-1)**(1+1/inrout) * (-8*uw + 9*u1 - u2) / 3
+                       veta = (-1)**(1+1/inrout) * (-8*vw + 9*v1 - v2) / 3
+                       weta = (-1)**(1+1/inrout) * (-8*ww + 9*w1 - w2) / 3
+                       
+                       dudx = ueta*etax
+                       dudy = ueta*etay
+                       dudz = ueta*etaz
+                       dvdx = veta*etax
+                       dvdy = veta*etay
+                       dvdz = veta*etaz
+                       dwdx = weta*etax
+                       dwdy = weta*etay
+                       dwdz = weta*etaz
+                       divv = dudx + dvdy + dwdz
+                       
+                       txx = 2*muw * (dudx - divv/3)
+                       txy =   muw * (dudy + dvdx)
+                       txz =   muw * (dudz + dwdx)
+                       tyy = 2*muw * (dvdy - divv/3)
+                       tyz =   muw * (dvdz + dwdy)
+                       tzz = 2*muw * (dwdz - divv/3)
+                       
+                       tauwx = txx*kx + txy*ky + txz*kz
+                       tauwy = txy*kx + tyy*ky + tyz*kz
+                       tauwz = txz*kx + tyz*ky + tzz*kz
+                       
+                       tauwpx = tauwx - (tauwx*kx+tauwy*ky+tauwz*kz)*kx
+                       tauwpy = tauwy - (tauwx*kx+tauwy*ky+tauwz*kz)*ky
+                       tauwpz = tauwz - (tauwx*kx+tauwy*ky+tauwz*kz)*kz
+                       
+                       tauw   = dsqrt(tauwpx**2+tauwpy**2+tauwpz**2)
+                       utau   = dsqrt(tauw/rhow)
+                       
+                       cf(ibc,jbc,kbc) = 2*tauw / (reyno*machfs)
+                       yp(ibc,jbc,kbc) = dsqrt(reyno/machfs)* &
+                            rhow*dn1*utau/muw
+                       
+                    end if
+                    
+                 end do
+              end do                 
+              
+              if(tecfil142(n+1) .ne. 0) then
+                 write(*,*) 'error calling tecfil142'
+                 stop
+              end if
+              
+              write (blocknumname, "(I5)") iblock
+              
+              ibcmax = ibc_e-ibc_s+1
+              jbcmax = jbc_e-jbc_s+1
+              kbcmax = kbc_e-kbc_s+1
+              
+              if(teczne142('block'//trim(blocknumname)//char(0),zonetype, ibcmax, jbcmax, kbcmax, &
+                   imaxmax, jmaxmax, kmaxmax, simtime, strandid, parentzone, isblock, nfconns, & 
+                   fnmode, tnfnodes, ncbfaces, tnbconns, Null, Null, Null, shrconn) .ne. 0) then
+                 write(*,*) 'error setting up zone'
+                 stop
+              end if
+              
+              if(tecznemap142(1, mpiid) .ne. 0) then
+                 write(*,*) 'error setting up parallel mapping for zone'
+                 call abortmpi()
+              end if              
+
+              if(tecdat142(ibcmax*jbcmax*kbcmax,x(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                 write(*,*) 'error writing block data'
+              end if
+              if(tecdat142(ibcmax*jbcmax*kbcmax,y(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                 write(*,*) 'error writing block data'
+              end if
+              if(tecdat142(ibcmax*jbcmax*kbcmax,z(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                 write(*,*) 'error writing block data'
+              end if
+              if(tecdat142(ibcmax*jbcmax*kbcmax,cp(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
+                 write(*,*) 'error writing block data'
+              end if
+              
+              if (viscous) then
+                 if(tecdat142(ibcmax*jbcmax*kbcmax,cf(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
+                    write(*,*) 'error writing block data'
+                 end if
+                 if(tecdat142(ibcmax*jbcmax*kbcmax,yp(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
+                    write(*,*) 'error writing block data'
+                 end if
+              else
+                 allocate(zeroarray(ibcmax*jbcmax*kbcmax))
+                 zeroarray = 0.d0
+                 if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                    write(*,*) 'error writing block data'
+                 end if
+                 if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                    write(*,*) 'error writing block data'
+                 end if
+                 deallocate(zeroarray)
+              end if
+              
+              if(allocated(cp)) deallocate(cp)
+              if (viscous) then
+                 if(allocated(cf)) deallocate(cf,yp)
+              end if
+
+              surfacenumber = surfacenumber + 1
+              
+           end if
+        end do
+
+      end do      
+
+#endif
+
+      return
+      end
 
 ! AJ TODO Merge the tec and cgns versions of this to save code duplication
 !-----------------------------------------------------------------------
@@ -5279,10 +5828,10 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) i,imax,jmax,kmax,npde,nharms,iblock,nl,lmet,nbcs
-      integer fid(0:2*nharms)
-      integer(kind=cosa_int) bctopo(10,nbcs)
-      real (kind=cosa_real) &
+      integer(kind=cosa_int) :: i,imax,jmax,kmax,npde,nharms,iblock,nl,lmet,nbcs
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -5297,10 +5846,10 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      integer integersize,doublesize,charactersize
+      integer(kind=cosa_int) :: integersize,doublesize,charactersize
       integer*8 disp
-      integer :: surfacenumber
-      integer :: basenum
+      integer(kind=cosa_int) :: surfacenumber
+      integer(kind=cosa_int) :: basenum
 
 !AJ We do not need the calculated offset here, but we do need the surfacenumber
 !AJ variable. We could refactor and create a new subroutine that just produces that 
@@ -5334,21 +5883,21 @@
 
       implicit none
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl,lmet,nbcs
-      integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc1
-      integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms,nl,lmet,nbcs
+      integer(kind=cosa_int) :: i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc1
+      integer(kind=cosa_int) :: i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
         ioff2,joff1,joff2,koff1,koff2,ibc_s,jbc_s,kbc_s,ibc_e,jbc_e, &
         kbc_e
-      integer fid(0:2*nharms)
-      integer(kind=cosa_int) bctopo(10,nbcs)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
            vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
            etax,etay,etaz,dudx,dudy,dudz,dvdx,dvdy, &
            dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
            tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau
-      real (kind=cosa_real) &
+      real(kind=cosa_real) :: &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -5363,17 +5912,17 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
-      integer :: ierr,integersize,doublesize,charactersize
-      integer :: tempindex,datasize
-      integer :: surfacestartindexes(3,nsurfblocks)
-      integer :: surfaceendindexes(3,nsurfblocks)
-      integer :: nsurfblocks, surfacenumber
-      integer :: xnum, ynum, znum, flownum, solnum
-      integer :: basenum
+      real(kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
+      integer(kind=cosa_int) :: ierr,integersize,doublesize,charactersize
+      integer(kind=cosa_int) :: tempindex,datasize
+      integer(kind=cosa_int) :: surfacestartindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: surfaceendindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: nsurfblocks, surfacenumber
+      integer(kind=cosa_int) :: xnum, ynum, znum, flownum, solnum
+      integer(kind=cosa_int) :: basenum
       character*200 line1
       integer(cgsize_t) :: minrange(3), maxrange(3)     
-      integer :: initialsurfacenumber
+      integer(kind=cosa_int) :: initialsurfacenumber
 
       ijkmax(1) = imax
       ijkmax(2) = jmax
@@ -5735,10 +6284,10 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) i,imax,jmax,kmax,npde,nharms,iblock,nl,lmet,nbcs
-      integer fid(0:2*nharms)
-      integer(kind=cosa_int) bctopo(10,nbcs)
-      real (kind=cosa_real) &
+      integer(kind=cosa_int) :: i,imax,jmax,kmax,npde,nharms,iblock,nl,lmet,nbcs
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -5759,9 +6308,9 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      integer integersize,doublesize,charactersize
+      integer(kind=cosa_int) :: integersize,doublesize,charactersize
       integer*8 disp
-      integer :: surfacenumber
+      integer(kind=cosa_int) :: surfacenumber
 
       disp = 0
 
@@ -5786,7 +6335,7 @@
                  kmax,npde,nharms,nl,nbcs,lmet,integersize, &
                  doublesize,charactersize,disp,surfacestartindexes, &
                  surfaceendindexes,nsurfblocks,surfacenumber)
-!     This routine writes parts of the surface output files using CGNS
+!     This routine writes parts of the surface output files using MPI-I/O
 !-----------------------------------------------------------------------
 
       use common_variables
@@ -5798,22 +6347,22 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl,lmet,nbcs
-      integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc1
-      integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms,nl,lmet,nbcs
+      integer(kind=cosa_int) :: i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc1
+      integer(kind=cosa_int) :: i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
         ioff2,joff1,joff2,koff1,koff2,ibc_s,jbc_s,kbc_s,ibc_e,jbc_e, &
         kbc_e
-      integer fid(0:2*nharms)
-      integer(kind=cosa_int) bctopo(10,nbcs)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
            vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
            xix,xiy,xiz,etax,etay,etaz,zetax,zetay,zetaz,dudeta,dudzeta, &
            dudxi,dudx,dudy,dudz,dvdx,dvdy,dwdxi,dwdeta,dwdzeta,dvdeta, &
            dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
            tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau,dvdxi,dvdzeta
-      real (kind=cosa_real) &
+      real(kind=cosa_real) :: &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -5834,16 +6383,16 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
-      real (kind=cosa_real),allocatable :: tempdata(:)
+      real(kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
+      real(kind=cosa_real),allocatable :: tempdata(:)
       integer*8 disp,initialdisp
-      integer :: ierr,integersize,doublesize,charactersize
-      integer :: tempindex,datasize
-      integer :: surfacestartindexes(3,nsurfblocks)
-      integer :: surfaceendindexes(3,nsurfblocks)
-      integer :: nsurfblocks, surfacenumber
+      integer(kind=cosa_int) :: ierr,integersize,doublesize,charactersize
+      integer(kind=cosa_int) :: tempindex,datasize
+      integer(kind=cosa_int) :: surfacestartindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: surfaceendindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: nsurfblocks, surfacenumber
       character*200 line1
-      integer :: initialsurfacenumber
+      integer(kind=cosa_int) :: initialsurfacenumber
       
 #ifdef MPI
 
@@ -6385,6 +6934,674 @@
 
 ! AJ TODO Merge the tec and cgns versions of this to save code duplication
 !-----------------------------------------------------------------------
+      subroutine write_parallel_wr_plt_surf_b_M2(fid,imax, &
+                 jmax,kmax,npde,nharms,iblock,nl,lmet,q,x,y,z,xdot,ydot, &
+                 zdot,si,sj,sk,xideri,xiderj,xiderk,etaderi,etaderj, &
+                 etaderk,zetaderi,zetaderj,zetaderk,dist,bctopo,nbcs)
+!     This routine writes parts of the surface output files using tecplot.
+!-----------------------------------------------------------------------
+
+      use parallelutils, only: nsurfblocks, surfblockstarts, &
+           surfblockends, surfblockindex, surfbcindex
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+#if MPI 
+      include 'mpif.h'
+#endif
+
+      integer(kind=cosa_int) :: i,imax,jmax,kmax,npde,nharms,iblock,nl,lmet,nbcs
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: &
+           q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
+           x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           z   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           xdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           ydot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           zdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           si      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sj      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sk      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           xideri  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           xiderj  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           xiderk  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderi (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderk (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderi(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           dist( 0:imax  , 0:jmax  , 0:kmax)
+      integer(kind=cosa_int) :: integersize,doublesize,charactersize
+      integer*8 disp
+      integer(kind=cosa_int) :: surfacenumber
+
+      disp = 0
+
+      call surftecinitialoffset(disp,nl,iblock,nsurfblocks, &
+           surfblockstarts,surfblockends,surfblockindex,surfbcindex, &
+           surfacenumber,integersize,doublesize,charactersize)
+
+      call parallel_wr_plt_surf_b_M2(fid,q,x,y,z,xdot,ydot,zdot,si,sj, &
+           sk,xideri,xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi, &
+           zetaderj,zetaderk,dist,bctopo,imax,jmax,kmax,npde, &
+           nharms,nl,nbcs,lmet,surfblockstarts,surfblockends, &
+           nsurfblocks,surfacenumber,iblock)
+
+      return 
+      end
+
+!-----------------------------------------------------------------------
+      subroutine parallel_wr_plt_surf_b_M2(fid,q,x,y,z,xdot,ydot,zdot, &
+                 si,sj,sk,xideri,xiderj,xiderk,etaderi,etaderj,etaderk, &
+                 zetaderi,zetaderj,zetaderk,dist,bctopo,imax,jmax, &
+                 kmax,npde,nharms,nl,nbcs,lmet,surfacestartindexes, &
+                 surfaceendindexes,nsurfblocks,surfacenumber,iblock)
+!     This routine writes parts of the surface output files using tecplot
+!-----------------------------------------------------------------------
+
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+#if MPI 
+      include 'mpif.h'
+#endif
+
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms,nl,lmet,nbcs
+      integer(kind=cosa_int) :: i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc1,iblock
+      integer(kind=cosa_int) :: i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
+        inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
+        kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
+        ioff2,joff1,joff2,koff1,koff2,ibc_s,jbc_s,kbc_s,ibc_e,jbc_e, &
+        kbc_e
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+           vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
+           xix,xiy,xiz,etax,etay,etaz,zetax,zetay,zetaz,dudeta,dudzeta, &
+           dudxi,dudx,dudy,dudz,dvdx,dvdy,dwdxi,dwdeta,dwdzeta,dvdeta, &
+           dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
+           tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau,dvdxi,dvdzeta
+      real(kind=cosa_real) :: &
+           q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
+           x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           z   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           xdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           ydot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           zdot( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
+           si      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sj      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           sk      (lmet, 0:imax+1, 0:jmax+1, 0:kmax+1,0:2*nharms*hbmove), &
+           xideri  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           xiderj  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           xiderk  (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderi (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           etaderk (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderi(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
+           dist( 0:imax  , 0:jmax  , 0:kmax)
+      real(kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
+      real(kind=cosa_real),allocatable :: zeroarray(:)
+      integer(kind=cosa_int) :: ierr
+      integer(kind=cosa_int) :: tempindex,datasize
+      integer(kind=cosa_int) :: surfacestartindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: surfaceendindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: nsurfblocks, surfacenumber
+      integer(kind=cosa_int) :: initialsurfacenumber
+      character(len=5) :: blocknumname
+      integer(kind=cosa_int) :: nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
+      integer(kind=cosa_int) :: tnfnodes, ncbfaces, tnbconns
+      integer(kind=cosa_int) :: zonetype, strandid, parentzone
+      integer(kind=cosa_int) :: teczne142, tecznemap142, tecdat142, tecfil142
+      integer(kind=cosa_int) :: ibcmax, jbcmax, kbcmax
+      integer(kind=cosa_int) :: imaxmax, jmaxmax, kmaxmax
+      integer(kind=cosa_int) :: mpiid
+      integer(kind=cosa_int) :: Null(*)
+      POINTER   (NullPtr,Null)
+
+      
+#ifdef MPI
+
+      call getmpiid(mpiid)    
+
+! Specify that we are using an Ordered zone type
+      zonetype = 0
+
+! Zones don't have parents
+      parentzone = 0
+
+! We are not part of a strand
+      strandid = 0
+      nfconns = 0
+      fnmode = 0
+      shrconn = 0
+      imaxmax = 0
+      jmaxmax = 0
+      kmaxmax = 0
+
+! This specifies if we are writing in block or point format
+! 1 is block format.  Binary tecplot files must be block format, 
+! so this must be 1.
+      isblock = 1
+      valuelocation = 0
+      isdouble = 1
+      tnfnodes = 0
+      ncbfaces = 0
+      tnbconns = 0
+
+      ijkmax(1) = imax
+      ijkmax(2) = jmax
+      ijkmax(3) = kmax
+
+      imax1 = imax+1
+      jmax1 = jmax+1
+      kmax1 = kmax+1
+
+      initialsurfacenumber = surfacenumber
+
+      do n = 0,2*nharms
+        nh = n*hbmove
+           
+!     This line is included because the n loop iterates through files 
+!     so we need to ensure that each time round the loop we start and 
+!     the correct place in the associated file.
+        surfacenumber = initialsurfacenumber
+
+        do ibc1=1,nbcs
+
+           if (any(bctopo(1,ibc1).eq. &
+                [1500,1501,1502,1503,1400,1401,1402,1403])) then
+              
+              ibc_s = surfacestartindexes(1,surfacenumber)
+              jbc_s = surfacestartindexes(2,surfacenumber)
+              kbc_s = surfacestartindexes(3,surfacenumber)
+              
+              ibc_e = surfaceendindexes(1,surfacenumber)
+              jbc_e = surfaceendindexes(2,surfacenumber)
+              kbc_e = surfaceendindexes(3,surfacenumber)
+                                          
+!     store boundary topology in mnemonic names
+              bctyp    = bctopo(1,ibc1)
+              idir     = bctopo(2,ibc1)
+              inrout   = bctopo(3,ibc1)
+              istrt(1) = bctopo(4,ibc1)
+              iend(1)  = bctopo(5,ibc1)
+              istrt(2) = bctopo(6,ibc1)
+              iend(2)  = bctopo(7,ibc1)
+              istrt(3) = bctopo(8,ibc1)
+              iend(3)  = bctopo(9,ibc1)
+              
+!             set needed variables depending on whether the boundary is
+!             the inner boundary (inrout = 1) or
+!             the outer boundary (inrout > 1)
+!             ibcpt : boundary condition location (first aux. cell)
+!             ibcpt2: boundary condition location outside the block from
+!                     ibcpt (second aux. cell)
+!             ibcn  : point to the inside of the block from ibcpt
+!             ibcm  : location of the metrics
+              
+              if (inrout.eq.1) then
+                 ibcpt  =  0
+                 ibcn   =  1
+                 ibcn2  =  2
+                 ibcm   =  1
+              else
+                 ibcpt  = ijkmax(idir)
+                 ibcn   = ijkmax(idir) - 1
+                 ibcn2  = ijkmax(idir) - 2
+                 ibcm   = ijkmax(idir)
+              end if
+              
+              if (idir.eq.1) then
+                 ioff1 = (-1)**(1+1/inrout)
+                 ioff2 = 2*ioff1
+                 joff1 = 0
+                 joff2 = 0
+                 koff1 = 0
+                 koff2 = 0
+              else if (idir.eq.2) then
+                 ioff1 = 0
+                 ioff2 = 0
+                 joff1 = (-1)**(1+1/inrout)
+                 joff2 = 2*joff1
+                 koff1 = 0
+                 koff2 = 0
+              else if (idir.eq.3) then
+                 ioff1 = 0
+                 ioff2 = 0
+                 joff1 = 0
+                 joff2 = 0
+                 koff1 = (-1)**(1+1/inrout)
+                 koff2 = 2*koff1
+              end if
+              
+              ic1 = cyc (idir, 1)
+              ic2 = cyc (idir, 2)
+              ic3 = cyc (idir, 3)       
+
+              datasize = 6
+              if((ibc_e-ibc_s)+1 .ne. 0) datasize = datasize*((ibc_e-ibc_s)+1)
+              if((jbc_e-jbc_s)+1 .ne. 0) datasize = datasize*((jbc_e-jbc_s)+1)
+              if((kbc_e-kbc_s)+1 .ne. 0) datasize = datasize*((kbc_e-kbc_s)+1)
+
+              allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
+              if (viscous) then
+                 allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e), &
+                      yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
+              end if      
+ 
+              do i3 = istrt(ic3),iend(ic3)
+                 do i2 = istrt(ic2),iend(ic2)
+                    
+                    ibc  = ibcpt *krd(ic1,1) + i2*krd(ic2,1) + i3*krd(ic3,1)
+                    jbc  = ibcpt *krd(ic1,2) + i2*krd(ic2,2) + i3*krd(ic3,2)
+                    kbc  = ibcpt *krd(ic1,3) + i2*krd(ic2,3) + i3*krd(ic3,3)
+                    
+                    im   = ibcm  *krd(ic1,1) + i2*krd(ic2,1) + i3*krd(ic3,1)
+                    jm   = ibcm  *krd(ic1,2) + i2*krd(ic2,2) + i3*krd(ic3,2)
+                    km   = ibcm  *krd(ic1,3) + i2*krd(ic2,3) + i3*krd(ic3,3)                   
+
+                    if (idir.eq.1) then
+                       nx    = si(1,im,jm,km,nh)
+                       ny    = si(2,im,jm,km,nh)
+                       nz    = si(3,im,jm,km,nh)
+                    else if (idir.eq.2) then
+                       nx    = sj(1,im,jm,km,nh)
+                       ny    = sj(2,im,jm,km,nh)
+                       nz    = sj(3,im,jm,km,nh)
+                    else if (idir.eq.3) then
+                       nx    = sk(1,im,jm,km,nh)
+                       ny    = sk(2,im,jm,km,nh)
+                       nz    = sk(3,im,jm,km,nh)
+                    end if
+                    
+                    kx   = (-1)**(1+1/inrout) * nx
+                    ky   = (-1)**(1+1/inrout) * ny
+                    kz   = (-1)**(1+1/inrout) * nz
+                    
+!     AJ Removed the machfs division here because if we are not viscous 
+!     AJ machfs is zero.
+                    cp(ibc,jbc,kbc) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)                                        
+                    
+                    if (viscous) then
+
+                       cp(ibc,jbc,kbc) = cp(ibc,jbc,kbc)/ &
+                            machfs**2
+                                              
+                       in   = ibcn  *krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+                       jn   = ibcn  *krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+                       kn   = ibcn  *krd(ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                       
+                       in2  = ibcn2 *krd(ic1,1) +i2*krd(ic2,1) +i3*krd(ic3,1)
+                       jn2  = ibcn2 *krd(ic1,2) +i2*krd(ic2,2) +i3*krd(ic3,2)
+                       kn2  = ibcn2 *krd(ic1,3) +i2*krd(ic2,3) +i3*krd(ic3,3)
+                       
+                       rhow = q(ibc,jbc,kbc,1,n)
+                       tw   = q(ibc,jbc,kbc,5,n) *gamma / q(ibc,jbc,kbc,1,n)
+                       muw  = (stemp+1)/(tw+stemp) * (tw**1.5d0)
+                       
+!------------------MSC, 11/03/2023: dist not computed for laminar now
+                       if (kom.or.kom_bsl.or.kom_sst) then
+                          dn1  = dist(in ,jn ,kn )
+                       else
+                          dn1  = 0
+                       end if
+
+                       if (idir.eq.1) then
+                          
+                          dudxi = (-1)**(1+1/inrout) * &
+                               (-8*q(ibc,jbc,kbc,2,n) + &
+                               9*q(ibc+ioff1,jbc,kbc,2,n) - &
+                               q(ibc+ioff2,jbc,kbc,2,n) ) / 3
+                          dvdxi = (-1)**(1+1/inrout) * &
+                               (-8*q(ibc,jbc,kbc,3,n) + &
+                               9*q(ibc+ioff1,jbc,kbc,3,n) - &
+                               q(ibc+ioff2,jbc,kbc,3,n) ) / 3
+                          dwdxi = (-1)**(1+1/inrout) * &
+                               (-8*q(ibc,jbc,kbc,4,n) + &
+                               9*q(ibc+ioff1,jbc,kbc,4,n) - &
+                               q(ibc+ioff2,jbc,kbc,4,n) ) / 3
+                          
+                          if (i2.eq.istrt(ic2)) then
+                             u2 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc+1,kbc,2,n)) / 2
+                             u1 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc+1,kbc,2,n)) / 2
+                             v2 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc+1,kbc,3,n)) / 2
+                             v1 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc+1,kbc,3,n)) / 2
+                             w2 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc+1,kbc,4,n)) / 2
+                             w1 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc+1,kbc,4,n)) / 2
+                          else if (i2.eq.iend(ic2)) then
+                             u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc-1,kbc,2,n)) / 2
+                             u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc-1,kbc,2,n)) / 2
+                             v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc-1,kbc,3,n)) / 2
+                             v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc-1,kbc,3,n)) / 2
+                             w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc-1,kbc,4,n)) / 2
+                             w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc-1,kbc,4,n)) / 2
+                          else
+                             u2 = (q(ibc,jbc  ,kbc,2,n) + q(ibc,jbc+1,kbc,2,n)) / 2
+                             u1 = (q(ibc,jbc-1,kbc,2,n) + q(ibc,jbc  ,kbc,2,n)) / 2
+                             v2 = (q(ibc,jbc  ,kbc,3,n) + q(ibc,jbc+1,kbc,3,n)) / 2
+                             v1 = (q(ibc,jbc-1,kbc,3,n) + q(ibc,jbc  ,kbc,3,n)) / 2
+                             w2 = (q(ibc,jbc  ,kbc,4,n) + q(ibc,jbc+1,kbc,4,n)) / 2
+                             w1 = (q(ibc,jbc-1,kbc,4,n) + q(ibc,jbc  ,kbc,4,n)) / 2
+                          end if
+                          dudeta = u2 - u1
+                          dvdeta = v2 - v1
+                          dwdeta = w2 - w1
+                          
+                          if (i3.eq.istrt(ic3)) then
+                             u2 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc,kbc+1,2,n)) / 2
+                             u1 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc,kbc+1,2,n)) / 2
+                             v2 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc,kbc+1,3,n)) / 2
+                             v1 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc,kbc+1,3,n)) / 2
+                             w2 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc,kbc+1,4,n)) / 2
+                             w1 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc,kbc+1,4,n)) / 2
+                          else if (i3.eq.iend(ic3)) then
+                             u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc,kbc-1,2,n)) / 2
+                             u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc,kbc-1,2,n)) / 2
+                             v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc,kbc-1,3,n)) / 2
+                             v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc,kbc-1,3,n)) / 2
+                             w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc,kbc-1,4,n)) / 2
+                             w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc,kbc-1,4,n)) / 2
+                          else
+                             u2 = (q(ibc,jbc,kbc  ,2,n) + q(ibc,jbc,kbc+1,2,n)) / 2
+                             u1 = (q(ibc,jbc,kbc-1,2,n) + q(ibc,jbc,kbc  ,2,n)) / 2
+                             v2 = (q(ibc,jbc,kbc  ,3,n) + q(ibc,jbc,kbc+1,3,n)) / 2
+                             v1 = (q(ibc,jbc,kbc-1,3,n) + q(ibc,jbc,kbc  ,3,n)) / 2
+                             w2 = (q(ibc,jbc,kbc  ,4,n) + q(ibc,jbc,kbc+1,4,n)) / 2
+                             w1 = (q(ibc,jbc,kbc-1,4,n) + q(ibc,jbc,kbc  ,4,n)) / 2
+                          end if
+                          dudzeta = u2 - u1
+                          dvdzeta = v2 - v1
+                          dwdzeta = w2 - w1
+                          
+                          xix   = xideri  (1,im,jm,km,n)
+                          xiy   = xideri  (2,im,jm,km,n)
+                          xiz   = xideri  (3,im,jm,km,n)
+                          etax  = etaderi (1,im,jm,km,n)
+                          etay  = etaderi (2,im,jm,km,n)
+                          etaz  = etaderi (3,im,jm,km,n)
+                          zetax = zetaderi(1,im,jm,km,n)
+                          zetay = zetaderi(2,im,jm,km,n)
+                          zetaz = zetaderi(3,im,jm,km,n)
+                          
+                       else if (idir.eq.2) then
+                          
+                          if (i3.eq.istrt(ic3)) then
+                             u2 = (  q(ibc+1,jbc,kbc,2,n) + q(ibc  ,jbc,kbc,2,n))/2
+                             u1 = (3*q(ibc  ,jbc,kbc,2,n) - q(ibc+1,jbc,kbc,2,n))/2
+                             v2 = (  q(ibc+1,jbc,kbc,3,n) + q(ibc  ,jbc,kbc,3,n))/2
+                             v1 = (3*q(ibc  ,jbc,kbc,3,n) - q(ibc+1,jbc,kbc,3,n))/2
+                             w2 = (  q(ibc+1,jbc,kbc,4,n) + q(ibc  ,jbc,kbc,4,n))/2
+                             w1 = (3*q(ibc  ,jbc,kbc,4,n) - q(ibc+1,jbc,kbc,4,n))/2
+                          else if (i3.eq.iend(ic3)) then
+                             u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc-1,jbc,kbc,2,n)) / 2
+                             u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc-1,jbc,kbc,2,n)) / 2
+                             v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc-1,jbc,kbc,3,n)) / 2
+                             v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc-1,jbc,kbc,3,n)) / 2
+                             w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc-1,jbc,kbc,4,n)) / 2
+                             w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc-1,jbc,kbc,4,n)) / 2
+                          else
+                             u2 = (q(ibc+1,jbc,kbc,2,n) + q(ibc  ,jbc,kbc,2,n)) / 2
+                             u1 = (q(ibc  ,jbc,kbc,2,n) + q(ibc-1,jbc,kbc,2,n)) / 2
+                             v2 = (q(ibc+1,jbc,kbc,3,n) + q(ibc  ,jbc,kbc,3,n)) / 2
+                             v1 = (q(ibc  ,jbc,kbc,3,n) + q(ibc-1,jbc,kbc,3,n)) / 2
+                             w2 = (q(ibc+1,jbc,kbc,4,n) + q(ibc  ,jbc,kbc,4,n)) / 2
+                             w1 = (q(ibc  ,jbc,kbc,4,n) + q(ibc-1,jbc,kbc,4,n)) / 2
+                          end if
+                          dudxi = u2 - u1
+                          dvdxi = v2 - v1
+                          dwdxi = w2 - w1
+                          
+                          dudeta = (-1)**(1+1/inrout) * &
+                               (-8*q(ibc,jbc,kbc,2,n) + &
+                               9*q(ibc,jbc+joff1,kbc,2,n) - &
+                               q(ibc,jbc+joff2,kbc,2,n) ) / 3
+                          dvdeta = (-1)**(1+1/inrout) * &
+                               (-8*q(ibc,jbc,kbc,3,n) + &
+                               9*q(ibc,jbc+joff1,kbc,3,n) - &
+                               q(ibc,jbc+joff2,kbc,3,n) ) / 3
+                          dwdeta = (-1)**(1+1/inrout) * &
+                               (-8*q(ibc,jbc,kbc,4,n) + &
+                               9*q(ibc,jbc+joff1,kbc,4,n) - &
+                               q(ibc,jbc+joff2,kbc,4,n) ) / 3
+                          
+                          if (i2.eq.istrt(ic2)) then
+                             u2 = (  q(ibc,jbc,kbc+1,2,n) + q(ibc,jbc,kbc  ,2,n))/2
+                             u1 = (3*q(ibc,jbc,kbc  ,2,n) - q(ibc,jbc,kbc+1,2,n))/2
+                             v2 = (  q(ibc,jbc,kbc+1,3,n) + q(ibc,jbc,kbc  ,3,n))/2
+                             v1 = (3*q(ibc,jbc,kbc  ,3,n) - q(ibc,jbc,kbc+1,3,n))/2
+                             w2 = (  q(ibc,jbc,kbc+1,4,n) + q(ibc,jbc,kbc  ,4,n))/2
+                             w1 = (3*q(ibc,jbc,kbc  ,4,n) - q(ibc,jbc,kbc+1,4,n))/2
+                          else if (i2.eq.iend(ic2)) then
+                             u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc,kbc-1,2,n)) / 2
+                             u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc,kbc-1,2,n)) / 2
+                             v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc,kbc-1,3,n)) / 2
+                             v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc,kbc-1,3,n)) / 2
+                             w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc,kbc-1,4,n)) / 2
+                             w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc,kbc-1,4,n)) / 2
+                          else
+                             u2 = (q(ibc,jbc,kbc+1,2,n) + q(ibc,jbc,kbc  ,2,n)) / 2
+                             u1 = (q(ibc,jbc,kbc  ,2,n) + q(ibc,jbc,kbc-1,2,n)) / 2
+                             v2 = (q(ibc,jbc,kbc+1,3,n) + q(ibc,jbc,kbc  ,3,n)) / 2
+                             v1 = (q(ibc,jbc,kbc  ,3,n) + q(ibc,jbc,kbc-1,3,n)) / 2
+                             w2 = (q(ibc,jbc,kbc+1,4,n) + q(ibc,jbc,kbc  ,4,n)) / 2
+                             w1 = (q(ibc,jbc,kbc  ,4,n) + q(ibc,jbc,kbc-1,4,n)) / 2
+                          end if
+                          dudzeta = u2 - u1
+                          dvdzeta = v2 - v1
+                          dwdzeta = w2 - w1
+                          
+                          xix   = xiderj  (1,im,jm,km,n)
+                          xiy   = xiderj  (2,im,jm,km,n)
+                          xiz   = xiderj  (3,im,jm,km,n)
+                          etax  = etaderj (1,im,jm,km,n)
+                          etay  = etaderj (2,im,jm,km,n)
+                          etaz  = etaderj (3,im,jm,km,n)
+                          zetax = zetaderj(1,im,jm,km,n)
+                          zetay = zetaderj(2,im,jm,km,n)
+                          zetaz = zetaderj(3,im,jm,km,n)
+                          
+                       else if (idir.eq.3) then
+                          if (i2.eq.istrt(ic2)) then
+                             u2 = (  q(ibc,jbc,kbc,2,n) + q(ibc+1,jbc,kbc,2,n)) / 2
+                             u1 = (3*q(ibc,jbc,kbc,2,n) - q(ibc+1,jbc,kbc,2,n)) / 2
+                             v2 = (  q(ibc,jbc,kbc,3,n) + q(ibc+1,jbc,kbc,3,n)) / 2
+                             v1 = (3*q(ibc,jbc,kbc,3,n) - q(ibc+1,jbc,kbc,3,n)) / 2
+                             w2 = (  q(ibc,jbc,kbc,4,n) + q(ibc+1,jbc,kbc,4,n)) / 2
+                             w1 = (3*q(ibc,jbc,kbc,4,n) - q(ibc+1,jbc,kbc,4,n)) / 2
+                          else if (i2.eq.iend(ic2)) then
+                             u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc-1,jbc,kbc,2,n)) / 2
+                             u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc-1,jbc,kbc,2,n)) / 2
+                             v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc-1,jbc,kbc,3,n)) / 2
+                             v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc-1,jbc,kbc,3,n)) / 2
+                             w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc-1,jbc,kbc,4,n)) / 2
+                             w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc-1,jbc,kbc,4,n)) / 2
+                          else
+                             u2 = (q(ibc  ,jbc,kbc,2,n) + q(ibc+1,jbc,kbc,2,n)) / 2
+                             u1 = (q(ibc-1,jbc,kbc,2,n) + q(ibc  ,jbc,kbc,2,n)) / 2
+                             v2 = (q(ibc  ,jbc,kbc,3,n) + q(ibc+1,jbc,kbc,3,n)) / 2
+                             v1 = (q(ibc-1,jbc,kbc,3,n) + q(ibc  ,jbc,kbc,3,n)) / 2
+                             w2 = (q(ibc  ,jbc,kbc,4,n) + q(ibc+1,jbc,kbc,4,n)) / 2
+                             w1 = (q(ibc-1,jbc,kbc,4,n) + q(ibc  ,jbc,kbc,4,n)) / 2
+                          end if
+                          dudxi = u2 - u1
+                          dvdxi = v2 - v1
+                          dwdxi = w2 - w1
+                          
+                          if (i3.eq.istrt(ic3)) then
+                             u2 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc+1,kbc,2,n)) / 2
+                             u1 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc+1,kbc,2,n)) / 2
+                             v2 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc+1,kbc,3,n)) / 2
+                             v1 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc+1,kbc,3,n)) / 2
+                             w2 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc+1,kbc,4,n)) / 2
+                             w1 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc+1,kbc,4,n)) / 2
+                          else if (i3.eq.iend(ic3)) then
+                             u2 = (3*q(ibc,jbc,kbc,2,n) - q(ibc,jbc-1,kbc,2,n)) / 2
+                             u1 = (  q(ibc,jbc,kbc,2,n) + q(ibc,jbc-1,kbc,2,n)) / 2
+                             v2 = (3*q(ibc,jbc,kbc,3,n) - q(ibc,jbc-1,kbc,3,n)) / 2
+                             v1 = (  q(ibc,jbc,kbc,3,n) + q(ibc,jbc-1,kbc,3,n)) / 2
+                             w2 = (3*q(ibc,jbc,kbc,4,n) - q(ibc,jbc-1,kbc,4,n)) / 2
+                             w1 = (  q(ibc,jbc,kbc,4,n) + q(ibc,jbc-1,kbc,4,n)) / 2
+                          else
+                             u2 = (q(ibc,jbc  ,kbc,2,n) + q(ibc,jbc+1,kbc,2,n)) / 2
+                             u1 = (q(ibc,jbc-1,kbc,2,n) + q(ibc,jbc  ,kbc,2,n)) / 2
+                             v2 = (q(ibc,jbc  ,kbc,3,n) + q(ibc,jbc+1,kbc,3,n)) / 2
+                             v1 = (q(ibc,jbc-1,kbc,3,n) + q(ibc,jbc  ,kbc,3,n)) / 2
+                             w2 = (q(ibc,jbc  ,kbc,4,n) + q(ibc,jbc+1,kbc,4,n)) / 2
+                             w1 = (q(ibc,jbc-1,kbc,4,n) + q(ibc,jbc  ,kbc,4,n)) / 2
+                          end if
+                          dudeta = u2 - u1
+                          dvdeta = v2 - v1
+                          dwdeta = w2 - w1
+                          
+                          dudzeta = (-1)**(1+1/inrout) * &
+                               (-8*q(ibc,jbc,kbc,2,n) + &
+                               9*q(ibc,jbc,kbc+koff1,2,n) - &
+                               q(ibc,jbc,kbc+koff2,2,n) ) / 3
+                          dvdzeta = (-1)**(1+1/inrout) * &
+                               (-8*q(ibc,jbc,kbc,3,n) + &
+                               9*q(ibc,jbc,kbc+koff1,3,n) - &
+                               q(ibc,jbc,kbc+koff2,3,n) ) / 3
+                          dwdzeta = (-1)**(1+1/inrout) * &
+                               (-8*q(ibc,jbc,kbc,4,n) + &
+                               9*q(ibc,jbc,kbc+koff1,4,n) - &
+                               q(ibc,jbc,kbc+koff2,4,n) ) / 3
+                          
+                          xix   = xiderk  (1,im,jm,km,n)
+                          xiy   = xiderk  (2,im,jm,km,n)
+                          xiz   = xiderk  (3,im,jm,km,n)
+                          etax  = etaderk (1,im,jm,km,n)
+                          etay  = etaderk (2,im,jm,km,n)
+                          etaz  = etaderk (3,im,jm,km,n)
+                          zetax = zetaderk(1,im,jm,km,n)
+                          zetay = zetaderk(2,im,jm,km,n)
+                          zetaz = zetaderk(3,im,jm,km,n)
+                          
+                       end if
+                       
+                       dudx = dudxi*xix + dudeta*etax + dudzeta*zetax
+                       dudy = dudxi*xiy + dudeta*etay + dudzeta*zetay
+                       dudz = dudxi*xiz + dudeta*etaz + dudzeta*zetaz
+                       dvdx = dvdxi*xix + dvdeta*etax + dvdzeta*zetax
+                       dvdy = dvdxi*xiy + dvdeta*etay + dvdzeta*zetay
+                       dvdz = dvdxi*xiz + dvdeta*etaz + dvdzeta*zetaz
+                       dwdx = dwdxi*xix + dwdeta*etax + dwdzeta*zetax
+                       dwdy = dwdxi*xiy + dwdeta*etay + dwdzeta*zetay
+                       dwdz = dwdxi*xiz + dwdeta*etaz + dwdzeta*zetaz
+                       
+                       divv = dudx + dvdy + dwdz
+                       
+                       txx = 2*muw * (dudx - divv/3)
+                       txy =   muw * (dudy + dvdx)
+                       txz =   muw * (dudz + dwdx)
+                       tyy = 2*muw * (dvdy - divv/3)
+                       tyz =   muw * (dvdz + dwdy)
+                       tzz = 2*muw * (dwdz - divv/3)
+                       
+                       tauwx = txx*kx + txy*ky + txz*kz
+                       tauwy = txy*kx + tyy*ky + tyz*kz
+                       tauwz = txz*kx + tyz*ky + tzz*kz
+                       
+                       tauwpx = tauwx - (tauwx*kx+tauwy*ky+tauwz*kz)*kx
+                       tauwpy = tauwy - (tauwx*kx+tauwy*ky+tauwz*kz)*ky
+                       tauwpz = tauwz - (tauwx*kx+tauwy*ky+tauwz*kz)*kz
+                       
+                       tauw   = dsqrt(tauwpx**2+tauwpy**2+tauwpz**2)
+                       utau   = dsqrt(tauw/rhow)
+                       
+                       cf(ibc,jbc,kbc) = 2*tauw / (reyno*machfs)
+                       yp(ibc,jbc,kbc) = dsqrt(reyno/machfs)* &
+                            rhow*dn1*utau/muw
+                       
+                    end if
+                    
+                 end do
+              end do
+
+              if(tecfil142(n+1) .ne. 0) then
+                 write(*,*) 'error calling tecfil142'
+                 stop
+              end if
+              
+              write (blocknumname, "(I5)") iblock
+              
+              ibcmax = ibc_e-ibc_s+1
+              jbcmax = jbc_e-jbc_s+1
+              kbcmax = kbc_e-kbc_s+1
+              
+              if(teczne142('block'//trim(blocknumname)//char(0),zonetype, ibcmax, jbcmax, kbcmax, &
+                   imaxmax, jmaxmax, kmaxmax, simtime, strandid, parentzone, isblock, nfconns, & 
+                   fnmode, tnfnodes, ncbfaces, tnbconns, Null, Null, Null, shrconn) .ne. 0) then
+                 write(*,*) 'error setting up zone'
+                 stop
+              end if
+              
+              if(tecznemap142(1, mpiid) .ne. 0) then
+                 write(*,*) 'error setting up parallel mapping for zone'
+                 call abortmpi()
+              end if              
+
+              if(tecdat142(ibcmax*jbcmax*kbcmax,x(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                 write(*,*) 'error writing block data'
+              end if
+              if(tecdat142(ibcmax*jbcmax*kbcmax,y(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                 write(*,*) 'error writing block data'
+              end if
+              if(tecdat142(ibcmax*jbcmax*kbcmax,z(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                 write(*,*) 'error writing block data'
+              end if
+              if(tecdat142(ibcmax*jbcmax*kbcmax,cp(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
+                 write(*,*) 'error writing block data'
+              end if
+              
+              if (viscous) then
+                 if(tecdat142(ibcmax*jbcmax*kbcmax,cf(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
+                    write(*,*) 'error writing block data'
+                 end if
+                 if(tecdat142(ibcmax*jbcmax*kbcmax,yp(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
+                    write(*,*) 'error writing block data'
+                 end if
+              else
+                 allocate(zeroarray(ibcmax*jbcmax*kbcmax))
+                 zeroarray = 0.d0
+                 if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                    write(*,*) 'error writing block data'
+                 end if
+                 if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                    write(*,*) 'error writing block data'
+                 end if
+                 deallocate(zeroarray)
+              end if
+              
+              if(allocated(cp)) deallocate(cp)
+              if (viscous) then
+                 if(allocated(cf)) deallocate(cf,yp)
+              end if
+
+              surfacenumber = surfacenumber + 1
+              
+           end if
+        end do
+
+      end do      
+
+#endif
+
+      return
+      end
+
+
+! AJ TODO Merge the tec and cgns versions of this to save code duplication
+!-----------------------------------------------------------------------
       subroutine write_parallel_wr_cgns_surf_b_M2(fid,imax, &
                  jmax,kmax,npde,nharms,iblock,nl,lmet,q,x,y,z,xdot,ydot, &
                  zdot,si,sj,sk,xideri,xiderj,xiderk,etaderi,etaderj, &
@@ -6406,10 +7623,10 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) i,imax,jmax,kmax,npde,nharms,iblock,nl,lmet,nbcs
-      integer fid(0:2*nharms)
-      integer(kind=cosa_int) bctopo(10,nbcs)
-      real (kind=cosa_real) &
+      integer(kind=cosa_int) :: i,imax,jmax,kmax,npde,nharms,iblock,nl,lmet,nbcs
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -6430,8 +7647,8 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      integer integersize,doublesize,charactersize
-      integer :: surfacenumber, basenum
+      integer(kind=cosa_int) :: integersize,doublesize,charactersize
+      integer(kind=cosa_int) :: surfacenumber, basenum
       integer*8 :: disp
 
 !AJ We do not need the calculated offset here, but we do need the surfacenumber
@@ -6468,22 +7685,22 @@
 
       implicit none
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,nl,lmet,nbcs
-      integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc1
-      integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms,nl,lmet,nbcs
+      integer(kind=cosa_int) :: i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc1
+      integer(kind=cosa_int) :: i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
         ioff2,joff1,joff2,koff1,koff2,ibc_s,jbc_s,kbc_s,ibc_e,jbc_e, &
         kbc_e
-      integer fid(0:2*nharms)
-      integer(kind=cosa_int) bctopo(10,nbcs)
-      real (kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: bctopo(10,nbcs)
+      real(kind=cosa_real) :: sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
            vw,v1,v2,vwr,v1r,v2r,ww,w1,w2,wwr,w1r,w2r,ueta,veta,weta, &
            xix,xiy,xiz,etax,etay,etaz,zetax,zetay,zetaz,dudeta,dudzeta, &
            dudxi,dudx,dudy,dudz,dvdx,dvdy,dwdxi,dwdeta,dwdzeta,dvdeta, &
            dvdz,dwdx,dwdy,dwdz,divv,txx,txy,txz,tyy,tyz,tzz,mach,tauwx, &
            tauwy,tauwz,tauwpx,tauwpy,tauwpz,dn1,tauw,utau,dvdxi,dvdzeta
-      real (kind=cosa_real) &
+      real(kind=cosa_real) :: &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
            y   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -6504,15 +7721,15 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
-      integer :: ierr,integersize,doublesize,charactersize
-      integer :: surfacestartindexes(3,nsurfblocks)
-      integer :: surfaceendindexes(3,nsurfblocks)
-      integer :: nsurfblocks, surfacenumber
-      integer :: xnum, ynum, znum, flownum, solnum, basenum
+      real(kind=cosa_real),allocatable :: cp(:,:,:),cf(:,:,:),yp(:,:,:)
+      integer(kind=cosa_int) :: ierr,integersize,doublesize,charactersize
+      integer(kind=cosa_int) :: surfacestartindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: surfaceendindexes(3,nsurfblocks)
+      integer(kind=cosa_int) :: nsurfblocks, surfacenumber
+      integer(kind=cosa_int) :: xnum, ynum, znum, flownum, solnum, basenum
       character*200 line1
       integer(cgsize_t) :: minrange(3), maxrange(3)
-      integer :: initialsurfacenumber
+      integer(kind=cosa_int) :: initialsurfacenumber
 
       ijkmax(1) = imax
       ijkmax(2) = jmax
@@ -7038,15 +8255,15 @@
 #if MPI 
       include 'mpif.h'
 #endif
-      integer(kind=cosa_int) fid(0:2*nharms)
-      integer basenum, numblocks, blocknum
-      integer imax, jmax, kmax, solnum, flownum, arrnum
-      integer :: xnum, ynum, znum
-      integer(kind=cosa_int) ierr,n,nl,i
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: basenum, numblocks, blocknum
+      integer(kind=cosa_int) :: imax, jmax, kmax, solnum, flownum, arrnum
+      integer(kind=cosa_int) :: xnum, ynum, znum
+      integer(kind=cosa_int) :: ierr,n,nl,i
       character*20 zonename
       integer(cgsize_t) :: sizes(3,3)
 
-      logical amcontrol
+      logical :: amcontrol
 
       call amcontroller(amcontrol)
 
@@ -7218,9 +8435,9 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,basenum,zonenum
-      integer(kind=cosa_int) fid(0:2*nharms)
-      real (kind=cosa_real) &
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms,basenum,zonenum
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      real(kind=cosa_real) :: &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            mut (-1:imax+1,-1:jmax+1,-1:kmax+1     ,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -7258,13 +8475,13 @@
       include 'mpif.h'
 #endif
 
-      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms
-      integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh
-      integer ierr,zonenum,basenum,solnum,flownum,arrnum
-      integer(kind=cosa_int) fid(0:2*nharms)
-      integer :: xnum,ynum,znum
+      integer(kind=cosa_int) :: imax,jmax,kmax,npde,nharms
+      integer(kind=cosa_int) :: i,imax1,j,jmax1,k,kmax1,ipde,n,nh
+      integer(kind=cosa_int) :: ierr,zonenum,basenum,solnum,flownum,arrnum
+      integer(kind=cosa_int) :: fid(0:2*nharms)
+      integer(kind=cosa_int) :: xnum,ynum,znum
       integer(cgsize_t) :: minrange(3), maxrange(3)
-      real (kind=cosa_real) &
+      real(kind=cosa_real) :: &
            q   (-1:imax+1,-1:jmax+1,-1:kmax+1,npde,0:2*nharms), &
            mut (-1:imax+1,-1:jmax+1,-1:kmax+1     ,0:2*nharms), &
            x   ( 0:imax+1, 0:jmax+1, 0:kmax+1     ,0:2*nharms*hbmove), &
@@ -7554,17 +8771,17 @@
 
 #if MPI 
       include 'mpif.h'
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=MPI_OFFSET_KIND)
 #else
-      integer offset_kind
+      integer(kind=cosa_int) :: offset_kind
       parameter(offset_kind=8)
 #endif
 
-      integer(kind=cosa_int) nl,nblocks
-      integer fid
-      integer ierr,integersize,doublesize,charactersize
-      integer(kind=offset_kind) disp
+      integer(kind=cosa_int) :: nl,nblocks
+      integer(kind=cosa_int) :: fid
+      integer(kind=cosa_int) :: ierr,integersize,doublesize,charactersize
+      integer(kind=offset_kind) :: disp
 
 #if MPI 
       call newflowtecinitialoffset(disp,nl,nblocks+1,integersize, &

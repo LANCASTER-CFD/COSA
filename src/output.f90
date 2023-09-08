@@ -3644,16 +3644,12 @@
          call wr_plt_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
               xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
               bctopo,0)
-         write(*,*) 'Writing flowtec files as plt format'
-         write(*,*) 'is not yet implemented'
       else if(write_szplt) then
          call q_tec(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist,var1,var2)
          call wr_plt(nl,var1,var2,1)
          call wr_plt_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
               xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk, &
               bctopo,1)
-         write(*,*) 'Writing flowtec files as szplt format'
-         write(*,*) 'is not yet implemented'
       else if(write_cgns) then
          call wr_cgns(nl,qtec,mut,x,y,z,xdot,ydot,zdot,dist)
          call wr_cgns_surf(nl,qtec,x,y,z,xdot,ydot,zdot,dist,si,sj,sk,xideri, &
@@ -5746,13 +5742,13 @@
         end if
 
         if (harbal) then
-           titlename='(''TITLE="HB meshflow"'')'//char(0)
+           titlename="HB meshflow"//char(0)
         else if (dualt) then
-           titlename='(''TITLE="DTS meshflow"'')'//char(0)
+           titlename="DTS meshflow"//char(0)
         else if (rgkuns) then
-           titlename='(''TITLE="URK meshflow"'')'//char(0)
+           titlename="URK meshflow"//char(0)
         else
-           titlename='(''TITLE="STD meshflow"'')'//char(0)
+           titlename="STD meshflow"//char(0)
         end if
         
         if (kom.or.kom_bsl.or.kom_sst) then
@@ -5766,14 +5762,11 @@
 
         if(parallel) then
         
-           write(*,*) 'A'
           call writeparallelpltheader(titlename,varlist,flowtec,pwd,n,nl, &
-                fileformat,filetype,isdebug,isdouble,harbal,dualt,rgkuns, &
-                kom,kom_bsl,kom_sst,unsteady)
+                fileformat,filetype,isdebug,isdouble)
           
         else
 
-           write(*,*) 'B'
           if(tecini142(trim(titlename),trim(varlist),trim(flowtec),trim(pwd), &
                fileformat,filetype,isdebug,isdouble) .ne. 0) then
              write(*,*) 'error initialising tecini142'
@@ -5789,11 +5782,9 @@
         kmax   = k_kmax     (iblock,nl)
         iv     = 1 + off_p1 (iblock,nl) * npde * dim5
         if (parallel) then
-           write(*,*) 'C'
           call write_parallel_wr_plt_b(fid,var1(iv),var2(iv),imax,jmax, &
                kmax,npde,nharms,iblock,nl)
         else
-           write(*,*) 'D'
           call wr_plt_b(fid,var1(iv),var2(iv),iblock,imax,jmax,kmax,npde, &
                         nharms)
         end if
@@ -5801,12 +5792,10 @@
 
       do n = 0,2*nharms
 !------close tecplot file(s)
-           write(*,*) 'E'
          if(tecfil142(n+1) .ne. 0) then
             write(*,*) 'error calling tecfil142'
             stop
          else
-           write(*,*) 'F'
             if(tecend142() .ne. 0) then
                write(*,*) 'error calling tecend142'
                stop
@@ -5848,7 +5837,6 @@
       real (kind=cosa_real) &
            var1  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
            var2  ( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms)
-      character*300 line1
       character(len=5) :: blocknumname
       integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
       integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
@@ -7567,7 +7555,7 @@
       real (kind=cosa_real) q(*),x(*),y(*),z(*),xdot(*),ydot(*),zdot(*),dist(*), &
         si(*),sj(*),sk(*),xideri(*),xiderj(*),xiderk(*),etaderi(*),etaderj(*), &
         etaderk(*),zetaderi(*),zetaderj(*),zetaderk(*)
-      character*72 line,tag
+      character*72 line,tag,varlist,titlename
       character*500 pwd
       character*6 filesuffix
       double precision :: starttime, endtime, totaltime, maxtime, mintime
@@ -7611,13 +7599,11 @@
 
       do n = 0,2*nharms
 
-         fid(n)    = 200 + n
-
 !------ build tecplot file(s) name
 
         if (.not.unsteady) then
 
-          surftec='surf_tec_steady.dat'
+          surftec='surf_tec_steady'//trim(filesuffix)//char(0)
 
         else if (harbal) then
 
@@ -7629,7 +7615,7 @@
             write(tag,'(i3)') n
           end if
           surftec = 'surf_tec_hb_'//tag
-          surftec = trim(surftec)//'.dat'
+          surftec = trim(surftec)//trim(filesuffix)//char(0)
 
         else if (dualt) then
 
@@ -7643,40 +7629,42 @@
             write(tag,'(i4)')         itime
           end if
           tag = 'surf_tec_t_'//tag
-          surftec = trim(tag)//'.dat'
+          surftec = trim(tag)//trim(filesuffix)//char(0)
 
         else if (rgkuns) then
 
-          surftec='surf_tec_urk.dat'
+          surftec='surf_tec_urk'//trim(filesuffix)//char(0)
 
         end if
 
 !------ open tecplot file(s) and write 2-line file header
 
-
+        if (harbal) then
+           titlename="HB surfdata"//char(0)
+        else if (dualt) then
+           titlename="DTS surfdata"//char(0)
+        else if (rgkuns) then
+           titlename="URK surfdata"
+        else
+           titlename="STD surfdata"
+        end if
+        
+        varlist="xc,yc,zc,cp,cf,yp"//char(0)
+        
+        call get_environment_variable('PWD',pwd)
+        pwd = trim(pwd)//char(0)
+        
         if(parallel) then
 
-           call writeparallelsurftecheader(fid(n),n,nl)
+          call writeparallelsurfpltheader(titlename,varlist,flowtec,pwd,n,nl, &
+                fileformat,filetype,isdebug,isdouble)
 
         else
 
-          open(fid(n),file=surftec,status='replace')
-
-          if (harbal) then
-            write(line,'(''TITLE="HB surfdata"'')')
-          else if (dualt) then
-            write(line,'(''TITLE="DTS surfdata"'')')
-          else if (rgkuns) then
-            write(line,'(''TITLE="URK surfdata"'')')
-          else
-            write(line,'(''TITLE="STD surfdata"'')')
+          if(tecini142(trim(titlename),trim(varlist),trim(flowtec),trim(pwd), &
+               fileformat,filetype,isdebug,isdouble) .ne. 0) then
+             write(*,*) 'error initialising tecini142'
           end if
-
-          write(fid(n),'(a)') line
-          line=''
-
-          write(line,'(''VARIABLES=xc,yc,zc,cp,cf,yp'')')
-          write(fid(n),'(a)') line
 
        end if
 
@@ -7722,31 +7710,38 @@
                     xdot(ixyz),ydot(ixyz),zdot(ixyz),si(iimt),sj(iimt),sk(iimt), &
                     xideri(ivmt),etaderj(ivmt),zetaderk(ivmt), &
                     dist(idist),bctopo(iblk),imax,jmax,kmax, &
-                    lmet,nbcs(iblock),npde,nharms)
+                    lmet,nbcs(iblock),npde,nharms,iblock)
             else
                call wr_plt_surf_b_M2(fid,q(iq),x(ixyz),y(ixyz),z(ixyz), &
                     xdot(ixyz),ydot(ixyz),zdot(ixyz),si(iimt),sj(iimt),sk(iimt), &
                     xideri(ivmt),xiderj(ivmt),xiderk(ivmt),etaderi(ivmt), &
                     etaderj(ivmt),etaderk(ivmt),zetaderi(ivmt),zetaderj(ivmt), &
                     zetaderk(ivmt),dist(idist),bctopo(iblk), &
-                    imax,jmax,kmax,lmet,nbcs(iblock),npde,nharms)
+                    imax,jmax,kmax,lmet,nbcs(iblock),npde,nharms,iblock)
             end if 
          end if
       end do
       
+
       do n = 0,2*nharms
-!------close tecplot file(s)
          if(parallel) then
             if(allocated(surfblockstarts)) deallocate(surfblockstarts)
             if(allocated(surfblockends)) deallocate(surfblockends)
             if(allocated(surfblockindex)) deallocate(surfblockindex)
             if(allocated(surfbcindex)) deallocate(surfbcindex)
-            call closempiiofile(fid(n))
+         end if
+!------close tecplot file(s)
+         if(tecfil142(n+1) .ne. 0) then
+            write(*,*) 'error calling tecfil142'
+            stop
          else
-            close(fid(n))
+            if(tecend142() .ne. 0) then
+               write(*,*) 'error calling tecend142'
+               stop
+            end if
          end if
       end do
-
+      
       call getmpitime(endtime)
 
       totaltime = endtime-starttime
@@ -7767,7 +7762,7 @@
 !-----------------------------------------------------------------------
       subroutine wr_plt_surf_b_M1(fid,q,x,y,z,xdot,ydot,zdot,si,sj,sk,xideri, &
         etaderj,zetaderk,dist,bctopo, &
-        imax,jmax,kmax,lmet,nbcs,npde,nharms)
+        imax,jmax,kmax,lmet,nbcs,npde,nharms,iblock)
 !-----------------------------------------------------------------------
        
       use common_variables
@@ -7778,7 +7773,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,lmet,nbcs
       integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc_s,jbc_s,kbc_s, &
         ibc_e,jbc_e,kbc_e
-      integer(kind=cosa_int) ibc1,isurface
+      integer(kind=cosa_int) ibc1,isurface,iblock
       integer(kind=cosa_int) bctopo(10,nbcs)
       integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
@@ -7806,8 +7801,17 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
-      character*200 line1
+      real (kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:),zeroarray(:)
+      character(len=5) :: blocknumname
+      integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
+      integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
+      integer(kind=cosa_int) zonetype, strandid, parentzone
+      integer(kind=cosa_int) teczne142, tecdat142, tecfil142
+      integer(kind=cosa_int) imaxmax, jmaxmax, kmaxmax
+      integer(kind=cosa_int) ibcmax, jbcmax,kbcmax
+      integer(kind=cosa_int) Null(*)
+      POINTER   (NullPtr,Null)
+
 
       ijkmax(1) = imax
       ijkmax(2) = jmax
@@ -7816,6 +7820,31 @@
       imax1 = imax+1
       jmax1 = jmax+1
       kmax1 = kmax+1
+
+! Specify that we are using an Ordered zone type
+      zonetype = 0
+
+! Zones don't have parents
+      parentzone = 0
+
+! We are not part of a strand
+      strandid = 0
+      nfconns = 0
+      fnmode = 0
+      shrconn = 0
+      imaxmax = 0
+      jmaxmax = 0
+      kmaxmax = 0
+
+! This specifies if we are writing in block or point format
+! 1 is block format.  Binary tecplot files must be block format, 
+! so this must be 1.
+      isblock = 1
+      valuelocation = 0
+      isdouble = 1
+      tnfnodes = 0
+      ncbfaces = 0
+      tnbconns = 0
 
 !---- loop over harmonics - STARTS
       do n = 0,2*nharms
@@ -8081,37 +8110,56 @@
 !------------extract/calculate surface coefficients - END
                   
 !------------write tecplot surface patch
-                  
-                  if (harbal) then
-                     write(line1,'(''ZONE T="arturo HB, mode '',i2,''", I='', &
-      i4,'', J='',i4,'', K='',i4,'',F=BLOCK, DT=(DOUBLE DOUBLE DOUBLE DO &
-     &UBLE DOUBLE DOUBLE)'')') n,ibc_e-ibc_s+1,jbc_e-jbc_s+1,kbc_e-kbc_s+1
-                  else
-                     write(line1,'(''ZONE T="arturo",I='',i4,'', J='',i4,'', &
-      K='',i4,'',F=BLOCK, DT=(DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE) &
-     &'')') ibc_e-ibc_s+1,jbc_e-jbc_s+1,kbc_e-kbc_s+1
+                                    
+!------ write tecplot block
+                  if(tecfil142(n+1) .ne. 0) then
+                     write(*,*) 'error calling tecfil142'
+                     stop
                   end if
                   
-                  write(fid(n),'(a)') line1
+                  write (blocknumname, "(I5)") iblock
+
+                  ibcmax = ibc_e-ibc_s+1
+                  jbcmax = jbc_e-jbc_s+1
+                  kbcmax = kbc_e-kbc_s+1
                   
-                  write (fid(n),10) (((x(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                       k=kbc_s,kbc_e)
-                  write (fid(n),10) (((y(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                       k=kbc_s,kbc_e)
-                  write (fid(n),10) (((z(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                       k=kbc_s,kbc_e)
-                  write (fid(n),10) (((cp(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                       k=kbc_s,kbc_e)
+                  if(teczne142('block'//trim(blocknumname)//char(0),zonetype, ibcmax, jbcmax, kbcmax, &
+                       imaxmax, jmaxmax, kmaxmax, simtime, strandid, parentzone, isblock, nfconns, & 
+                       fnmode, tnfnodes, ncbfaces, tnbconns, Null, Null, Null, shrconn) .ne. 0) then
+                     write(*,*) 'error setting up zone'
+                     stop
+                  end if
+                  
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,x(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,y(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,z(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,cp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+
                   if (viscous) then
-                     write (fid(n),10) (((cf(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                          k=kbc_s,kbc_e)
-                     write (fid(n),10) (((yp(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                          k=kbc_s,kbc_e)
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,cf(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,yp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
                   else
-                     write (fid(n),10) (((0.d0       ,i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                          k=kbc_s,kbc_e)
-                     write (fid(n),10) (((0.d0       ,i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                          k=kbc_s,kbc_e)
+                     allocate(zeroarray(ibcmax*jbcmax*kbcmax))
+                     zeroarray = 0.d0
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     deallocate(zeroarray)
                   end if
                   
                   deallocate(cp)
@@ -8140,7 +8188,7 @@
 !-----------------------------------------------------------------------
       subroutine wr_plt_surf_b_M2(fid,q,x,y,z,xdot,ydot,zdot,si,sj,sk,xideri, &
         xiderj,xiderk,etaderi,etaderj,etaderk,zetaderi,zetaderj,zetaderk,dist, &
-        bctopo,imax,jmax,kmax,lmet,nbcs,npde,nharms)
+        bctopo,imax,jmax,kmax,lmet,nbcs,npde,nharms,iblock)
 !-----------------------------------------------------------------------
        
       use common_variables
@@ -8151,7 +8199,7 @@
       integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,lmet,nbcs
       integer(kind=cosa_int) i,imax1,j,jmax1,k,kmax1,ipde,n,nh,ibc_s,jbc_s,kbc_s, &
         ibc_e,jbc_e,kbc_e
-      integer(kind=cosa_int) ibc1,isurface
+      integer(kind=cosa_int) ibc1,isurface,iblock
       integer(kind=cosa_int) bctopo(10,nbcs)
       integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
@@ -8187,8 +8235,16 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real (kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
-      character*200 line1
+      real (kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:),zeroarray(:)
+      character(len=5) :: blocknumname
+      integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
+      integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
+      integer(kind=cosa_int) zonetype, strandid, parentzone
+      integer(kind=cosa_int) teczne142, tecdat142, tecfil142
+      integer(kind=cosa_int) imaxmax, jmaxmax, kmaxmax
+      integer(kind=cosa_int) ibcmax, jbcmax,kbcmax
+      integer(kind=cosa_int) Null(*)
+      POINTER   (NullPtr,Null)
       
       ijkmax(1) = imax
       ijkmax(2) = jmax
@@ -8198,6 +8254,31 @@
       jmax1 = jmax+1
       kmax1 = kmax+1
       
+! Specify that we are using an Ordered zone type
+      zonetype = 0
+
+! Zones don't have parents
+      parentzone = 0
+
+! We are not part of a strand
+      strandid = 0
+      nfconns = 0
+      fnmode = 0
+      shrconn = 0
+      imaxmax = 0
+      jmaxmax = 0
+      kmaxmax = 0
+
+! This specifies if we are writing in block or point format
+! 1 is block format.  Binary tecplot files must be block format, 
+! so this must be 1.
+      isblock = 1
+      valuelocation = 0
+      isdouble = 1
+      tnfnodes = 0
+      ncbfaces = 0
+      tnbconns = 0
+
 !---- loop over harmonics - STARTS
       do n = 0,2*nharms
          nh = n*hbmove
@@ -8642,44 +8723,62 @@
 !------------extract/calculate surface coefficients - END
                   
 !------------write tecplot surface patch
-                  
-                  if (harbal) then
-     write(line1,'(''ZONE T="arturo HB, mode '',i2,''", I='',i4,'', J='',i4,'', K='',i4,'',F=BLOCK, DT=(DOUBLE DOUBLE DOUBLE &
-     &DOUBLE DOUBLE DOUBLE)'')') &
-                          n,ibc_e-ibc_s+1,jbc_e-jbc_s+1,kbc_e-kbc_s+1
-                  else
-     write(line1,'(''ZONE T="arturo",I='',i4,'', J='',i4,'', K='',i4,'',F=BLOCK, &
-     &DT=(DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE DOUBLE)'')') &
-                          ibc_e-ibc_s+1,jbc_e-jbc_s+1,kbc_e-kbc_s+1
+                                    
+                  if(tecfil142(n+1) .ne. 0) then
+                     write(*,*) 'error calling tecfil142'
+                     stop
                   end if
                   
-                  write(fid(n),'(a)') line1
+                  write (blocknumname, "(I5)") iblock
+
+                  ibcmax = ibc_e-ibc_s+1
+                  jbcmax = jbc_e-jbc_s+1
+                  kbcmax = kbc_e-kbc_s+1
                   
-                  write (fid(n),10) (((x(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                       k=kbc_s,kbc_e)
-                  write (fid(n),10) (((y(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                       k=kbc_s,kbc_e)
-                  write (fid(n),10) (((z(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                       k=kbc_s,kbc_e)
-                  write (fid(n),10) (((cp(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                       k=kbc_s,kbc_e)
+                  if(teczne142('block'//trim(blocknumname)//char(0),zonetype, ibcmax, jbcmax, kbcmax, &
+                       imaxmax, jmaxmax, kmaxmax, simtime, strandid, parentzone, isblock, nfconns, & 
+                       fnmode, tnfnodes, ncbfaces, tnbconns, Null, Null, Null, shrconn) .ne. 0) then
+                     write(*,*) 'error setting up zone'
+                     stop
+                  end if
+                  
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,x(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,y(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,z(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,cp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     write(*,*) 'error writing block data'
+                  end if
+
                   if (viscous) then
-                     write (fid(n),10) (((cf(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                          k=kbc_s,kbc_e)
-                     write (fid(n),10) (((yp(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                          k=kbc_s,kbc_e)
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,cf(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,yp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
                   else
-                     write (fid(n),10) (((0.d0       ,i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                          k=kbc_s,kbc_e)
-                     write (fid(n),10) (((0.d0       ,i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
-                          k=kbc_s,kbc_e)
+                     allocate(zeroarray(ibcmax*jbcmax*kbcmax))
+                     zeroarray = 0.d0
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,zeroarray,isdouble) .ne. 0) then
+                        write(*,*) 'error writing block data'
+                     end if
+                     deallocate(zeroarray)
                   end if
-                  
+
                   deallocate(cp)
                   if (viscous) then
                      deallocate(cf,yp)
                   end if
-                  
+
                end if
                
 !--------end loop (ibc1=1,nbcs)
