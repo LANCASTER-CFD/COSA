@@ -1,4 +1,4 @@
-.SUFFIXES: .F90 .f90 .F .f .o
+.SUFFIXES: .F90 .f90 .F .f .o .mod
 
 #
 # COSA executables
@@ -22,7 +22,7 @@ else ifeq ($(HOST),ngio-gfortran)
    FC = mpif90
    PFC = mpif90
    FFLAGS= -g -I/home/nx01/nx01/adrianj/cgns/develop-gnu/include -m64 -fallow-argument-mismatch -fdefault-real-8 -fdefault-double-8 -ffree-line-length-132 -fcray-pointer -cpp -O3  #-fbounds-check -fbacktrace  #-ffast-math -fbounds-check -fbacktrace
-   L_SEQ =  -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_core.a ${MKLROOT}/lib/intel64/libmkl_sequential.a -Wl,--end-group -lpthread -lm -L/home/nx01/nx01/adrianj/cgns/develop-gnu/lib -lcgns -L/home/software/tecplot/2023.1.0/lib -ltecio -lstdc++
+   L_SEQ =  -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_core.a ${MKLROOT}/lib/intel64/libmkl_sequential.a -Wl,--end-group -lpthread -lm -L/home/nx01/nx01/adrianj/cgns/develop-gnu/lib -lcgns -L/home/software/tecplot/2023.1.0/lib -lteciompi -lstdc++
 else ifeq ($(HOST),acquarius)
     FC = gfortran
     PFC = mpif90
@@ -151,9 +151,9 @@ POS    = cosa_precision.o common_variables.o cosa_variables.o parallelutils.o in
 # transformation rules
 #
 
-.F.o .f.o:     ; ${COMP} ${CPPFLAGS} ${FFLAGS} -c $< 
-
 .f90.o:       ; ${COMP} ${CPPFLAGS} ${FFLAGS} -c $<
+%.o: %.mod
+
 #
 # program dependencies
 #

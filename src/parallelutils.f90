@@ -3983,6 +3983,52 @@
       end
 
 !-----------------------------------------------------------------------
+      subroutine writeparallelpltheader(titlename,varlist,flowtec,pwd,n, &
+                 nl,fileformat,filetype,isdebug,isdouble,harbal,dualt, &
+                 rgkuns,kom,kom_bsl,kom_sst,unsteady)
+
+!     This opens a plt or szplt file in parallel
+!
+!-----------------------------------------------------------------------
+        
+      use cosa_variables
+      use cosa_precision
+
+      implicit none
+
+#if MPI 
+      include 'mpif.h'
+#endif
+
+      character*72 titlename,flowtec,varlist
+      character*500 pwd
+      integer(kind=cosa_int) ierr,n,nl
+      integer(kind=cosa_int) tecini142, tecmpiinit142
+      integer(kind=cosa_int) fileformat, filetype, isdebug, isdouble
+      logical harbal,dualt,rgkuns,kom,kom_bsl,kom_sst,unsteady
+
+      logical amcontrol
+
+
+#if MPI
+
+      if(tecini142(trim(titlename),trim(varlist),trim(flowtec),trim(pwd), &
+           fileformat,filetype,isdebug,isdouble) .ne. 0) then
+         write(*,*) 'error initialising tecini142'
+         call abortmpi()
+      end if
+
+      if(tecmpiinit142(MPI_COMM_WORLD, 0) .ne. 0) then
+         write(*,*) 'error initialising tecmpiinit142'
+         call abortmpi()
+      end if
+      
+#endif
+
+      return
+      end
+
+!-----------------------------------------------------------------------
       subroutine writeparallelsurftecheader(fid,n,nl)
 !     This opens the surftec file and writes the header information  
 !     for the parallel surftec write.
@@ -4596,6 +4642,125 @@
 
       return
       end
+
+
+!-----------------------------------------------------------------------
+      subroutine write_parallel_wr_plt_b(fid,var1,var2,imax,jmax,kmax, &
+                 npde,nharms,iblock,nl)
+!     This routine writes parts of the flowtec files using tecio.
+!-----------------------------------------------------------------------
+
+      use common_variables
+      use cosa_precision
+
+      implicit none
+
+#if MPI 
+      include 'mpif.h'
+#endif
+
+      integer(kind=cosa_int) imax,jmax,kmax,npde,nharms,iblock,nl,n,nh
+      integer(kind=cosa_int) imax1,jmax1,kmax1
+      integer fid(0:2*nharms)
+      real (kind=cosa_real) &
+           var1( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms), &
+           var2( 0:imax  , 0:jmax  , 0:kmax  ,npde,0:2*nharms)      
+      character(len=5) :: blocknumname
+      integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
+      integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
+      integer(kind=cosa_int) zonetype, strandid, parentzone
+      integer(kind=cosa_int) teczne142, tecznemap142, tecdat142, tecfil142
+      integer(kind=cosa_int) imaxmax, jmaxmax, kmaxmax
+      integer(kind=cosa_int) mpiid
+      integer(kind=cosa_int) Null(*)
+      POINTER   (NullPtr,Null)
+
+#ifdef MPI
+
+      call getmpiid(mpiid)
+      
+      imax1 = imax+1
+      jmax1 = jmax+1
+      kmax1 = kmax+1
+
+! Specify that we are using an Ordered zone type
+      zonetype = 0
+
+! Zones don't have parents
+      parentzone = 0
+
+! We are not part of a strand
+      strandid = 0
+      nfconns = 0
+      fnmode = 0
+      shrconn = 0
+      imaxmax = 0
+      jmaxmax = 0
+      kmaxmax = 0
+
+! This specifies if we are writing in block or point format
+! 1 is block format.  Binary tecplot files must be block format, 
+! so this must be 1.
+      isblock = 1
+      valuelocation = 0
+      isdouble = 1
+      tnfnodes = 0
+      ncbfaces = 0
+      tnbconns = 0
+
+      do n = 0,2*nharms
+        nh = n*hbmove
+
+        if(tecfil142(n+1) .ne. 0) then
+           write(*,*) 'error calling tecfil142'
+           stop
+        end if
+
+        write (blocknumname, "(I5)") iblock
+
+        if(teczne142('block'//trim(blocknumname)//char(0),zonetype, imax1, jmax1, kmax1, &
+             imaxmax, jmaxmax, kmaxmax, simtime, strandid, parentzone, isblock, nfconns, & 
+             fnmode, tnfnodes, ncbfaces, tnbconns, Null, Null, Null, shrconn) .ne. 0) then
+           write(*,*) 'error setting up zone'
+           call abortmpi()
+        end if
+        
+        if(tecznemap142(1, mpiid) .ne. 0) then
+           write(*,*) 'error setting up parallel mapping for zone'
+           call abortmpi()
+        end if
+
+        if (kom.or.kom_bsl.or.kom_sst) then
+
+           if(tecdat142(imax1*jmax1*kmax1*7,var1(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+              call abortmpi()
+           end if
+           if(tecdat142(imax1*jmax1*kmax1*7,var2(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+              call abortmpi()
+           end if
+
+        else
+
+           if(tecdat142(imax1*jmax1*kmax1*5,var1(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+              call abortmpi()
+           end if
+           if(tecdat142(imax1*jmax1*kmax1*5,var2(0,0,0,1,n),isdouble) .ne. 0) then
+              write(*,*) 'error writing block data'
+              call abortmpi()
+           end if
+           
+        end if
+
+      end do
+
+#endif
+
+      return
+      end
+
 
 
 ! AJ TODO Merge the tec and cgns versions of this to save code duplication
