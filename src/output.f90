@@ -6620,7 +6620,7 @@
       integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
-        ioff2,joff1,joff2,koff1,koff2
+        ioff2,joff1,joff2,koff1,koff2,nharms_alloc
 
       integer fid(0:2*mharms)
       real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
@@ -6759,11 +6759,19 @@
                        iend(ic3)*krd(ic3,2)
                   kbc_e  = ibcpt *krd(ic1,3) + iend(ic2)*krd(ic2,3) + &
                        iend(ic3)*krd(ic3,3)
-                  
-                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                 
+                  ! AJ This used because some compilers will generate a zero sized array if the
+                  ! AJ alloc is done on i.e. cp(10,10,10,0:0). So if nharms is zero we set it to one
+                  ! AJ to make the last dimension correct.
+                  nharms_alloc = nharms
+                  if(nharms .eq. 0) then
+                     nharms_alloc = 1
+                  end if
+ 
+                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc))
                   if (viscous) then
-                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms), &
-                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc), &
+                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc))
                   end if
                   
 !------------extract/calculate surface coefficients - START
@@ -6951,9 +6959,10 @@
                           k=kbc_s,kbc_e)
                   end if
                   
-                  deallocate(cp)
+                  if(allocated(cp)) deallocate(cp)
                   if (viscous) then
-                     deallocate(cf,yp)
+                     if(allocated(cf)) deallocate(cf)
+                     if(allocated(yp)) deallocate(yp)
                   end if
                   
                end if
@@ -6993,7 +7002,7 @@
       integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
-        ioff2,joff1,joff2,koff1,koff2
+        ioff2,joff1,joff2,koff1,koff2,nharms_alloc
 
       integer fid(0:2*mharms)
       real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
@@ -7140,11 +7149,21 @@
                        iend(ic3)*krd(ic3,2)
                   kbc_e  = ibcpt *krd(ic1,3) + iend(ic2)*krd(ic2,3) + &
                        iend(ic3)*krd(ic3,3)
-                  
-                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                 
+                  ! AJ This used because some compilers will generate a
+                  ! zero sized array if the
+                  ! AJ alloc is done on i.e. cp(10,10,10,0:0). So if
+                  ! nharms is zero we set it to one
+                  ! AJ to make the last dimension correct.
+                  nharms_alloc = nharms
+                  if(nharms .eq. 0) then
+                     nharms_alloc = 1
+                  end if
+ 
+                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc))
                   if (viscous) then
-                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms), &
-                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc), &
+                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc))
                   end if
                   
 !------------extract/calculate surface coefficients - START
@@ -7512,9 +7531,10 @@
                           k=kbc_s,kbc_e)
                   end if
                   
-                  deallocate(cp)
+                  if(allocated(cp)) deallocate(cp)
                   if (viscous) then
-                     deallocate(cf,yp)
+                     if(allocated(cf)) deallocate(cf)
+                     if(allocated(yp)) deallocate(yp)
                   end if
                   
                end if
@@ -7780,7 +7800,7 @@
       integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
-        ioff2,joff1,joff2,koff1,koff2
+        ioff2,joff1,joff2,koff1,koff2,nharms_alloc
 
       integer fid(0:2*mharms)
       real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
@@ -7953,11 +7973,21 @@
                        iend(ic3)*krd(ic3,2)
                   kbc_e  = ibcpt *krd(ic1,3) + iend(ic2)*krd(ic2,3) + &
                        iend(ic3)*krd(ic3,3)
+
+                  ! AJ This used because some compilers will generate a
+                  ! zero sized array if the
+                  ! AJ alloc is done on i.e. cp(10,10,10,0:0). So if
+                  ! nharms is zero we set it to one
+                  ! AJ to make the last dimension correct.
+                  nharms_alloc = nharms
+                  if(nharms .eq. 0) then
+                     nharms_alloc = 1
+                  end if
                   
-                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc))
                   if (viscous) then
-                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms), &
-                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc), &
+                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc))
                   end if
                   
 !------------extract/calculate surface coefficients - START
@@ -8164,9 +8194,10 @@
                      deallocate(zeroarray)
                   end if
                   
-                  deallocate(cp)
+                  if(allocated(cp)) deallocate(cp)
                   if (viscous) then
-                     deallocate(cf,yp)
+                     if(allocated(cf)) deallocate(cf)
+                     if(allocated(yp)) deallocate(yp)
                   end if
                   
                end if
@@ -8206,7 +8237,7 @@
       integer(kind=cosa_int) i1,i2,i3,ijkmax(3),idir,istrt(3),iend(3),bctyp, &
         inrout,ibcpt,ibcpt2,ibcn,ibcn2,ibcm,ibc,jbc,kbc,ibc2,jbc2, &
         kbc2,in,jn,kn,in2,jn2,kn2,im,jm,km,ic1,ic2,ic3,sysize,ioff1, &
-        ioff2,joff1,joff2,koff1,koff2
+        ioff2,joff1,joff2,koff1,koff2,nharms_alloc
 
       integer fid(0:2*mharms)
       real(kind=cosa_real) sgnm,nx,ny,nz,kx,ky,kz,rhow,tw,muw,uw,u1,u2,uwr,u1r,u2r, &
@@ -8387,10 +8418,20 @@
                   kbc_e  = ibcpt *krd(ic1,3) + iend(ic2)*krd(ic2,3) + &
                        iend(ic3)*krd(ic3,3)
                   
-                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                  ! AJ This used because some compilers will generate a
+                  ! zero sized array if the
+                  ! AJ alloc is done on i.e. cp(10,10,10,0:0). So if
+                  ! nharms is zero we set it to one
+                  ! AJ to make the last dimension correct.
+                  nharms_alloc = nharms
+                  if(nharms .eq. 0) then
+                     nharms_alloc = 1
+                  end if
+
+                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc))
                   if (viscous) then
-                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms), &
-                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc), &
+                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms_alloc))
                   end if
                   
 !------------extract/calculate surface coefficients - START
@@ -8776,9 +8817,10 @@
                      deallocate(zeroarray)
                   end if
 
-                  deallocate(cp)
+                  if(allocated(cp)) deallocate(cp)
                   if (viscous) then
-                     deallocate(cf,yp)
+                     if(allocated(cf)) deallocate(cf)
+                     if(allocated(yp)) deallocate(yp)
                   end if
 
                end if
