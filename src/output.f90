@@ -6643,7 +6643,7 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
+      real(kind=cosa_real),allocatable::cp(:,:,:),cf(:,:,:),yp(:,:,:)
       character*200 line1
 
       ijkmax(1) = imax
@@ -6760,10 +6760,10 @@
                   kbc_e  = ibcpt *krd(ic1,3) + iend(ic2)*krd(ic2,3) + &
                        iend(ic3)*krd(ic3,3)
                  
-                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
                   if (viscous) then
-                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms), &
-                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e), &
+                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
                   end if
                   
 !------------extract/calculate surface coefficients - START
@@ -6796,7 +6796,7 @@
                         ky   = (-1)**(1+1/inrout) * ny
                         kz   = (-1)**(1+1/inrout) * nz
                         
-                        cp(ibc,jbc,kbc,n) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)/ &
+                        cp(ibc,jbc,kbc) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)/ &
                              machfs**2
                         
                         if (viscous) then
@@ -6907,8 +6907,8 @@
                            tauw   = dsqrt(tauwpx**2+tauwpy**2+tauwpz**2)
                            utau   = dsqrt(tauw/rhow)
                            
-                           cf(ibc,jbc,kbc,n) = 2*tauw / (reyno*machfs)
-                           yp(ibc,jbc,kbc,n) = dsqrt(reyno/machfs)* &
+                           cf(ibc,jbc,kbc) = 2*tauw / (reyno*machfs)
+                           yp(ibc,jbc,kbc) = dsqrt(reyno/machfs)* &
                                 rhow*dn1*utau/muw
                            
                         end if
@@ -6937,12 +6937,12 @@
                        k=kbc_s,kbc_e)
                   write (fid(n),10) (((z(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
                        k=kbc_s,kbc_e)
-                  write (fid(n),10) (((cp(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
+                  write (fid(n),10) (((cp(i,j,k),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
                        k=kbc_s,kbc_e)
                   if (viscous) then
-                     write (fid(n),10) (((cf(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
+                     write (fid(n),10) (((cf(i,j,k),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
                           k=kbc_s,kbc_e)
-                     write (fid(n),10) (((yp(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
+                     write (fid(n),10) (((yp(i,j,k),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
                           k=kbc_s,kbc_e)
                   else
                      write (fid(n),10) (((0.d0       ,i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
@@ -7025,7 +7025,7 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:)
+      real(kind=cosa_real),allocatable::cp(:,:,:),cf(:,:,:),yp(:,:,:)
       character*200 line1
       
       ijkmax(1) = imax
@@ -7142,10 +7142,10 @@
                   kbc_e  = ibcpt *krd(ic1,3) + iend(ic2)*krd(ic2,3) + &
                        iend(ic3)*krd(ic3,3)
                  
-                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
                   if (viscous) then
-                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms), &
-                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e), &
+                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
                   end if
                   
 !------------extract/calculate surface coefficients - START
@@ -7178,7 +7178,7 @@
                         ky   = (-1)**(1+1/inrout) * ny
                         kz   = (-1)**(1+1/inrout) * nz
                         
-                        cp(ibc,jbc,kbc,n) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)/ &
+                        cp(ibc,jbc,kbc) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)/ &
                              machfs**2
                         
                         if (viscous) then
@@ -7469,8 +7469,8 @@
                            tauw   = dsqrt(tauwpx**2+tauwpy**2+tauwpz**2)
                            utau   = dsqrt(tauw/rhow)
                            
-                           cf(ibc,jbc,kbc,n) = 2*tauw / (reyno*machfs)
-                           yp(ibc,jbc,kbc,n) = dsqrt(reyno/machfs)* &
+                           cf(ibc,jbc,kbc) = 2*tauw / (reyno*machfs)
+                           yp(ibc,jbc,kbc) = dsqrt(reyno/machfs)* &
                                 rhow*dn1*utau/muw
                            
                         end if
@@ -7499,12 +7499,12 @@
                        k=kbc_s,kbc_e)
                   write (fid(n),10) (((z(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
                        k=kbc_s,kbc_e)
-                  write (fid(n),10) (((cp(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
+                  write (fid(n),10) (((cp(i,j,k),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
                        k=kbc_s,kbc_e)
                   if (viscous) then
-                     write (fid(n),10) (((cf(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
+                     write (fid(n),10) (((cf(i,j,k),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
                           k=kbc_s,kbc_e)
-                     write (fid(n),10) (((yp(i,j,k,n),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
+                     write (fid(n),10) (((yp(i,j,k),i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
                           k=kbc_s,kbc_e)
                   else
                      write (fid(n),10) (((0.d0       ,i=ibc_s,ibc_e),j=jbc_s,jbc_e), &
@@ -7805,7 +7805,7 @@
            etaderj (3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:),zeroarray(:)
+      real(kind=cosa_real),allocatable::cp(:,:,:),cf(:,:,:),yp(:,:,:),zeroarray(:)
       character(len=5) :: blocknumname
       integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
       integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
@@ -7956,10 +7956,10 @@
                   kbc_e  = ibcpt *krd(ic1,3) + iend(ic2)*krd(ic2,3) + &
                        iend(ic3)*krd(ic3,3)
 
-                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
                   if (viscous) then
-                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms), &
-                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e), &
+                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
                   end if
                   
 !------------extract/calculate surface coefficients - START
@@ -7992,7 +7992,7 @@
                         ky   = (-1)**(1+1/inrout) * ny
                         kz   = (-1)**(1+1/inrout) * nz
                         
-                        cp(ibc,jbc,kbc,n) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)/ &
+                        cp(ibc,jbc,kbc) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)/ &
                              machfs**2
                         
                         if (viscous) then
@@ -8103,8 +8103,8 @@
                            tauw   = dsqrt(tauwpx**2+tauwpy**2+tauwpz**2)
                            utau   = dsqrt(tauw/rhow)
                            
-                           cf(ibc,jbc,kbc,n) = 2*tauw / (reyno*machfs)
-                           yp(ibc,jbc,kbc,n) = dsqrt(reyno/machfs)* &
+                           cf(ibc,jbc,kbc) = 2*tauw / (reyno*machfs)
+                           yp(ibc,jbc,kbc) = dsqrt(reyno/machfs)* &
                                 rhow*dn1*utau/muw
                            
                         end if
@@ -8143,15 +8143,15 @@
                   if(tecdat142(ibcmax*jbcmax*kbcmax,z(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
                      write(*,*) 'error writing block data'
                   end if
-                  if(tecdat142(ibcmax*jbcmax*kbcmax,cp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,cp(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
                      write(*,*) 'error writing block data'
                   end if
 
                   if (viscous) then
-                     if(tecdat142(ibcmax*jbcmax*kbcmax,cf(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,cf(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
                         write(*,*) 'error writing block data'
                      end if
-                     if(tecdat142(ibcmax*jbcmax*kbcmax,yp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,yp(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
                         write(*,*) 'error writing block data'
                      end if
                   else
@@ -8240,7 +8240,7 @@
            zetaderj(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            zetaderk(3   ,   imax  ,   jmax  ,   kmax  ,0:2*nharms*hbmove), &
            dist( 0:imax  , 0:jmax  , 0:kmax)
-      real(kind=cosa_real),allocatable::cp(:,:,:,:),cf(:,:,:,:),yp(:,:,:,:),zeroarray(:)
+      real(kind=cosa_real),allocatable::cp(:,:,:),cf(:,:,:),yp(:,:,:),zeroarray(:)
       character(len=5) :: blocknumname
       integer(kind=cosa_int) nfconns, fnmode, shrconn, isblock, valuelocation, isdouble
       integer(kind=cosa_int) tnfnodes, ncbfaces, tnbconns
@@ -8390,10 +8390,10 @@
                   kbc_e  = ibcpt *krd(ic1,3) + iend(ic2)*krd(ic2,3) + &
                        iend(ic3)*krd(ic3,3)
                   
-                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                  allocate(cp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
                   if (viscous) then
-                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms), &
-                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e,0:nharms))
+                     allocate(cf(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e), &
+                          yp(ibc_s:ibc_e,jbc_s:jbc_e,kbc_s:kbc_e))
                   end if
                   
 !------------extract/calculate surface coefficients - START
@@ -8426,7 +8426,7 @@
                         ky   = (-1)**(1+1/inrout) * ny
                         kz   = (-1)**(1+1/inrout) * nz
                         
-                        cp(ibc,jbc,kbc,n) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)/ &
+                        cp(ibc,jbc,kbc) = 2*(q(ibc,jbc,kbc,5,n)-1/gamma)/ &
                              machfs**2
                         
                         if (viscous) then
@@ -8717,8 +8717,8 @@
                            tauw   = dsqrt(tauwpx**2+tauwpy**2+tauwpz**2)
                            utau   = dsqrt(tauw/rhow)
                            
-                           cf(ibc,jbc,kbc,n) = 2*tauw / (reyno*machfs)
-                           yp(ibc,jbc,kbc,n) = dsqrt(reyno/machfs)* &
+                           cf(ibc,jbc,kbc) = 2*tauw / (reyno*machfs)
+                           yp(ibc,jbc,kbc) = dsqrt(reyno/machfs)* &
                                 rhow*dn1*utau/muw
                            
                         end if
@@ -8756,15 +8756,15 @@
                   if(tecdat142(ibcmax*jbcmax*kbcmax,z(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
                      write(*,*) 'error writing block data'
                   end if
-                  if(tecdat142(ibcmax*jbcmax*kbcmax,cp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                  if(tecdat142(ibcmax*jbcmax*kbcmax,cp(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
                      write(*,*) 'error writing block data'
                   end if
 
                   if (viscous) then
-                     if(tecdat142(ibcmax*jbcmax*kbcmax,cf(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,cf(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
                         write(*,*) 'error writing block data'
                      end if
-                     if(tecdat142(ibcmax*jbcmax*kbcmax,yp(ibc_s,jbc_s,kbc_s,n),isdouble) .ne. 0) then
+                     if(tecdat142(ibcmax*jbcmax*kbcmax,yp(ibc_s,jbc_s,kbc_s),isdouble) .ne. 0) then
                         write(*,*) 'error writing block data'
                      end if
                   else
