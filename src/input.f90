@@ -386,7 +386,7 @@
             imax  = i_imax(iblock,nl)
             jmax  = j_jmax(iblock,nl)
             kmax  = k_kmax(iblock,nl)
-            ixyz  = 1 + off_0 (iblock,nl)
+            ixyz  = 1 + off_0 (iblock,nl)*3
             jxyz  = 1 + off_p2(iblock,nl)
             jdxyz = 1 + off_p1(iblock,nl)
             call read_bcgnsgrid(xyz(ixyz),dxyz(ixyz),imax,jmax,kmax, &
@@ -4524,7 +4524,8 @@
             imax  = i_imax(iblock,nl)
             jmax  = j_jmax(iblock,nl)
             kmax  = k_kmax(iblock,nl)
-            ixyz  = 1 + off_0 (iblock,nl)
+            !ixyz  = 1 + off_0 (iblock,nl)
+            ixyz = 1
             jxyz  = 1 + off_p2(iblock,nl)
             jdxyz = 1 + off_p1(iblock,nl)
             call read_bgrid(xyz(ixyz),dxyz(ixyz),imax,jmax,kmax,fid)
