@@ -4322,7 +4322,7 @@
                write(*,*) 'Found a surface block in calculatesurfblock '
                write(*,*) 'but we have already found all expected blocks.'
                write(*,*) 'This means something has gone wrong.'
-               call abort()
+               call abortmpi()
                
             end if
 
